@@ -1,0 +1,9 @@
+{
+  "name": "react-intl-workflow",
+  "version": "0.0.1",
+  "description": "Workflow helpers for react-intl",
+  "main": "index.js",
+  "repository": {},
+  "author": "David Smith <dave@avaragado.org>",
+  "license": "MIT"
+}
