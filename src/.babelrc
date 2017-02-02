@@ -1,0 +1,27 @@
+{
+    "plugins": [
+        "transform-runtime",
+        "transform-flow-strip-types",
+        "transform-object-rest-spread"
+    ],
+    "env": {
+        // separate env-based preset configurations, because if env.es5
+        // is merged to the root, then the modules: false line in
+        // env.modules.presets seems to be ignored.
+        "es5": {
+            "presets": [
+                "env",
+            ],
+        },
+        "modules": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "modules": false
+                    }
+                ]
+            ],
+        }
+    }
+}
