@@ -10,11 +10,17 @@
 # error in a json file
 <PROJECT_ROOT>/node_modules/conventional-changelog-core/.*
 
+# error in src/lib/flow.js
+<PROJECT_ROOT>/node_modules/flow-coverage-report/.*
+
 [include]
 
 [libs]
 flow-typed/
 
 [options]
+# we import eg config files via variable
+module.ignore_non_literal_requires=true
+
 # used by flow-coverage-report
 suppress_comment=.*\\$FLOW_FIXME

@@ -2,7 +2,8 @@
     "plugins": [
         "transform-runtime",
         "transform-flow-strip-types",
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "inline-package-json",
     ],
     "env": {
         // separate env-based preset configurations, because if env.es5
@@ -22,6 +23,12 @@
                     }
                 ]
             ],
-        }
-    }
+        },
+        // jest needs this
+        "test": {
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ],
+        },
+    },
 }

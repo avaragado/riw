@@ -2,7 +2,8 @@
 module.exports = {
     scripts: {
         build: {
-            default: 'nps clean,lint,test,build.es5,build.modules',
+            // default: 'nps clean,lint,test,build.es5,build.modules',
+            default: 'nps clean,build.es5',
             es5: 'NODE_ENV=es5 babel --copy-files --out-dir dist/es5 --ignore __tests__ src',
             modules: 'NODE_ENV=modules babel --copy-files --out-dir dist/modules --ignore __tests__ src',
         },
@@ -12,8 +13,8 @@ module.exports = {
             js: 'eslint src',
         },
         test: {
-            default: 'jest',
-            watch: 'jest --watch',
+            default: 'LOGLEVEL=silent jest',
+            watch: 'LOGLEVEL=silent jest --watch',
             coverageReport: 'jest --coverage',
         },
         clean: 'rimraf dist coverage flow-coverage',

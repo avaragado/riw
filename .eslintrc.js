@@ -73,6 +73,20 @@ module.exports = {
         // must separate imports from rest of code
         'import/newline-after-import': 'error',
 
+        // import must include extensions for all files except these
+        "import/extensions": [
+            "error",
+            "always",
+            {
+                "js": "never",
+                "jsx": "never",
+                "es": "never"
+            }
+        ],
+
+        // allow dynamic requires
+        "import/no-dynamic-require": 'off',
+
         // allow 'require' anywhere
         'global-require': 'off',
 
