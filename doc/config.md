@@ -22,8 +22,18 @@ Inside the `package.json` file's `riw` key, you may use only JSON data.
 
 ## Configuration options
 
-### defaultLocale
+For options with type `Path`, the string value is a filesystem path. Relative paths are treated as relative to the configuration file.
 
-Default value: `en-us`
+### `defaultLocale`
+
+- Type: `LocaleId`
+- Default value: `en-us`
 
 The locale id that riw assigns to every react-intl message descriptor's defaultMessage.
+
+### `translationsDatabaseFile`
+
+- Type: `Path`
+- Default value: `src/locale/riw-db.json`
+
+The filesystem path to the translations database used by riw.

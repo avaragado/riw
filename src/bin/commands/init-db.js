@@ -1,12 +1,14 @@
 // @flow
 
-import type yargs from 'yargs';
+import log from '../../lib/log';
+import { createHandlerWithRIW } from '../utils';
 
 export const command = 'init-db';
-export const desc = 'Initialise riw translations database according to configuration';
+export const desc = 'Create an empty riw translations database in the configured location';
 
-export const handler = (argv: yargs.Argv) => {
-    console.log('init-db', argv);
+export const handler = createHandlerWithRIW((riw: RIW) => {
+    riw.initRDB();
 
-    console.log('argv.config', argv.config);
-};
+    log.info('riw', `Created empty riw database file ${riw.config.translationsDatabaseFile}.`);
+    log.info('riw', 'We recommend you check this file into git.');
+});

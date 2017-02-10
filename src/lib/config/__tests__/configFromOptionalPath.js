@@ -28,6 +28,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(fabsF02Good)).toEqual({
             ...configDefault,
             ...configOverrideF02,
+            dabsConfig: path.dirname(fabsF02Good),
         });
     });
 
@@ -37,6 +38,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(frelF02Good)).toEqual({
             ...configDefault,
             ...configOverrideF02,
+            dabsConfig: path.dirname(fabsF02Good),
         });
     });
 
@@ -51,7 +53,7 @@ describe('lib/config/configFromOptionalPath', () => {
     });
 
     it('should return the merged config: from package.json, key present', () => {
-        const dabsF03 = path.resolve(dabsFixtures, '03-pkg-riw')
+        const dabsF03 = path.resolve(dabsFixtures, '03-pkg-riw');
         const fabsF03PackageJSON = path.resolve(dabsF03, 'package.json');
 
         process.chdir(dabsF03);
@@ -61,11 +63,12 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
             ...configOverrideF03,
-        })
+            dabsConfig: dabsF03,
+        });
     });
 
     it('should return the merged config: from .riw-config, ignoring key in package.json', () => {
-        const dabsF04 = path.resolve(dabsFixtures, '04-riw-config')
+        const dabsF04 = path.resolve(dabsFixtures, '04-riw-config');
         const fabsF04 = path.resolve(dabsF04, '.riw-config');
 
         process.chdir(dabsF04);
@@ -75,14 +78,18 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
             ...configOverrideF04,
-        })
+            dabsConfig: dabsF04,
+        });
     });
 
     it('should return default config: no .riw-config.js, but package.json with key not present', () => {
-        const dabsF05 = path.resolve(dabsFixtures, '05-pkg-no-riw')
+        const dabsF05 = path.resolve(dabsFixtures, '05-pkg-no-riw');
 
         process.chdir(dabsF05);
 
-        expect(configFromOptionalPath(undefined)).toEqual(configDefault);
+        expect(configFromOptionalPath(undefined)).toEqual({
+            ...configDefault,
+            dabsConfig: dabsF05,
+        });
     });
 });

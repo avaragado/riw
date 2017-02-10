@@ -8,16 +8,18 @@ import compose from 'ramda/src/compose';
 import log from '../log';
 
 const configDefault: RIWConfig = {
+    dabsConfig: '', // overridden below
     defaultLocale: 'en-us',
+    translationsDatabaseFile: 'src/locale/riw-db.json',
 };
 
 const fabsPackageJSONFromDabs = (cwd: AbsolutePath): ?AbsolutePath =>
     findUp.sync('package.json', { cwd });
 
 const fabsConfigPackageFromPackageJSONFabs = (fabsPackageJSON: ?AbsolutePath): ?AbsolutePath =>
-    fabsPackageJSON
+    (fabsPackageJSON
         ? path.resolve(path.dirname(fabsPackageJSON), '.riw-config.js')
-        : null;
+        : null);
 
 const fabsConfigPackageForCWD = compose(
     fabsConfigPackageFromPackageJSONFabs,
@@ -34,11 +36,8 @@ const requireOrNull = (fabs: AbsolutePath): ?Object => {
     }
 };
 
-const configFromPath = (fabsOrFrel: string): ?RIWConfig => {
-    const fabs = path.isAbsolute(fabsOrFrel)
-        ? fabsOrFrel
-        : path.resolve('.', fabsOrFrel);
-
+const configFromPath = (pathConfig: Path): ?RIWConfig => {
+    const fabs: AbsolutePath = path.resolve(pathConfig);
     const configOverride = requireOrNull(fabs);
 
     if (configOverride === null) {
@@ -49,6 +48,7 @@ const configFromPath = (fabsOrFrel: string): ?RIWConfig => {
     return {
         ...configDefault,
         ...configOverride,
+        dabsConfig: path.dirname(fabs),
     };
 };
 
@@ -81,12 +81,13 @@ const configFromPackage = (): ?RIWConfig => {
     return {
         ...configDefault,
         ...configOverride,
+        dabsConfig: path.dirname(fabsConfigPackage),
     };
 
 };
 
-const configFromOptionalPath = (fabsOrFrel: ?string): ?RIWConfig => (fabsOrFrel
-        ? configFromPath(fabsOrFrel)
+const configFromOptionalPath = (pathConfig: ?Path): ?RIWConfig => (pathConfig
+        ? configFromPath(pathConfig)
         : configFromPackage());
 
 export {
