@@ -54,7 +54,7 @@ describe('lib/riw/persistence/writeDB', () => {
     it('writes a new rdb file to an empty dir - with explicit cwd', () => {
         const cfg = {
             ...cfgBase,
-            dabsConfig: process.cwd(),
+            rootDir: process.cwd(),
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
         };
 

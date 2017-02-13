@@ -50,7 +50,7 @@ describe('lib/riw/persistence/readDB', () => {
     it('fails to read a missing file - with explicit cwd', () => {
         const cfg = {
             ...cfgBase,
-            dabsConfig: process.cwd(),
+            rootDir: process.cwd(),
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
         };
 

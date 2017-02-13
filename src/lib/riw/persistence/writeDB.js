@@ -19,9 +19,9 @@ export default (config: RIWConfig, optIn: WriteOpt = {}) => (rdb: RIWDB) => {
     const opt = { ...optDefault, ...optIn };
     const flag = opt.allowOverwrite ? 'w' : 'wx';
 
-    const { translationsDatabaseFile: pathDB, dabsConfig } = config;
+    const { translationsDatabaseFile: pathDB, rootDir } = config;
 
-    const pabsDB = path.resolve(dabsConfig || process.cwd(), pathDB);
+    const pabsDB = path.resolve(rootDir || process.cwd(), pathDB);
     const dabsDB = path.dirname(pabsDB);
 
     const json = JSON.stringify(rdb, null, 4);

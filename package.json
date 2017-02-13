@@ -1,6 +1,6 @@
 {
   "name": "react-intl-workflow",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Workflow helpers for react-intl",
   "main": "./dist/es5/index.js",
   "modules": "./dist/modules/index.js",
@@ -31,7 +31,7 @@
     "eslint-plugin-jest": "^1.0.2",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
-    "flow-bin": "^0.38.0",
+    "flow-bin": "^0.39.0",
     "flow-coverage-report": "^0.3.0",
     "flow-typed": "^2.0.0",
     "jest": "^18.1.0",

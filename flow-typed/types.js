@@ -10,7 +10,7 @@ declare type Path = AbsolutePath | RelativePath;
 declare type LocaleId = string;
 
 declare type RIWConfig = {
-    dabsConfig?: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
+    rootDir?: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
     defaultLocale: LocaleId,
     targetLocales: LocaleId[],
     translationsDatabaseFile: Path,

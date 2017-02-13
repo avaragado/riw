@@ -5,15 +5,17 @@ import type yargs from 'yargs';
 import outdent from 'outdent';
 import pick from 'ramda/src/pick';
 
-import { sDescriptionDefault } from '../../lib/riw';
-import { createHandlerWithRIW } from '../utils';
+import { sDescriptionDefault } from '../../../lib/riw';
+import { createHandlerWithRIW } from '../../utils';
 
-export const command = 'update-translation';
+export const command = 'update';
 export const desc = 'Add or edit a translation in the riw database';
+
+const here = `db ${command}`;
 
 export const builder = (yyargs: yargs.Argv) => yyargs
     .usage(outdent`
-        $0 update-translation
+        $0 ${here}
             --defaultMessage <sourceString> [--description <description>]
             --locale <localeID> --translation <localeString>
 
@@ -22,7 +24,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     `)
     .example(
         outdent`
-            $0 update-translation
+            $0 ${here}
                 --defaultMessage "Hello {name}"
                 --locale fr-fr
                 --translation "Bonjour {name}"
@@ -32,7 +34,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     )
     .example(
         outdent`
-            $0 update-translation
+            $0 ${here}
                 --defaultMessage "Export"
                 --description "The button a user presses to start exporting data"
                 --locale fr-fr
@@ -43,7 +45,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     )
     .example(
         outdent`
-            $0 update-translation
+            $0 ${here}
                 --defaultMessage "Export"
                 --description "The section heading describing an export"
                 --locale fr-fr

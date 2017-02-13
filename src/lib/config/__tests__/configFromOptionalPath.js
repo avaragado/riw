@@ -28,7 +28,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(fabsF02Good)).toEqual({
             ...configDefault,
             ...configOverrideF02,
-            dabsConfig: path.dirname(fabsF02Good),
+            rootDir: path.dirname(fabsF02Good),
         });
     });
 
@@ -38,7 +38,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(frelF02Good)).toEqual({
             ...configDefault,
             ...configOverrideF02,
-            dabsConfig: path.dirname(fabsF02Good),
+            rootDir: path.dirname(fabsF02Good),
         });
     });
 
@@ -63,7 +63,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
             ...configOverrideF03,
-            dabsConfig: dabsF03,
+            rootDir: dabsF03,
         });
     });
 
@@ -78,7 +78,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
             ...configOverrideF04,
-            dabsConfig: dabsF04,
+            rootDir: dabsF04,
         });
     });
 
@@ -89,7 +89,7 @@ describe('lib/config/configFromOptionalPath', () => {
 
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
-            dabsConfig: dabsF05,
+            rootDir: dabsF05,
         });
     });
 });

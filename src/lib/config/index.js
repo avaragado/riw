@@ -8,7 +8,7 @@ import compose from 'ramda/src/compose';
 import log from '../log';
 
 const configDefault: RIWConfig = {
-    dabsConfig: '', // overridden below
+    rootDir: '', // overridden below
     defaultLocale: 'en-us',
     targetLocales: [],
     translationsDatabaseFile: 'src/locale/riw-db.json',
@@ -49,7 +49,7 @@ const configFromPath = (pathConfig: Path): ?RIWConfig => {
     return {
         ...configDefault,
         ...configOverride,
-        dabsConfig: path.dirname(fabs),
+        rootDir: path.dirname(fabs),
     };
 };
 
@@ -82,7 +82,7 @@ const configFromPackage = (): ?RIWConfig => {
     return {
         ...configDefault,
         ...configOverride,
-        dabsConfig: path.dirname(fabsConfigPackage),
+        rootDir: path.dirname(fabsConfigPackage),
     };
 
 };
