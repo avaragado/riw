@@ -4,10 +4,11 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
-import transformRDB from '../transformRDB';
+import makeDiskTransformer from '../makeDiskTransformer';
 
 const cfgBase: RIWConfig = {
     defaultLocale: 'aa-bb',
+    targetLocales: [],
     translationsDatabaseFile: 'overwritten',
 };
 
@@ -77,8 +78,7 @@ describe('lib/riw/transformRDB', () => {
                 translationsDatabaseFile: fixture.name,
             };
 
-            const rdbAction = transformRDB(fixture.transformer)(cfg, fixture.opt);
-            rdbAction();
+            makeDiskTransformer(fixture.transformer, cfg)(fixture.opt);
 
             const content = fs.readFileSync(cfg.translationsDatabaseFile).toString();
 

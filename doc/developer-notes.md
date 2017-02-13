@@ -8,13 +8,15 @@ There's a one-to-many mapping between flowtype types and variable naming prefixe
 
 | Hungarian | Flowtype | Meaning |
 | --- | --- | --- |
+| `s` | `string` | A plain string |
+| `json` | `string` | A JSON string (NOT an object) |
+| `path` | `Path` | Either a relative or an absolute path, to a file or directory |
+| `pabs` | `AbsolutePath` | Absolute path to file or directory |
+| `prel` | `RelativePath` | Relative path to file or directory |
 | `fabs` | `AbsolutePath` | Absolute path to file, eg `/foo/bar/baz.txt` |
 | `frel` | `RelativePath` | Relative path to file, eg `bar/baz.txt` |
 | `dabs` | `AbsolutePath` | Absolute path to directory, eg `/foo/bar/` |
 | `drel` | `RelativePath` | Relative path to directory, eg `bar/` |
-| `pabs` | `AbsolutePath` | Absolute path to file or directory |
-| `prel` | `RelativePath` | Relative path to file or directory |
-| `path` | `Path` | Either a relative or an absolute path, to a file or directory |
 | `rdb` | `RIWDB` | An riw translation database object |
-| `json` | – | A JSON string (NOT an object) |
+| `opt` | `Object` | An options object; may have a more specific flowtype type in some circumstances |
 

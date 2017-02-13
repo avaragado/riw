@@ -1,8 +1,14 @@
 // @flow
 
-import initRDB from './initRDB';
+import makeDiskTransformer from './makeDiskTransformer';
 
-export default (config: RIWConfig) => ({
-    initRDB: initRDB(config),
+import initDB from './initDB';
+import updateTranslations from './transformer/updateTranslations';
+
+export const sDescriptionDefault = '_';
+
+export default (config: RIWConfig): RIW => ({
+    initDB: initDB(config),
+    updateTranslations: makeDiskTransformer(updateTranslations, config),
     config,
 });

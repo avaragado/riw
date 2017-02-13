@@ -2,7 +2,7 @@
 
 import mock from 'mock-fs';
 
-import readRDBFromConfig from '../readRDB';
+import readDB from '../readDB';
 
 const rdb: RIWDB = {
     version: 1,
@@ -11,12 +11,13 @@ const rdb: RIWDB = {
 
 const cfgBase: RIWConfig = {
     defaultLocale: 'aa-bb',
+    targetLocales: [],
     translationsDatabaseFile: 'overwritten',
 };
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-describe('lib/riw/readRDB', () => {
+describe('lib/riw/persistence/readDB', () => {
     beforeEach(() => {
         mock({
             fixtures: {
@@ -40,10 +41,9 @@ describe('lib/riw/readRDB', () => {
             ...cfgBase,
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
         };
-        const readRDB = readRDBFromConfig(cfg);
 
         expect(() => {
-            readRDB();
+            readDB(cfg)();
         }).toThrowError(/ENOENT/);
     });
 
@@ -53,10 +53,9 @@ describe('lib/riw/readRDB', () => {
             dabsConfig: process.cwd(),
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
         };
-        const readRDB = readRDBFromConfig(cfg);
 
         expect(() => {
-            readRDB();
+            readDB(cfg)();
         }).toThrowError(/ENOENT/);
     });
 
@@ -65,10 +64,9 @@ describe('lib/riw/readRDB', () => {
             ...cfgBase,
             translationsDatabaseFile: 'fixtures/02/riw-db.json',
         };
-        const readRDB = readRDBFromConfig(cfg);
 
         expect(() => {
-            readRDB();
+            readDB(cfg)();
         }).toThrowError(/Unexpected token/);
     });
 
@@ -77,8 +75,7 @@ describe('lib/riw/readRDB', () => {
             ...cfgBase,
             translationsDatabaseFile: 'fixtures/03/riw-db.json',
         };
-        const readRDB = readRDBFromConfig(cfg);
 
-        expect(readRDB()).toEqual(rdb);
+        expect(readDB(cfg)()).toEqual(rdb);
     });
 });

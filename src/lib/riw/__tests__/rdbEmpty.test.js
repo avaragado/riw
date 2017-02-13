@@ -4,16 +4,21 @@ import rdbEmptyFromConfig from '../rdbEmpty';
 
 const cfgBase: RIWConfig = {
     defaultLocale: 'aa-bb',
+    targetLocales: [],
     translationsDatabaseFile: 'ignored',
 };
 
-const arFixture = [
+type Fixture = {|
+    name: string,
+    config: Object,
+    after: RIWDB,
+|};
+
+const fixtures: Fixture[] = [
     {
         name: 'no target locales',
-        config: {
-            ...cfgBase,
-        },
-        expect: {
+        config: {},
+        after: {
             version: 1,
             data: {},
         },
@@ -22,10 +27,9 @@ const arFixture = [
     {
         name: 'some target locales',
         config: {
-            ...cfgBase,
             targetLocales: ['bb-cc', 'dd-ee'],
         },
-        expect: {
+        after: {
             version: 1,
             data: {},
         },
@@ -33,9 +37,14 @@ const arFixture = [
 ];
 
 describe('lib/riw/rdbEmpty', () => {
-    arFixture.forEach(fixture => it(fixture.name, () => {
-        const rdbEmpty = rdbEmptyFromConfig(fixture.config);
+    fixtures.forEach((fixture) => {
+        it(fixture.name, () => {
+            const cfg = { ...cfgBase, ...fixture.config };
 
-        expect(rdbEmpty()).toEqual(fixture.expect);
-    }));
+            const received = rdbEmptyFromConfig(cfg)();
+
+            expect(received).toEqual(fixture.after);
+        });
+    });
 });
+

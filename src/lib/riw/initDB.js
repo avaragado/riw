@@ -3,9 +3,9 @@
 import compose from 'ramda/src/compose';
 
 import rdbEmpty from './rdbEmpty';
-import writeRDB from './writeRDB';
+import writeDB from './persistence/writeDB';
 
 export default (config: RIWConfig) => compose(
-    writeRDB(config, { allowOverwrite: false }),
+    writeDB(config, { allowOverwrite: false }),
     rdbEmpty(config),
 );

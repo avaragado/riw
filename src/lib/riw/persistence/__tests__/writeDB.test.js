@@ -4,7 +4,7 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
-import writeRDBFromConfig from '../writeRDB';
+import writeDB from '../writeDB';
 
 const rdb: RIWDB = {
     version: 1,
@@ -13,12 +13,13 @@ const rdb: RIWDB = {
 
 const cfgBase: RIWConfig = {
     defaultLocale: 'aa-bb',
+    targetLocales: [],
     translationsDatabaseFile: 'overwritten',
 };
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-describe('lib/riw/writeRDB', () => {
+describe('lib/riw/persistence/writeDB', () => {
     beforeEach(() => {
         mock({
             fixtures: {
@@ -40,10 +41,9 @@ describe('lib/riw/writeRDB', () => {
 
     it('writes a new rdb file to an empty dir', () => {
         const cfg = { ...cfgBase, translationsDatabaseFile: 'fixtures/01/riw-db.json' };
-        const writeRDB = writeRDBFromConfig(cfg);
 
         expect(() => {
-            writeRDB(rdb);
+            writeDB(cfg)(rdb);
         }).not.toThrow();
 
         const content = fs.readFileSync(cfg.translationsDatabaseFile).toString();
@@ -57,10 +57,9 @@ describe('lib/riw/writeRDB', () => {
             dabsConfig: process.cwd(),
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
         };
-        const writeRDB = writeRDBFromConfig(cfg);
 
         expect(() => {
-            writeRDB(rdb);
+            writeDB(cfg)(rdb);
         }).not.toThrow();
 
         const content = fs.readFileSync(cfg.translationsDatabaseFile).toString();
@@ -70,19 +69,17 @@ describe('lib/riw/writeRDB', () => {
 
     it("doesn't overwrite an existing rdb file if told not to", () => {
         const cfg = { ...cfgBase, translationsDatabaseFile: 'fixtures/02/riw-db.json' };
-        const writeRDB = writeRDBFromConfig(cfg, { allowOverwrite: false });
 
         expect(() => {
-            writeRDB(rdb);
+            writeDB(cfg, { allowOverwrite: false })(rdb);
         }).toThrowError(/EEXIST/);
     });
 
     it("throws if it can't create a directory for the file", () => {
         const cfg = { ...cfgBase, translationsDatabaseFile: 'fixtures/03/impossible/riw-db.json' };
-        const writeRDB = writeRDBFromConfig(cfg);
 
         expect(() => {
-            writeRDB(rdb);
+            writeDB(cfg)(rdb);
         }).toThrowError(/EACCES/);
     });
 });

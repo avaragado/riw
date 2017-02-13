@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import log from '../../lib/log';
+import log from '../../../lib/log';
 
 export default (config: RIWConfig) => (): RIWDB => {
     const { translationsDatabaseFile: pathDB, dabsConfig } = config;

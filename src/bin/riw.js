@@ -31,7 +31,7 @@ yargs // eslint-disable-line no-unused-expressions
     .commandDir('commands')
     .demandCommand(1, 'Please supply a command.')
     .help()
-    .wrap(78)
+    .wrap(yargs.terminalWidth())
     .strict()
     .options({
         'config': {

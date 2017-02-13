@@ -10,6 +10,7 @@ import log from '../log';
 const configDefault: RIWConfig = {
     dabsConfig: '', // overridden below
     defaultLocale: 'en-us',
+    targetLocales: [],
     translationsDatabaseFile: 'src/locale/riw-db.json',
 };
 
