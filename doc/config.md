@@ -31,7 +31,7 @@ For options with type `Path`, the string value is a filesystem path. Relative pa
 
 The locale id that riw assigns to every react-intl message descriptor's defaultMessage.
 
-### `targetLocales`
+### `targetLocales`
 
 - Type: `LocaleId[]`
 - Default value: `[]`
