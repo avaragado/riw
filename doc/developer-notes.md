@@ -19,4 +19,5 @@ There's a one-to-many mapping between flowtype types and variable naming prefixe
 | `drel` | `RelativePath` | Relative path to directory, eg `bar/` |
 | `rdb` | `RIWDB` | An riw translation database object |
 | `opt` | `Object` | An options object; may have a more specific flowtype type in some circumstances |
+| `quad` | `RIWDBQuad` | A tuple describing a default message, description, locale and translation |
 

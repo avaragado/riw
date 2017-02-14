@@ -38,7 +38,9 @@ declare type RIWDB = {
     data: RIWDBTranslationMap,
 };
 
-declare type RIWDBTransformer = (config: RIWConfig, opt?: Object) => (rdb: RIWDB) => RIWDB;
+declare type RIWDBQuad = [RIWDBDefaultMessage, RIWDBDescription, LocaleId, RIWDBTranslatedMessage];
+
+declare type RIWDBQuadsTransformer = (config: RIWConfig, opt?: Object) => (quads: RIWDBQuad[]) => RIWDBQuad[];
 
 declare type RIW = {
     config: RIWConfig,
@@ -50,7 +52,7 @@ declare type RIWCLIHandler = (riw: RIW, argv: yargs.Argv) => void;
 
 declare type RIWTranslatedMessageDescriptor = {
     defaultMessage: string,
-    description?: string,
+    description: string,
     locale: LocaleId,
     translation: string,
 };

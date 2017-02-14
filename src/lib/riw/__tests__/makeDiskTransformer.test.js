@@ -17,7 +17,7 @@ const stringify = obj => JSON.stringify(obj, null, 4);
 type Fixture = {
     name: string,
     before: RIWDB,
-    transformer: RIWDBTransformer,
+    transformer: RIWDBQuadsTransformer,
     opt?: Object,
     after: RIWDB,
 };
@@ -27,16 +27,27 @@ const fixtures: Fixture[] = [
         name: '01',
         before: {
             version: 1,
-            data: {},
+            data: {
+                'one': {
+                    'two': {
+                        'three': 'four',
+                    },
+                },
+            },
         },
-        transformer: () => rdb => ({
-            ...rdb,
-            foo: true,
-        }),
+        transformer: () => quads => quads.concat([['one', 'two2', 'three', 'four']]),
         after: {
             version: 1,
-            data: {},
-            foo: true,
+            data: {
+                'one': {
+                    'two': {
+                        'three': 'four',
+                    },
+                    'two2': {
+                        'three': 'four',
+                    },
+                },
+            },
         },
     },
     {
@@ -45,19 +56,21 @@ const fixtures: Fixture[] = [
             version: 1,
             data: {},
         },
-        transformer: (cfg, opt) => rdb => ({
-            ...rdb,
-            bar: opt ? opt.bar : 0,
-            baz: cfg ? cfg.translationsDatabaseFile : '',
-        }),
+        transformer: (cfg, opt) => quads => quads.concat([
+            ['one', 'two', opt ? opt.bar : '', cfg.translationsDatabaseFile],
+        ]),
         opt: {
-            bar: 123,
+            bar: 'bar',
         },
         after: {
             version: 1,
-            data: {},
-            bar: 123,
-            baz: '02',
+            data: {
+                'one': {
+                    'two': {
+                        'bar': '02',
+                    },
+                },
+            },
         },
     },
 ];

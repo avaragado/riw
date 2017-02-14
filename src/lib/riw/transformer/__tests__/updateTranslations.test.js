@@ -10,35 +10,26 @@ const cfgBase: RIWConfig = {
 
 type Fixture = {
     name: string,
-    before: RIWDB,
+    before: RIWDBQuad[],
     config: Object,
     opt: RIWCLIUpdateTranslationsOpt,
-    after: RIWDB,
+    after: RIWDBQuad[],
 };
 
 const fixtures: Fixture[] = [
     {
         name: '01 empty translations list',
-        before: {
-            version: 1,
-            data: {},
-        },
+        before: [],
         config: {},
         opt: {
             translations: [],
         },
-        after: {
-            version: 1,
-            data: {},
-        },
+        after: [],
     },
 
     {
         name: '02 adding new message',
-        before: {
-            version: 1,
-            data: {},
-        },
+        before: [],
         config: {},
         opt: {
             translations: [
@@ -50,30 +41,16 @@ const fixtures: Fixture[] = [
                 },
             ],
         },
-        after: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'olleh',
-                    },
-                },
-            },
-        },
+        after: [
+            ['hello', 'desc1', 'en-re', 'olleh'],
+        ],
     },
 
     {
         name: '03 updating message, same locale',
-        before: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'OLD olleh',
-                    },
-                },
-            },
-        },
+        before: [
+            ['hello', 'desc1', 'en-re', 'OLD olleh'],
+        ],
         config: {},
         opt: {
             translations: [
@@ -85,30 +62,17 @@ const fixtures: Fixture[] = [
                 },
             ],
         },
-        after: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'NEW olleh',
-                    },
-                },
-            },
-        },
+        after: [
+            ['hello', 'desc1', 'en-re', 'OLD olleh'],
+            ['hello', 'desc1', 'en-re', 'NEW olleh'],
+        ],
     },
 
     {
         name: '04 updating message, new locale',
-        before: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'olleh',
-                    },
-                },
-            },
-        },
+        before: [
+            ['hello', 'desc1', 'en-re', 'olleh'],
+        ],
         config: {},
         opt: {
             translations: [
@@ -120,31 +84,17 @@ const fixtures: Fixture[] = [
                 },
             ],
         },
-        after: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'olleh',
-                        'en-UPPER': 'HELLO',
-                    },
-                },
-            },
-        },
+        after: [
+            ['hello', 'desc1', 'en-re', 'olleh'],
+            ['hello', 'desc1', 'en-UPPER', 'HELLO'],
+        ],
     },
 
     {
         name: '05 several messages at once',
-        before: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'olleh',
-                    },
-                },
-            },
-        },
+        before: [
+            ['hello', 'desc1', 'en-re', 'olleh'],
+        ],
         config: {},
         opt: {
             translations: [
@@ -174,30 +124,13 @@ const fixtures: Fixture[] = [
                 },
             ],
         },
-        after: {
-            version: 1,
-            data: {
-                'hello': {
-                    'desc1': {
-                        'en-re': 'olleh',
-                        'en-UPPER': 'HELLO',
-                    },
-                },
-                'goodbye': {
-                    'desc1': {
-                        'en-re': 'eybdoog',
-                    },
-                },
-                'foo': {
-                    'desc1': {
-                        'en-re': 'oof',
-                    },
-                    'desc2': {
-                        'en-UPPER': 'FOO',
-                    },
-                },
-            },
-        },
+        after: [
+            ['hello', 'desc1', 'en-re', 'olleh'],
+            ['hello', 'desc1', 'en-UPPER', 'HELLO'],
+            ['goodbye', 'desc1', 'en-re', 'eybdoog'],
+            ['foo', 'desc1', 'en-re', 'oof'],
+            ['foo', 'desc2', 'en-UPPER', 'FOO'],
+        ],
     },
 ];
 

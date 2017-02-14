@@ -1,23 +1,19 @@
 // @flow
 
-import reduce from 'ramda/src/reduce';
-import assocPath from 'ramda/src/assocPath';
+import map from 'ramda/src/map';
 
-const keysFromTMD = (tmd: RIWTranslatedMessageDescriptor) => [
-    'data',
+const quadify = (tmd: RIWTranslatedMessageDescriptor): RIWDBQuad => [
     tmd.defaultMessage,
     tmd.description,
     tmd.locale,
+    tmd.translation,
 ];
 
-const update = (rdbAcc: RIWDB, tmd: RIWTranslatedMessageDescriptor) =>
-    assocPath(keysFromTMD(tmd), tmd.translation, rdbAcc);
-
 // eslint-disable-next-line no-unused-vars
-const transformer: RIWDBTransformer = (config, opt?: RIWCLIUpdateTranslationsOpt) => rdb =>
+const transformer: RIWDBQuadsTransformer = (config, opt?: RIWCLIUpdateTranslationsOpt) => quads =>
     (opt && opt.translations.length > 0
-        ? reduce(update, rdb, opt.translations)
-        : rdb
+        ? quads.concat(map(quadify, opt.translations))
+        : quads
     );
 
 export default transformer;
