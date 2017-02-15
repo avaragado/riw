@@ -42,12 +42,6 @@ declare type RIWDBQuad = [RIWDBDefaultMessage, RIWDBDescription, LocaleId, RIWDB
 
 declare type RIWDBQuadsTransformer = (config: RIWConfig, opt?: Object) => (quads: RIWDBQuad[]) => RIWDBQuad[];
 
-declare type RIW = {
-    config: RIWConfig,
-    initDB: void => void,
-    updateTranslations: (opt: Object) => void,
-};
-
 declare type RIWCLIHandler = (riw: RIW, argv: yargs.Argv) => void;
 
 declare type RIWTranslatedMessageDescriptor = {
@@ -57,6 +51,23 @@ declare type RIWTranslatedMessageDescriptor = {
     translation: string,
 };
 
-type RIWCLIUpdateTranslationsOpt = {
+type RIWCLIOptDBUpdate = {
     translations: RIWTranslatedMessageDescriptor[],
 };
+
+type RIWCLIOptDBFind = {
+    match: {
+        defaultMessage?: string,
+        description?: string,
+        locale?: LocaleId,
+        translation?: string,
+    },
+};
+
+declare type RIW = {
+    config: RIWConfig,
+    initDB: void => void,
+    updateTranslations: (opt: RIWCLIOptDBUpdate) => void,
+    findTranslations: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
+};
+

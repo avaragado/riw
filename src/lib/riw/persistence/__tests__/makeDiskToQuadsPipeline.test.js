@@ -1,10 +1,8 @@
 // @flow
 
-import fs from 'fs';
-
 import mock from 'mock-fs';
 
-import makeDiskTransformer from '../makeDiskTransformer';
+import { makeDiskToQuadsPipeline } from '../makePipeline';
 
 const cfgBase: RIWConfig = {
     defaultLocale: 'aa-bb',
@@ -19,7 +17,7 @@ type Fixture = {
     before: RIWDB,
     transformer: RIWDBQuadsTransformer,
     opt?: Object,
-    after: RIWDB,
+    after: RIWDBQuad[],
 };
 
 const fixtures: Fixture[] = [
@@ -36,19 +34,10 @@ const fixtures: Fixture[] = [
             },
         },
         transformer: () => quads => quads.concat([['one', 'two2', 'three', 'four']]),
-        after: {
-            version: 1,
-            data: {
-                'one': {
-                    'two': {
-                        'three': 'four',
-                    },
-                    'two2': {
-                        'three': 'four',
-                    },
-                },
-            },
-        },
+        after: [
+            ['one', 'two', 'three', 'four'],
+            ['one', 'two2', 'three', 'four'],
+        ],
     },
     {
         name: '02',
@@ -62,20 +51,13 @@ const fixtures: Fixture[] = [
         opt: {
             bar: 'bar',
         },
-        after: {
-            version: 1,
-            data: {
-                'one': {
-                    'two': {
-                        'bar': '02',
-                    },
-                },
-            },
-        },
+        after: [
+            ['one', 'two', 'bar', '02'],
+        ],
     },
 ];
 
-describe('lib/riw/transformRDB', () => {
+describe('lib/riw/persistence/makeDiskToQuadsPipeline', () => {
     afterEach(() => {
         mock.restore();
     });
@@ -91,11 +73,9 @@ describe('lib/riw/transformRDB', () => {
                 translationsDatabaseFile: fixture.name,
             };
 
-            makeDiskTransformer(fixture.transformer, cfg)(fixture.opt);
+            const quads = makeDiskToQuadsPipeline(fixture.transformer, cfg)(fixture.opt);
 
-            const content = fs.readFileSync(cfg.translationsDatabaseFile).toString();
-
-            expect(content).toEqual(stringify(fixture.after));
+            expect(quads).toEqual(fixture.after);
         });
     });
 });

@@ -101,7 +101,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     });
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    const opt: RIWCLIUpdateTranslationsOpt = {
+    const opt: RIWCLIOptDBUpdate = {
         translations: [
             pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
         ],

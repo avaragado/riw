@@ -12,7 +12,7 @@ type Fixture = {
     name: string,
     before: RIWDBQuad[],
     config: Object,
-    opt: RIWCLIUpdateTranslationsOpt,
+    opt: RIWCLIOptDBUpdate,
     after: RIWDBQuad[],
 };
 
