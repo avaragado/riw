@@ -107,5 +107,5 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         ],
     };
 
-    riw.updateTranslations(opt);
+    riw.db.update(opt);
 });

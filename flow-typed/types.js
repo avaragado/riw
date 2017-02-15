@@ -66,8 +66,10 @@ type RIWCLIOptDBFind = {
 
 declare type RIW = {
     config: RIWConfig,
-    initDB: void => void,
-    updateTranslations: (opt: RIWCLIOptDBUpdate) => void,
-    findTranslations: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
+    db: {
+        init: void => void,
+        update: (opt: RIWCLIOptDBUpdate) => void,
+        find: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
+    },
 };
 

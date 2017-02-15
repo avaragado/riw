@@ -9,8 +9,10 @@ import findTranslations from './transformer/findTranslations';
 export const sDescriptionDefault = '_';
 
 export default (config: RIWConfig): RIW => ({
-    initDB: initDB(config),
-    updateTranslations: makeDiskRWPipeline(updateTranslations, config),
-    findTranslations: makeDiskToQuadsPipeline(findTranslations, config),
     config,
+    db: {
+        init: initDB(config),
+        update: makeDiskRWPipeline(updateTranslations, config),
+        find: makeDiskToQuadsPipeline(findTranslations, config),
+    },
 });
