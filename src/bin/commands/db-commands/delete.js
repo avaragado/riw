@@ -8,8 +8,8 @@ import pick from 'ramda/src/pick';
 
 import { createHandlerWithRIW } from '../../utils';
 
-export const command = 'find';
-export const desc = 'Find translation database entries matching options';
+export const command = 'delete';
+export const desc = 'Delete translation database entries matching options';
 
 const here = `db ${command}`;
 
@@ -20,13 +20,15 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             [--description <description>]
             [--locale <localeID]
             [--translation <localeString>]
-            [--json]
+            [--dry-run]
 
-        Outputs translation database entries matching all of the options supplied.
+        Deletes translation database entries matching all of the options supplied.
         Omitted options match any value.
 
-        Each database entry comprises the string in the default locale, the description
-        for that string, the locale of the translated string, and the translated string itself.
+        At least one of --defaultMessage, --description, --locale and --translation
+        must be supplied.
+
+        Use --dry-run to show what would be deleted instead of deleting it.
     `)
     .example(
         outdent`
@@ -34,92 +36,82 @@ export const builder = (yyargs: yargs.Argv) => yyargs
                 --defaultMessage "Hello {name}"
 
         `,
-        'Finds all database entries for the defaultMessage "Hello {name}", and outputs in readable form',
+        'Deletes all database entries for the defaultMessage "Hello {name}"',
     )
     .example(
         outdent`
             $0 ${here}
                 --locale fr-fr
-                --json
 
         `,
-        'Finds all database entries for translations into fr-fr, and outputs as JSON',
-    )
-    .example(
-        outdent`
-            $0 ${here}
-                --description _
-                --locale pt-br
-
-        `,
-        'Finds all database entries for translations into pt-br with the default description, _, and outputs in readable form',
+        'Deletes all database entries for translations into fr-fr',
     )
     .options({
-        defaultMessage: {
+        'defaultMessage': {
             alias: 'm',
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries matching the string being translated.
+                Delete entries matching the string being translated.
                 Omit to match any string.
             `,
         },
 
-        description: {
+        'description': {
             alias: 'd',
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries with this description.
+                Delete entries with this description.
                 Omit to match any description.
             `,
         },
 
-        locale: {
+        'locale': {
             alias: 'l',
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries with this locale.
+                Delete entries with this locale.
                 Omit to match any locale.
             `,
         },
 
-        translation: {
+        'translation': {
             alias: 't',
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries with this translated string.
+                Delete entries with this translated string.
                 Omit to match any translated string.
             `,
         },
 
-        json: {
+        'dry-run': {
             boolean: true,
             group: 'Command options',
             desc: outdent`
-                Output entries in JSON format as an array of
-                [defaultMessage, description, locale, translation] arrays.
-                Omit to output in human-readable form.
+                Show what would be deleted without deleting anything.
             `,
         },
     });
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    const opt: RIWCLIOptDBFind = {
+    if (!(argv.defaultMessage || argv.description || argv.locale || argv.translation)) {
+        console.log('You must supply an option.');
+        process.exit();
+    }
+
+    const opt: RIWCLIOptDBDelete = {
         match: pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
     };
 
-    const quads = riw.db.find(opt);
+    if (argv.dryRun) {
+        const quads = riw.db.find(opt);
 
-    if (argv.json) {
-        console.log(JSON.stringify(quads, null, 4));
-
-    } else {
         if (quads.length > 0) {
             console.log(
-                chalk.bold('Matches [%d]:\n'),
+                chalk.bold('To be deleted [%d]:\n'),
                 quads.length,
             );
         } else {
@@ -140,6 +132,8 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
                 '\n',
             );
         });
-    }
 
+    } else {
+        riw.db.delete(opt);
+    }
 });

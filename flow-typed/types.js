@@ -51,17 +51,23 @@ declare type RIWTranslatedMessageDescriptor = {
     translation: string,
 };
 
+declare type RIWQuadMatcher = {
+    defaultMessage?: string,
+    description?: string,
+    locale?: LocaleId,
+    translation?: string,
+}
+
 type RIWCLIOptDBUpdate = {
     translations: RIWTranslatedMessageDescriptor[],
 };
 
 type RIWCLIOptDBFind = {
-    match: {
-        defaultMessage?: string,
-        description?: string,
-        locale?: LocaleId,
-        translation?: string,
-    },
+    match: RIWQuadMatcher,
+};
+
+type RIWCLIOptDBDelete = {
+    match: RIWQuadMatcher,
 };
 
 declare type RIW = {
@@ -70,6 +76,7 @@ declare type RIW = {
         init: void => void,
         update: (opt: RIWCLIOptDBUpdate) => void,
         find: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
+        delete: (opt: RIWCLIOptDBDelete) => void,
     },
 };
 

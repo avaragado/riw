@@ -1,6 +1,6 @@
 // @flow
 
-import findTranslations from '../findTranslations';
+import deleteTranslations from '../deleteTranslations';
 
 const cfgBase: RIWConfig = {
     defaultLocale: 'aa-bb',
@@ -36,8 +36,12 @@ const fixtures: Fixture[] = [
             },
         },
         after: [
-            ['two', 'desc1', 'aa-aa', '[aa-aa]1 two'],
-            ['two', 'desc1', 'bb-bb', '[bb-bb]1 two'],
+            ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
+            ['one', 'desc2', 'aa-aa', '[aa-aa]2 one'],
+            ['one', 'desc1', 'bb-bb', '[bb-bb]1 one'],
+            ['one', 'desc2', 'bb-bb', '[bb-bb]2 one'],
+            ['three', 'desc1', 'aa-aa', '[aa-aa]1 three'],
+            ['three', 'desc1', 'cc-cc', '[cc-cc]1 three'],
         ],
     },
 
@@ -50,12 +54,8 @@ const fixtures: Fixture[] = [
             },
         },
         after: [
-            ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
-            ['one', 'desc1', 'bb-bb', '[bb-bb]1 one'],
-            ['two', 'desc1', 'aa-aa', '[aa-aa]1 two'],
-            ['two', 'desc1', 'bb-bb', '[bb-bb]1 two'],
-            ['three', 'desc1', 'aa-aa', '[aa-aa]1 three'],
-            ['three', 'desc1', 'cc-cc', '[cc-cc]1 three'],
+            ['one', 'desc2', 'aa-aa', '[aa-aa]2 one'],
+            ['one', 'desc2', 'bb-bb', '[bb-bb]2 one'],
         ],
     },
 
@@ -68,9 +68,11 @@ const fixtures: Fixture[] = [
             },
         },
         after: [
-            ['one', 'desc1', 'bb-bb', '[bb-bb]1 one'],
-            ['one', 'desc2', 'bb-bb', '[bb-bb]2 one'],
-            ['two', 'desc1', 'bb-bb', '[bb-bb]1 two'],
+            ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
+            ['one', 'desc2', 'aa-aa', '[aa-aa]2 one'],
+            ['two', 'desc1', 'aa-aa', '[aa-aa]1 two'],
+            ['three', 'desc1', 'aa-aa', '[aa-aa]1 three'],
+            ['three', 'desc1', 'cc-cc', '[cc-cc]1 three'],
         ],
     },
 
@@ -83,17 +85,23 @@ const fixtures: Fixture[] = [
             },
         },
         after: [
-            ['three', 'desc1', 'cc-cc', '[cc-cc]1 three'],
+            ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
+            ['one', 'desc2', 'aa-aa', '[aa-aa]2 one'],
+            ['one', 'desc1', 'bb-bb', '[bb-bb]1 one'],
+            ['one', 'desc2', 'bb-bb', '[bb-bb]2 one'],
+            ['two', 'desc1', 'aa-aa', '[aa-aa]1 two'],
+            ['two', 'desc1', 'bb-bb', '[bb-bb]1 two'],
+            ['three', 'desc1', 'aa-aa', '[aa-aa]1 three'],
         ],
     },
 ];
 
-describe('lib/riw/transformer/findTranslations', () => {
+describe('lib/riw/transformer/deleteTranslations', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             const opt = fixture.opt;
 
-            const received = findTranslations(cfgBase, opt)(fixture.before);
+            const received = deleteTranslations(cfgBase, opt)(fixture.before);
 
             expect(received).toEqual(fixture.after);
         });
