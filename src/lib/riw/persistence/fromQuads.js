@@ -3,7 +3,7 @@
 import reduce from 'ramda/src/reduce';
 import assocPath from 'ramda/src/assocPath';
 
-import rdbEmpty from '../rdbEmpty';
+import rdbEmpty from '../util/rdbEmpty';
 
 const unquadify = reduce(
     (acc, quad) => assocPath(quad.slice(0, 3), quad[3], acc),
@@ -12,7 +12,7 @@ const unquadify = reduce(
 
 // eslint-disable-next-line no-unused-vars
 const fromQuads = (config: RIWConfig) => (quads: RIWDBQuad[]): RIWDB => ({
-    ...rdbEmpty(config)(),
+    ...rdbEmpty,
     data: unquadify(quads),
 });
 

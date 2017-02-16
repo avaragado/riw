@@ -2,7 +2,7 @@
 
 import { makeDiskRWPipeline, makeDiskToQuadsPipeline } from './persistence/makePipeline';
 
-import initDB from './initDB';
+import initDB from './persistence/initDB';
 import updateTranslations from './transformer/updateTranslations';
 import findTranslations from './transformer/findTranslations';
 import deleteTranslations from './transformer/deleteTranslations';
