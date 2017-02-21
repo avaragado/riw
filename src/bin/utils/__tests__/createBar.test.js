@@ -92,7 +92,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 54,
         },
-        out: `${chalk.green('⣿'.repeat(0) + '⡀' + ' '.repeat(9))} ${chalk.dim('54/100')}`,
+        out: `${chalk.green('⣿'.repeat(5) + '⡆' + ' '.repeat(4))} ${chalk.dim('54/100')}`,
     },
 ];
 
