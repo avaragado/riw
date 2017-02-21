@@ -88,6 +88,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
         },
 
         'dry-run': {
+            alias: 'n',
             boolean: true,
             group: 'Command options',
             desc: outdent`

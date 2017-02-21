@@ -4,6 +4,7 @@ module.exports = {
     extends: [
         'airbnb',
         'plugin:flowtype/recommended',
+        'plugin:jest/recommended',
     ],
 
     plugins: [
@@ -12,7 +13,7 @@ module.exports = {
     ],
 
     env: {
-        jest: true,
+        // 'jest/globals': true,
     },
 
     // overrides the airbnb ruleset
@@ -105,9 +106,6 @@ module.exports = {
         ],
 
         'generator-star-spacing': ['error', { 'before': true, 'after': true }],
-
-        'jest/no-exclusive-tests': 'error',
-        'jest/no-identical-title': 'error',
     },
 
     // add as they're encountered

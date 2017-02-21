@@ -22,7 +22,7 @@ Inside the `package.json` file's `riw` key, you may use only JSON data.
 
 ## Configuration options
 
-For options with type `Path`, the string value is a filesystem path. Relative paths are treated as relative to the configuration file.
+For options with type `Path` or `Glob`, the string value is a filesystem path. Relative paths are treated as relative to the configuration file.
 
 ### `defaultLocale`
 
@@ -44,3 +44,10 @@ The locales you want to translate to for this project. The riw translations data
 - Default value: `src/locale/riw-db.json`
 
 The filesystem path to the translations database used by riw. Multiple projects can share the same translations database, with different target locales.
+
+### `sourceDirs`
+
+- Type: `Glob[]`
+- Default value: `['src/**/*.js']`
+
+Array of glob patterns identifying your source files. riw parses all files matching this pattern looking for react-intl message descriptors.

@@ -6,12 +6,7 @@ import mock from 'mock-fs';
 
 import initDB from '../initDB';
 import rdbEmpty from '../../util/rdbEmpty';
-
-const cfgBase: RIWConfig = {
-    defaultLocale: 'aa-bb',
-    targetLocales: [],
-    translationsDatabaseFile: 'fixture/riw-db.json',
-};
+import cfgBase from '../../__tests__/helpers/dummyConfig';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 

@@ -6,6 +6,7 @@ import type yargs from 'yargs';
 declare type AbsolutePath = string;
 declare type RelativePath = string;
 declare type Path = AbsolutePath | RelativePath;
+declare type Glob = string;
 
 declare type LocaleId = string;
 
@@ -14,12 +15,31 @@ declare type RIWConfig = {
     defaultLocale: LocaleId,
     targetLocales: LocaleId[],
     translationsDatabaseFile: Path,
+    sourceDirs: Glob[],
 };
 
 declare type RIWDBVersion = number;
 declare type RIWDBDefaultMessage = string;
 declare type RIWDBTranslatedMessage = string;
 declare type RIWDBDescription = string;
+declare type RIWMessageId = string;
+
+declare type RIWMessageDescriptor = {
+    id: RIWMessageId,
+    defaultMessage: RIWDBDefaultMessage,
+    description?: RIWDBDescription,
+    fabs: AbsolutePath, // added by riw
+};
+
+declare type RIWSourceMessageDescriptorData = {
+    fabs: AbsolutePath,
+    armd: RIWMessageDescriptor[],
+};
+
+declare type RIWDuplicateIdData = {
+    id: RIWMessageId,
+    arfabs: AbsolutePath[],
+};
 
 declare type RIWDBLocaleTranslationMap = {
     [key: LocaleId]: RIWDBTranslatedMessage,
@@ -45,17 +65,17 @@ declare type RIWDBQuadsTransformer = (config: RIWConfig, opt?: Object) => (quads
 declare type RIWCLIHandler = (riw: RIW, argv: yargs.Argv) => void;
 
 declare type RIWTranslatedMessageDescriptor = {
-    defaultMessage: string,
-    description: string,
+    defaultMessage: RIWDBDefaultMessage,
+    description: RIWDBDescription,
     locale: LocaleId,
-    translation: string,
+    translation: RIWDBTranslatedMessage,
 };
 
 declare type RIWQuadMatcher = {
-    defaultMessage?: string,
-    description?: string,
+    defaultMessage?: RIWDBDefaultMessage,
+    description?: RIWDBDescription,
     locale?: LocaleId,
-    translation?: string,
+    translation?: RIWDBTranslatedMessage,
 }
 
 type RIWCLIOptDBUpdate = {
@@ -70,6 +90,22 @@ type RIWCLIOptDBDelete = {
     match: RIWQuadMatcher,
 };
 
+type RIWCLIOptProjectExtract = {
+    on?: {
+        start?: () => void,
+        startFiles?: (arfabsSource: AbsolutePath[]) => void,
+        startFile?: (fabsSource: AbsolutePath) => void,
+        endFile?: (smdd: RIWSourceMessageDescriptorData) => void,
+        startDupCheck?: () => void,
+        end?: () => void,
+    },
+};
+
+type RIWCLIProjectExtractResult = {
+    armd: RIWMessageDescriptor[],
+    dups: RIWDuplicateIdData[],
+};
+
 declare type RIW = {
     config: RIWConfig,
     db: {
@@ -77,6 +113,9 @@ declare type RIW = {
         update: (opt: RIWCLIOptDBUpdate) => void,
         find: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
         delete: (opt: RIWCLIOptDBDelete) => void,
+    },
+    project: {
+        extract: (opt: RIWCLIOptProjectExtract) => RIWCLIProjectExtractResult,
     },
 };
 

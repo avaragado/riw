@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // @flow
 
+import 'babel-polyfill';
 import yargs from 'yargs';
 import outdent from 'outdent';
 

@@ -12,6 +12,7 @@ const configDefault: RIWConfig = {
     defaultLocale: 'en-us',
     targetLocales: [],
     translationsDatabaseFile: 'src/locale/riw-db.json',
+    sourceDirs: ['src/**/*.js'],
 };
 
 const fabsPackageJSONFromDabs = (cwd: AbsolutePath): ?AbsolutePath =>

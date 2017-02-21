@@ -3,16 +3,11 @@
 import mock from 'mock-fs';
 
 import readDB from '../readDB';
+import cfgBase from '../../__tests__/helpers/dummyConfig';
 
 const rdb: RIWDB = {
     version: 1,
     data: {},
-};
-
-const cfgBase: RIWConfig = {
-    defaultLocale: 'aa-bb',
-    targetLocales: [],
-    translationsDatabaseFile: 'overwritten',
 };
 
 const stringify = obj => JSON.stringify(obj, null, 4);

@@ -1,12 +1,7 @@
 // @flow
 
 import deleteTranslations from '../deleteTranslations';
-
-const cfgBase: RIWConfig = {
-    defaultLocale: 'aa-bb',
-    targetLocales: [],
-    translationsDatabaseFile: 'ignored',
-};
+import cfgBase from '../../__tests__/helpers/dummyConfig';
 
 const quadsBase = [
     ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],

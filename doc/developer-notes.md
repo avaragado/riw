@@ -9,6 +9,10 @@ There's a one-to-many mapping between flowtype types and variable naming prefixe
 | Hungarian | Flowtype | Meaning |
 | --- | --- | --- |
 | `s` | `string` | A plain string |
+| `ar` | `Array` | An array of something. eg `ars` is `string[]` (alternate: `s` suffix) |
+| `ct` | `number` | An integer number usually indicating a total of some kind |
+| `ix` | `number` | An integer index usually into an array for looping purposes, starts at 0 |
+| `num` | `number` | An arbitrary number, not a `ct` or an `ix` |
 | `json` | `string` | A JSON string (NOT an object) |
 | `path` | `Path` | Either a relative or an absolute path, to a file or directory |
 | `pabs` | `AbsolutePath` | Absolute path to file or directory |

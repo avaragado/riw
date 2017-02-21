@@ -3,12 +3,7 @@
 import mock from 'mock-fs';
 
 import { makeDiskToQuadsPipeline } from '../makePipeline';
-
-const cfgBase: RIWConfig = {
-    defaultLocale: 'aa-bb',
-    targetLocales: [],
-    translationsDatabaseFile: 'overwritten',
-};
+import cfgBase from '../../__tests__/helpers/dummyConfig';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 

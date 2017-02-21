@@ -1,12 +1,7 @@
 // @flow
 
 import toQuads from '../toQuads';
-
-const cfgBase: RIWConfig = {
-    defaultLocale: 'aa-bb',
-    targetLocales: [],
-    translationsDatabaseFile: 'ignored',
-};
+import cfgBase from '../../__tests__/helpers/dummyConfig';
 
 type Fixture = {
     name: string,

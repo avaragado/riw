@@ -17,36 +17,42 @@
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-eslint": "^7.1.1",
-    "babel-jest": "^18.0.0",
+    "babel-jest": "^19.0.0",
     "babel-plugin-inline-package-json": "^2.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.1.8",
-    "eslint": "^3.15.0",
+    "concurrently": "^3.3.0",
+    "eslint": "^3.16.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-flowtype": "^2.30.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jest": "^1.0.2",
+    "eslint-plugin-jest": "^19.0.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-react": "^6.10.0",
     "flow-bin": "^0.39.0",
     "flow-coverage-report": "^0.3.0",
     "flow-typed": "^2.0.0",
-    "jest": "^18.1.0",
+    "jest": "^19.0.0",
     "mock-fs": "^4.0.0",
-    "p-s": "^3.1.0",
-    "rimraf": "^2.5.4",
+    "nps": "^5.0.3",
+    "rimraf": "^2.6.0",
     "standard-version": "^4.0.0"
   },
   "private": true,
   "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-plugin-react-intl": "^2.3.1",
+    "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
     "chalk": "^1.1.3",
     "find-up": "^2.1.0",
+    "glob": "^7.1.1",
     "mkdirp": "^0.5.1",
     "npmlog": "^4.0.2",
+    "ora": "^1.1.0",
     "outdent": "^0.3.0",
     "ramda": "^0.23.0",
     "yargs": "^6.6.0"
@@ -54,7 +60,8 @@
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/fixtures/"
+      "/fixtures/",
+      "/helpers/"
     ]
   }
 }
