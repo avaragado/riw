@@ -50,4 +50,59 @@ The filesystem path to the translations database used by riw. Multiple projects 
 - Type: `Glob[]`
 - Default value: `['src/**/*.js']`
 
-Array of glob patterns identifying your source files. riw parses all files matching this pattern looking for react-intl message descriptors.
+Array of glob patterns identifying your source files. When `inputMode` is `source`, riw parses all files matching this pattern looking for react-intl message descriptors to translate. (riw uses `babel-plugin-react-intl` to perform the parsing.)
+
+Ignored if `inputMode` is not `source`.
+
+### `collateDir`
+
+- Type: `Path`
+- Default value: `tmp/babel-plugin-react-intl`
+
+The filesystem path to a directory containing JSON files (possibly in subdirectories) with the output of `babel-plugin-react-intl`. Each file is an array of react-intl message descriptors. When `inputMode` is `json`, riw collates these JSON files for translation.
+
+Ignored if `inputMode` is not `json`.
+
+### `inputMode`
+
+- Type: `source` | `json`
+- Default value: `source`
+
+How riw should locate the react-intl message descriptors to translate.
+
+- Use `source` and set `sourceDirs` if you want riw to extract message descriptors from your source files using `babel-plugin-react-intl`.
+- Use `json` and set `collateDir` if you want riw to use message descriptors already extracted from your source files by another process, for example webpack.
+
+### `translationsOutputFile`
+
+- Type: `Path`
+- Default value: `src/locale/[locale].json`
+
+The filesystem path template that identifies where riw saves translations. Use the placeholder `[locale]` literally: riw replaces this as necessary.
+
+- When `outputMode` is `file-per-locale`, riw replaces `[locale]` with the locale id.
+- When `outputMode` is `single-file`, riw replaces `[locale]` with `locales`.
+
+Ignored if `outputMode` is `no-file`.
+
+### `todoFile`
+
+- Type: `Path`
+- Default value: `src/locale/TODO-untranslated.json`
+
+The filesystem path that identifies where riw saves message descriptor and locale data for messages found in your source that still need to be translated into some or all of your target locales.
+
+Ignored if `outputMode` is `no-file`.
+
+### `outputMode`
+
+- Type: `single-file` | `file-per-locale` | `no-file`
+- Default value: `file-per-locale`
+
+riw processes your project's `react-intl` message descriptors and your translations database to discover matching translations. This setting determines whether and how riw should write those translations to disk.
+
+- Use `single-file` and set `translationsOutputFile` if you want riw to save translations for all locales in one file. This option is best if your project ships with every locale embedded statically (for example, an app built with Electron).
+- Use `file-per-locale` and set `translationsOutputFile` if you want riw to save translations for each locale in a separate file. This option is best if your project loads locale information on demand (for example, a web app).
+- Use `no-file` and ignore `translationsOutputFile` if you don't want riw to save the translations. This option is best if you're using the riw API directly.
+
+If `outputMode` is `single-file` or `file-per-locale`, riw saves message descriptor and locale data for untranslated messages in the `todoFile`. If `outputMode` is `no-file`, this data is not saved to a file.

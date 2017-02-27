@@ -13,7 +13,7 @@ module.exports = {
     ],
 
     env: {
-        // 'jest/globals': true,
+        'jest': true,
     },
 
     // overrides the airbnb ruleset

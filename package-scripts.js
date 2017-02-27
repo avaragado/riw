@@ -15,11 +15,11 @@ module.exports = {
         test: {
             default: 'LOGLEVEL=silent jest',
             watch: 'LOGLEVEL=silent jest --watch',
-            coverageReport: 'jest --coverage',
+            coverageReport: 'LOGLEVEL=silent jest --coverage',
         },
         clean: 'rimraf dist coverage flow-coverage',
         flow: {
-            default: 'flow; test $? -eq 0 -o $? -eq 2',
+            default: 'flow --show-all-errors; test $? -eq 0 -o $? -eq 2',
             typed: 'flow-typed update',
             coverageReport: 'flow-coverage-report -i \'src/**/*.js\' -t html -t text',
         },

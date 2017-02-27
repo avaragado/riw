@@ -14,6 +14,9 @@ type Fixture = {
     out: string,
 };
 
+const makeOut = ({ ctBlock, sPart, ctSpace, sDim }) =>
+    `${chalk.green('⣿'.repeat(ctBlock) + sPart + ' '.repeat(ctSpace))} ${chalk.dim(sDim)}`;
+
 const fixtures: Fixture[] = [
     {
         name: '01',
@@ -22,7 +25,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 0,
         },
-        out: `${chalk.green('⣿'.repeat(0) + ' '.repeat(10))} ${chalk.dim('0/100')}`,
+        out: makeOut({ ctBlock: 0, sPart: '', ctSpace: 10, sDim: '0/100' }),
     },
 
     {
@@ -32,7 +35,7 @@ const fixtures: Fixture[] = [
             ctChar: 20,
             num: 200,
         },
-        out: `${chalk.green('⣿'.repeat(20) + ' '.repeat(0))} ${chalk.dim('200/200')}`,
+        out: makeOut({ ctBlock: 20, sPart: '', ctSpace: 0, sDim: '200/200' }),
     },
 
     {
@@ -42,7 +45,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 50,
         },
-        out: `${chalk.green('⣿'.repeat(5) + ' '.repeat(5))} ${chalk.dim('50/100')}`,
+        out: makeOut({ ctBlock: 5, sPart: '', ctSpace: 5, sDim: '50/100' }),
     },
 
     {
@@ -52,7 +55,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 19,
         },
-        out: `${chalk.green('⣿'.repeat(2) + '⡆' + ' '.repeat(7))} ${chalk.dim('19/80')}`,
+        out: makeOut({ ctBlock: 2, sPart: '⡆', ctSpace: 7, sDim: '19/80' }),
     },
 
     {
@@ -62,7 +65,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 20,
         },
-        out: `${chalk.green('⣿'.repeat(2) + '⡇' + ' '.repeat(7))} ${chalk.dim('20/80')}`,
+        out: makeOut({ ctBlock: 2, sPart: '⡇', ctSpace: 7, sDim: '20/80' }),
     },
 
     {
@@ -72,7 +75,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 1,
         },
-        out: `${chalk.green('⣿'.repeat(0) + '' + ' '.repeat(10))} ${chalk.dim('1/100')}`,
+        out: makeOut({ ctBlock: 0, sPart: '', ctSpace: 10, sDim: '1/100' }),
     },
 
     {
@@ -82,7 +85,7 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 2,
         },
-        out: `${chalk.green('⣿'.repeat(0) + '⡀' + ' '.repeat(9))} ${chalk.dim('2/100')}`,
+        out: makeOut({ ctBlock: 0, sPart: '⡀', ctSpace: 9, sDim: '2/100' }),
     },
 
     {
@@ -92,16 +95,16 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 54,
         },
-        out: `${chalk.green('⣿'.repeat(5) + '⡆' + ' '.repeat(4))} ${chalk.dim('54/100')}`,
+        out: makeOut({ ctBlock: 5, sPart: '⡆', ctSpace: 4, sDim: '54/100' }),
     },
 ];
 
 describe('bin/utils/createBar', () => {
-    fixtures.forEach(fixture => {
+    fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             const received = createBar(fixture.in.ctTotal, fixture.in.ctChar)(fixture.in.num);
 
-            expect(received).toBe(fixture.out)
+            expect(received).toBe(fixture.out);
         });
     });
 });

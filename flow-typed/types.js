@@ -9,6 +9,8 @@ declare type Path = AbsolutePath | RelativePath;
 declare type Glob = string;
 
 declare type LocaleId = string;
+declare type InputMode = 'source' | 'json';
+declare type OutputMode = 'single-file' | 'file-per-locale' | 'no-file';
 
 declare type RIWConfig = {
     rootDir?: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
@@ -16,6 +18,11 @@ declare type RIWConfig = {
     targetLocales: LocaleId[],
     translationsDatabaseFile: Path,
     sourceDirs: Glob[],
+    collateDir: Path,
+    inputMode: InputMode,
+    translationsOutputFile: Path,
+    outputMode: OutputMode,
+    todoFile: Path,
 };
 
 declare type RIWDBVersion = number;
@@ -31,14 +38,25 @@ declare type RIWMessageDescriptor = {
     fabs: AbsolutePath, // added by riw
 };
 
-declare type RIWSourceMessageDescriptorData = {
-    fabs: AbsolutePath,
-    armd: RIWMessageDescriptor[],
+declare type RIWMessageDescriptorUntranslated = {
+    id: RIWMessageId,
+    defaultMessage: RIWDBDefaultMessage,
+    description?: RIWDBDescription,
+    locale: LocaleId,
 };
 
 declare type RIWDuplicateIdData = {
     id: RIWMessageId,
     arfabs: AbsolutePath[],
+};
+
+declare type RIWFindTranslationResult = {
+    locale: {
+        [key: LocaleId]: {
+            [key: RIWMessageId]: RIWDBTranslatedMessage,
+        },
+    },
+    armdu: RIWMessageDescriptorUntranslated[],
 };
 
 declare type RIWDBLocaleTranslationMap = {
@@ -90,18 +108,23 @@ type RIWCLIOptDBDelete = {
     match: RIWQuadMatcher,
 };
 
-type RIWCLIOptProjectExtract = {
+type RIWCLIOptProjectTranslate = {
     on?: {
         start?: () => void,
-        startFiles?: (arfabsSource: AbsolutePath[]) => void,
-        startFile?: (fabsSource: AbsolutePath) => void,
-        endFile?: (smdd: RIWSourceMessageDescriptorData) => void,
-        startDupCheck?: () => void,
-        end?: () => void,
+        startExtract?: (arfabsSource: AbsolutePath[]) => void,
+        startExtractFile?: (fabsSource: AbsolutePath) => void,
+        endExtractFile?: ({ armd: RIWMessageDescriptor[], fabs: AbsolutePath }) => void,
+        endExtract?: (RIWMessageDescriptor[]) => void,
+        startDupCheck?: (armd: RIWMessageDescriptor[]) => void,
+        endDupCheck?: (dups: RIWDuplicateIdData[]) => void,
+        startLookup?: (armd: RIWMessageDescriptor[]) => void,
+        endLookup?: (translation: RIWFindTranslationResult) => void,
+        fileSaved?: (fabs: AbsolutePath) => void,
+        end?: ({ armd: RIWMessageDescriptor[], dups: RIWDuplicateIdData[] }) => void,
     },
 };
 
-type RIWCLIProjectExtractResult = {
+type RIWCLIProjectTranslateResult = {
     armd: RIWMessageDescriptor[],
     dups: RIWDuplicateIdData[],
 };
@@ -115,7 +138,9 @@ declare type RIW = {
         delete: (opt: RIWCLIOptDBDelete) => void,
     },
     project: {
-        extract: (opt: RIWCLIOptProjectExtract) => RIWCLIProjectExtractResult,
+        translate: (opt: RIWCLIOptProjectTranslate) => RIWCLIProjectTranslateResult,
     },
 };
 
+type FilesFromConfig = (config: RIWConfig) => AbsolutePath[];
+type MessageDescriptorsFromFile = (fabs: AbsolutePath) => RIWMessageDescriptor[];

@@ -7,7 +7,7 @@ const arsPart = ['', '⡀', '⡄', '⡆', '⡇', '⣇', '⣧', '⣷'];
 
 export default (ctTotal: number, ctChar: number = 20) => {
     const ctBlockPerNum = ctChar / ctTotal;
-    const ctPipPerNum = ctChar * arsPart.length / ctTotal;
+    const ctPipPerNum = (ctChar * arsPart.length) / ctTotal;
 
     const bar = num => sBlock.repeat(num * ctBlockPerNum);
     const part = num => arsPart[Math.floor(num * ctPipPerNum) % arsPart.length];
