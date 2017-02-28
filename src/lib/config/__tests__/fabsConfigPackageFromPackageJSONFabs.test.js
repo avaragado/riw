@@ -1,6 +1,6 @@
 // @flow
 
-import { fabsConfigPackageFromPackageJSONFabs } from '../';
+import fabsConfigPackageFromPackageJSONFabs from '../fabsConfigPackageFromPackageJSONFabs';
 
 describe('lib/config/fabsConfigPackageFromPackageJSONFabs', () => {
     it('should return the path to the .riw-config.js file alongside a package.json', () => {

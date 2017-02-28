@@ -2,7 +2,7 @@
 
 import path from 'path';
 
-import { fabsPackageJSONFromDabs } from '../';
+import fabsPackageJSONFromDabs from '../fabsPackageJSONFromDabs';
 
 describe('lib/config/fabsPackageJSONFromDabs', () => {
     const dabsF01: AbsolutePath = path.resolve(__dirname, 'fixtures', '01-pkg-ok');

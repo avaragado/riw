@@ -2,7 +2,8 @@
 
 import path from 'path';
 
-import { configFromOptionalPath, configDefault } from '../';
+import configFromOptionalPath from '../configFromOptionalPath';
+import configDefault from '../configDefault';
 
 const dabsFixtures = path.resolve(__dirname, 'fixtures');
 

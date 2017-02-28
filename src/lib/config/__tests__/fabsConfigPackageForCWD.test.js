@@ -2,7 +2,7 @@
 
 import path from 'path';
 
-import { fabsConfigPackageForCWD } from '../';
+import fabsConfigPackageForCWD from '../fabsConfigPackageForCWD';
 
 describe('lib/config/fabsConfigPackageForCWD', () => {
     let cwd;
