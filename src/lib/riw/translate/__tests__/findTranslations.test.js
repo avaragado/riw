@@ -10,14 +10,6 @@ type Fixture = {
     db: RIWDB,
     armd: RIWMessageDescriptor[],
     configOverride: Object,
-    out: {
-        locale: {
-            [key: LocaleId]: {
-                [key: RIWMessageId]: RIWDBTranslatedMessage,
-            },
-        },
-        armdu: RIWMessageDescriptorUntranslated[],
-    },
 };
 
 const fixtures: Fixture[] = [
@@ -31,10 +23,6 @@ const fixtures: Fixture[] = [
         armd: [],
         configOverride: {
             defaultLocale: 'en-aa',
-        },
-        out: {
-            locale: {},
-            armdu: [],
         },
     },
 
@@ -55,21 +43,6 @@ const fixtures: Fixture[] = [
         configOverride: {
             defaultLocale: 'en-aa',
             targetLocales: ['en-up'],
-        },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-            },
-            armdu: [
-                {
-                    id: 'md1',
-                    defaultMessage: 'a',
-                    fabs: '/a.js',
-                    locale: 'en-up',
-                },
-            ],
         },
     },
 
@@ -94,14 +67,6 @@ const fixtures: Fixture[] = [
         ],
         configOverride: {
             defaultLocale: 'en-aa',
-        },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-            },
-            armdu: [],
         },
     },
 
@@ -128,22 +93,6 @@ const fixtures: Fixture[] = [
         configOverride: {
             defaultLocale: 'en-aa',
             targetLocales: ['en-up'],
-        },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-            },
-            armdu: [
-                {
-                    id: 'md1',
-                    defaultMessage: 'a',
-                    description: 'a desc',
-                    fabs: '/a.js',
-                    locale: 'en-up',
-                },
-            ],
         },
     },
 
@@ -174,22 +123,6 @@ const fixtures: Fixture[] = [
             defaultLocale: 'en-aa',
             targetLocales: ['en-up'],
         },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-            },
-            armdu: [
-                {
-                    id: 'md1',
-                    defaultMessage: 'a',
-                    description: 'a desc',
-                    fabs: '/a.js',
-                    locale: 'en-up',
-                },
-            ],
-        },
     },
 
     {
@@ -215,22 +148,6 @@ const fixtures: Fixture[] = [
         configOverride: {
             defaultLocale: 'en-aa',
             targetLocales: ['en-up'],
-        },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-            },
-            armdu: [
-                {
-                    id: 'md1',
-                    defaultMessage: 'a',
-                    description: 'a desc',
-                    fabs: '/a.js',
-                    locale: 'en-up',
-                },
-            ],
         },
     },
 
@@ -258,17 +175,6 @@ const fixtures: Fixture[] = [
             defaultLocale: 'en-aa',
             targetLocales: ['en-up'],
         },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-                'en-up': {
-                    'md1': 'A',
-                },
-            },
-            armdu: [],
-        },
     },
 
     {
@@ -293,17 +199,6 @@ const fixtures: Fixture[] = [
         configOverride: {
             defaultLocale: 'en-aa',
             targetLocales: ['en-up'],
-        },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a',
-                },
-                'en-up': {
-                    'md1': 'A',
-                },
-            },
-            armdu: [],
         },
     },
 
@@ -360,38 +255,6 @@ const fixtures: Fixture[] = [
             defaultLocale: 'en-aa',
             targetLocales: ['en-up', 'en-ne'],
         },
-        out: {
-            locale: {
-                'en-aa': {
-                    'md1': 'a1',
-                    'md2': 'c1',
-                    'md3': 'a1',
-                },
-                'en-up': {
-                    'md1': 'A1',
-                    'md2': 'C1',
-                    'md3': 'A1 DESC',
-                },
-                'en-ne': {
-                    'md1': '1A',
-                },
-            },
-            armdu: [
-                {
-                    id: 'md2',
-                    defaultMessage: 'c1',
-                    fabs: '/c.js',
-                    locale: 'en-ne',
-                },
-                {
-                    id: 'md3',
-                    defaultMessage: 'a1',
-                    description: 'a1 desc',
-                    fabs: '/a.js',
-                    locale: 'en-ne',
-                },
-            ],
-        },
     },
 ];
 
@@ -405,7 +268,7 @@ describe('lib/riw/translate/findTranslations', () => {
 
             const received = findTranslations(cfg, notify, fixture.db)(fixture.armd);
 
-            expect(received).toEqual(fixture.out);
+            expect(received).toMatchSnapshot();
         });
     });
 });

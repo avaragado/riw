@@ -19,30 +19,27 @@ const notify = () => x => x;
 
 type Fixture = {
     name: string,
-    dir: { [key: string]: string },
+    in: { [key: string]: string },
     configOverride?: Object,
-    out: RIWMessageDescriptor[],
 };
 
 const fixtures: Fixture[] = [
     {
         name: '01',
-        dir: {}, // empty
-        out: [],
+        in: {}, // empty dir
     },
 
     {
         name: '02',
-        dir: {
+        in: {
             'a.js': 'export default a => a;',
             'b.js': 'export default b => b + 1;',
         },
-        out: [],
     },
 
     {
         name: '03',
-        dir: {
+        in: {
             'a.js': outdent`
                 import { defineMessages } from 'react-intl';
 
@@ -69,31 +66,11 @@ const fixtures: Fixture[] = [
                 });
             `,
         },
-        out: [
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1!',
-                fabs: absify('03', 'a.js'),
-            },
-            {
-                id: 'b.1',
-                description: undefined,
-                defaultMessage: 'b.1!',
-                fabs: absify('03', 'b.js'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 desc',
-                defaultMessage: 'b.2!',
-                fabs: absify('03', 'b.js'),
-            },
-        ],
     },
 
     {
         name: '04',
-        dir: {
+        in: {
             'a.js': outdent`
                 import { defineMessages } from 'react-intl';
 
@@ -151,57 +128,15 @@ const fixtures: Fixture[] = [
                 });
             `,
         },
-        out: [
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1!',
-                fabs: absify('04', 'a.js'),
-            },
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1 again!',
-                fabs: absify('04', 'aa.js'),
-            },
-            {
-                id: 'b.1',
-                description: undefined,
-                defaultMessage: 'b.1!',
-                fabs: absify('04', 'b.js'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 desc',
-                defaultMessage: 'b.2!',
-                fabs: absify('04', 'b.js'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 again desc',
-                defaultMessage: 'b.2 again!',
-                fabs: absify('04', 'bb.js'),
-            },
-            {
-                id: 'c.1',
-                description: undefined,
-                defaultMessage: 'c.1!',
-                fabs: absify('04', 'c.js'),
-            },
-        ],
     },
 ];
 
 describe('lib/riw/translate/extract.source', () => {
-    afterEach(() => {
-        mock.restore();
-    });
-
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
                 fixtures: {
-                    [fixture.name]: fixture.dir,
+                    [fixture.name]: fixture.in,
                 },
             });
 
@@ -213,7 +148,9 @@ describe('lib/riw/translate/extract.source', () => {
 
             const received = armdExtractSource(notify)(cfg);
 
-            expect(received).toEqual(fixture.out);
+            mock.restore();
+
+            expect(received).toMatchSnapshot();
         });
     });
 });

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/makeFileToFilePipeline 01 1`] = `
+"{
+    \\"version\\": 1,
+    \\"data\\": {
+        \\"one\\": {
+            \\"two\\": {
+                \\"three\\": \\"four\\"
+            },
+            \\"two2\\": {
+                \\"three\\": \\"four\\"
+            }
+        }
+    }
+}"
+`;
+
+exports[`lib/riw/db/makeFileToFilePipeline 02 1`] = `
+"{
+    \\"version\\": 1,
+    \\"data\\": {
+        \\"one\\": {
+            \\"two\\": {
+                \\"bar\\": \\"db.json\\"
+            }
+        }
+    }
+}"
+`;

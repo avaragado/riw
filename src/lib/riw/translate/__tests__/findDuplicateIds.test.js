@@ -7,14 +7,12 @@ const notify = () => x => x;
 type Fixture = {
     name: string,
     in: RIWMessageDescriptor[],
-    out: RIWDuplicateIdData[],
 };
 
 const fixtures: Fixture[] = [
     {
         name: '01',
         in: [],
-        out: [],
     },
 
     {
@@ -37,7 +35,6 @@ const fixtures: Fixture[] = [
                 fabs: 'b',
             },
         ],
-        out: [],
     },
 
     {
@@ -82,16 +79,6 @@ const fixtures: Fixture[] = [
                 fabs: 'c',
             },
         ],
-        out: [
-            {
-                id: 'a.1',
-                arfabs: ['a', 'aa'],
-            },
-            {
-                id: 'b.2',
-                arfabs: ['b', 'bb', 'bbb'],
-            },
-        ],
     },
 ];
 
@@ -101,7 +88,7 @@ describe('lib/riw/translate/findDuplicateIds', () => {
 
             const received = findDuplicateIds(notify)(fixture.in);
 
-            expect(received).toEqual(fixture.out);
+            expect(received).toMatchSnapshot();
         });
     });
 });

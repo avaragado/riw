@@ -8,41 +8,37 @@ import outdent from 'outdent';
 import { armdExtractJSON } from '../extract';
 import cfgBase from '../../__tests__/helpers/dummyConfig';
 
-const absify = (name, frel) => path.resolve('fixtures', name, frel);
-
 const cfgOverride = {
     ...cfgBase,
     rootDir: '.',
+    sourceDirs: ['fixtures/dir/**/*.js'],
 };
 
 const notify = () => x => x;
 
 type Fixture = {
     name: string,
-    dir: { [key: string]: string },
+    in: { [key: string]: string },
     configOverride?: Object,
-    out: RIWMessageDescriptor[],
 };
 
 const fixtures: Fixture[] = [
     {
         name: '01',
-        dir: {}, // empty
-        out: [],
+        in: {}, // empty dir
     },
 
     {
         name: '02',
-        dir: {
+        in: {
             'a.json': '[]',
             'b.json': '[]',
         },
-        out: [],
     },
 
     {
         name: '03',
-        dir: {
+        in: {
             'a.json': outdent`
                 [
                     {
@@ -91,52 +87,14 @@ const fixtures: Fixture[] = [
             `,
         },
         configOverride: {
-            collateDir: 'fixtures/03',
+            collateDir: 'fixtures/dir',
             inputMode: 'json',
         },
-        out: [
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1!',
-                fabs: absify('03', 'a.json'),
-            },
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1 again!',
-                fabs: absify('03', 'aa.json'),
-            },
-            {
-                id: 'b.1',
-                description: undefined,
-                defaultMessage: 'b.1!',
-                fabs: absify('03', 'b.json'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 desc',
-                defaultMessage: 'b.2!',
-                fabs: absify('03', 'b.json'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 again desc',
-                defaultMessage: 'b.2 again!',
-                fabs: absify('03', 'bb.json'),
-            },
-            {
-                id: 'c.1',
-                description: undefined,
-                defaultMessage: 'c.1!',
-                fabs: absify('03', 'c.json'),
-            },
-        ],
     },
 
     {
         name: '04',
-        dir: {
+        in: {
             'a.json': outdent`
                 [
                     {
@@ -185,72 +143,31 @@ const fixtures: Fixture[] = [
             `,
         },
         configOverride: {
-            collateDir: absify('04', ''),
+            collateDir: path.resolve('fixtures', 'dir'),
             inputMode: 'json',
         },
-        out: [
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1!',
-                fabs: absify('04', 'a.json'),
-            },
-            {
-                id: 'a.1',
-                description: undefined,
-                defaultMessage: 'a.1 again!',
-                fabs: absify('04', 'aa.json'),
-            },
-            {
-                id: 'b.1',
-                description: undefined,
-                defaultMessage: 'b.1!',
-                fabs: absify('04', 'b.json'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 desc',
-                defaultMessage: 'b.2!',
-                fabs: absify('04', 'b.json'),
-            },
-            {
-                id: 'b.2',
-                description: 'b.2 again desc',
-                defaultMessage: 'b.2 again!',
-                fabs: absify('04', 'bb.json'),
-            },
-            {
-                id: 'c.1',
-                description: undefined,
-                defaultMessage: 'c.1!',
-                fabs: absify('04', 'c.json'),
-            },
-        ],
     },
 ];
 
 describe('lib/riw/translate/extract.json', () => {
-    afterEach(() => {
-        mock.restore();
-    });
-
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
                 fixtures: {
-                    [fixture.name]: fixture.dir,
+                    dir: fixture.in,
                 },
             });
 
             const cfg = {
                 ...cfgOverride,
-                sourceDirs: [`fixtures/${fixture.name}/**/*.js`],
                 ...fixture.configOverride,
             };
 
             const received = armdExtractJSON(notify)(cfg);
 
-            expect(received).toEqual(fixture.out);
+            mock.restore();
+
+            expect(received).toMatchSnapshot();
         });
     });
 });

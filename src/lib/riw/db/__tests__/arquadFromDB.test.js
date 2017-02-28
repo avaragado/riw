@@ -5,7 +5,6 @@ import arquadFromDB from '../arquadFromDB';
 type Fixture = {
     name: string,
     in: RIWDB,
-    out: RIWDBQuad[],
 };
 
 const fixtures: Fixture[] = [
@@ -15,7 +14,6 @@ const fixtures: Fixture[] = [
             version: 1,
             data: {},
         },
-        out: [],
     },
 
     {
@@ -40,13 +38,6 @@ const fixtures: Fixture[] = [
                 },
             },
         },
-        out: [
-            ['hello', 'desc1', 'en-re', 'olleh'],
-            ['hello', 'desc1', 'en-UP', 'HELLO'],
-            ['hello', 'desc2', 'fr-fr', 'bonjour'],
-            ['goodbye', 'desc1', 'en-re', 'eybdoog'],
-            ['goodbye', 'desc1', 'en-UP', 'GOODBYE'],
-        ],
     },
 ];
 
@@ -55,7 +46,7 @@ describe('lib/riw/db/arquadFromDB', () => {
         it(fixture.name, () => {
             const received = arquadFromDB(fixture.in);
 
-            expect(received).toEqual(fixture.out);
+            expect(received).toMatchSnapshot();
         });
     });
 });

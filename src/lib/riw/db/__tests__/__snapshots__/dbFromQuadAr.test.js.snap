@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/dbFromQuadAr 01 empty db 1`] = `
+Object {
+  "data": Object {},
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/dbFromQuadAr 02 lots of entries 1`] = `
+Object {
+  "data": Object {
+    "goodbye": Object {
+      "desc1": Object {
+        "en-UP": "GOODBYE",
+        "en-re": "eybdoog",
+      },
+    },
+    "hello": Object {
+      "desc1": Object {
+        "en-UP": "HELLO",
+        "en-re": "olleh",
+      },
+      "desc2": Object {
+        "fr-fr": "bonjour",
+      },
+    },
+  },
+  "version": 1,
+}
+`;

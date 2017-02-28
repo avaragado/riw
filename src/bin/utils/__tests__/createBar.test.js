@@ -11,11 +11,7 @@ type Fixture = {
         ctChar: number,
         num: number,
     },
-    out: string,
 };
-
-const makeOut = ({ ctBlock, sPart, ctSpace, sDim }) =>
-    `${chalk.green('⣿'.repeat(ctBlock) + sPart + ' '.repeat(ctSpace))} ${chalk.dim(sDim)}`;
 
 const fixtures: Fixture[] = [
     {
@@ -25,7 +21,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 0,
         },
-        out: makeOut({ ctBlock: 0, sPart: '', ctSpace: 10, sDim: '0/100' }),
     },
 
     {
@@ -35,7 +30,6 @@ const fixtures: Fixture[] = [
             ctChar: 20,
             num: 200,
         },
-        out: makeOut({ ctBlock: 20, sPart: '', ctSpace: 0, sDim: '200/200' }),
     },
 
     {
@@ -45,7 +39,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 50,
         },
-        out: makeOut({ ctBlock: 5, sPart: '', ctSpace: 5, sDim: '50/100' }),
     },
 
     {
@@ -55,7 +48,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 19,
         },
-        out: makeOut({ ctBlock: 2, sPart: '⡆', ctSpace: 7, sDim: '19/80' }),
     },
 
     {
@@ -65,7 +57,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 20,
         },
-        out: makeOut({ ctBlock: 2, sPart: '⡇', ctSpace: 7, sDim: '20/80' }),
     },
 
     {
@@ -75,7 +66,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 1,
         },
-        out: makeOut({ ctBlock: 0, sPart: '', ctSpace: 10, sDim: '1/100' }),
     },
 
     {
@@ -85,7 +75,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 2,
         },
-        out: makeOut({ ctBlock: 0, sPart: '⡀', ctSpace: 9, sDim: '2/100' }),
     },
 
     {
@@ -95,7 +84,6 @@ const fixtures: Fixture[] = [
             ctChar: 10,
             num: 54,
         },
-        out: makeOut({ ctBlock: 5, sPart: '⡆', ctSpace: 4, sDim: '54/100' }),
     },
 ];
 
@@ -104,7 +92,7 @@ describe('bin/utils/createBar', () => {
         it(fixture.name, () => {
             const received = createBar(fixture.in.ctTotal, fixture.in.ctChar)(fixture.in.num);
 
-            expect(received).toBe(fixture.out);
+            expect(received).toMatchSnapshot();
         });
     });
 });
