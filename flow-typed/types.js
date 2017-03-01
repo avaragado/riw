@@ -76,6 +76,7 @@ declare type RIWDB = {
     data: RIWDBTranslationMap,
 };
 
+declare type RIWDBPair = [RIWDBDefaultMessage, RIWDBDescription];
 declare type RIWDBQuad = [RIWDBDefaultMessage, RIWDBDescription, LocaleId, RIWDBTranslatedMessage];
 
 declare type RIWDBQuadsTransformer = (config: RIWConfig, opt?: Object) => (quads: RIWDBQuad[]) => RIWDBQuad[];
@@ -129,6 +130,16 @@ type RIWCLIProjectTranslateResult = {
     dups: RIWDuplicateIdData[],
 };
 
+type RIWCLIDBStatusResult = {
+    default: RIWDBPair[],
+    translation: {
+        [key: LocaleId]: {
+            has: RIWDBPair[],
+            missing: RIWDBPair[],
+        },
+    },
+};
+
 declare type RIW = {
     config: RIWConfig,
     db: {
@@ -136,6 +147,7 @@ declare type RIW = {
         update: (opt: RIWCLIOptDBUpdate) => void,
         find: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
         delete: (opt: RIWCLIOptDBDelete) => void,
+        status: void => RIWCLIDBStatusResult,
     },
     project: {
         translate: (opt: RIWCLIOptProjectTranslate) => RIWCLIProjectTranslateResult,
