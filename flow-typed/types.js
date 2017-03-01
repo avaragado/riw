@@ -79,7 +79,8 @@ declare type RIWDB = {
 declare type RIWDBPair = [RIWDBDefaultMessage, RIWDBDescription];
 declare type RIWDBQuad = [RIWDBDefaultMessage, RIWDBDescription, LocaleId, RIWDBTranslatedMessage];
 
-declare type RIWDBQuadsTransformer = (config: RIWConfig, opt?: Object) => (quads: RIWDBQuad[]) => RIWDBQuad[];
+declare type RIWDBQuadsTransformer = (arquad: RIWDBQuad[]) => RIWDBQuad[];
+declare type RIWDBConfigurableQuadsTransformer = (config: RIWConfig, opt?: Object) => RIWDBQuadsTransformer;
 
 declare type RIWCLIHandler = (riw: RIW, argv: yargs.Argv) => void;
 
@@ -140,19 +141,20 @@ type RIWCLIDBStatusResult = {
     },
 };
 
-declare type RIW = {
+declare type RIW = {|
     config: RIWConfig,
-    db: {
-        init: void => void,
-        update: (opt: RIWCLIOptDBUpdate) => void,
+    db: {|
+        init: () => void,
+        read: () => RIWDB,
         find: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
+        status: () => RIWCLIDBStatusResult,
+        update: (opt: RIWCLIOptDBUpdate) => void,
         delete: (opt: RIWCLIOptDBDelete) => void,
-        status: void => RIWCLIDBStatusResult,
-    },
-    project: {
+    |},
+    project: {|
         translate: (opt: RIWCLIOptProjectTranslate) => RIWCLIProjectTranslateResult,
-    },
-};
+    |},
+|};
 
 type FilesFromConfig = (config: RIWConfig) => AbsolutePath[];
 type MessageDescriptorsFromFile = (fabs: AbsolutePath) => RIWMessageDescriptor[];

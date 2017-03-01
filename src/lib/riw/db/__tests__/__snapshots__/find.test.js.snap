@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/find 01 defaultMessage match 1`] = `
+Array [
+  Array [
+    "two",
+    "desc1",
+    "aa-aa",
+    "[aa-aa]1 two",
+  ],
+  Array [
+    "two",
+    "desc1",
+    "bb-bb",
+    "[bb-bb]1 two",
+  ],
+]
+`;
+
+exports[`lib/riw/db/find 02 description match 1`] = `
+Array [
+  Array [
+    "one",
+    "desc1",
+    "aa-aa",
+    "[aa-aa]1 one",
+  ],
+  Array [
+    "one",
+    "desc1",
+    "bb-bb",
+    "[bb-bb]1 one",
+  ],
+  Array [
+    "two",
+    "desc1",
+    "aa-aa",
+    "[aa-aa]1 two",
+  ],
+  Array [
+    "two",
+    "desc1",
+    "bb-bb",
+    "[bb-bb]1 two",
+  ],
+  Array [
+    "three",
+    "desc1",
+    "aa-aa",
+    "[aa-aa]1 three",
+  ],
+  Array [
+    "three",
+    "desc1",
+    "cc-cc",
+    "[cc-cc]1 three",
+  ],
+]
+`;
+
+exports[`lib/riw/db/find 03 locale match 1`] = `
+Array [
+  Array [
+    "one",
+    "desc1",
+    "bb-bb",
+    "[bb-bb]1 one",
+  ],
+  Array [
+    "one",
+    "desc2",
+    "bb-bb",
+    "[bb-bb]2 one",
+  ],
+  Array [
+    "two",
+    "desc1",
+    "bb-bb",
+    "[bb-bb]1 two",
+  ],
+]
+`;
+
+exports[`lib/riw/db/find 04 translation match 1`] = `
+Array [
+  Array [
+    "three",
+    "desc1",
+    "cc-cc",
+    "[cc-cc]1 three",
+  ],
+]
+`;

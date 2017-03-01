@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/transform/arquadFromDB 01 empty db 1`] = `Array []`;
+
+exports[`lib/riw/db/transform/arquadFromDB 02 lots of entries 1`] = `
+Array [
+  Array [
+    "hello",
+    "desc1",
+    "en-re",
+    "olleh",
+  ],
+  Array [
+    "hello",
+    "desc1",
+    "en-UP",
+    "HELLO",
+  ],
+  Array [
+    "hello",
+    "desc2",
+    "fr-fr",
+    "bonjour",
+  ],
+  Array [
+    "goodbye",
+    "desc1",
+    "en-re",
+    "eybdoog",
+  ],
+  Array [
+    "goodbye",
+    "desc1",
+    "en-UP",
+    "GOODBYE",
+  ],
+]
+`;

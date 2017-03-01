@@ -1,7 +1,5 @@
 // @flow
 
-import chalk from 'chalk';
-
 import createBar from '../createBar';
 
 type Fixture = {

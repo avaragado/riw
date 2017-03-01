@@ -1,14 +1,10 @@
 // @flow
 
-import path from 'path';
-
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
 import { armdExtractSource } from '../extract';
 import cfgBase from '../../__tests__/helpers/dummyConfig';
-
-const absify = (name, frel) => path.resolve('fixtures', name, frel);
 
 const cfgOverride = {
     ...cfgBase,

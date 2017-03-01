@@ -4,7 +4,7 @@ import compose from 'ramda/src/compose';
 
 import makeNotifier from '../../notify';
 
-import { readFromFile } from '../db';
+import db from '../db';
 
 import { armdExtractSource, armdExtractJSON } from './extract';
 import ardupFind from './findDuplicateIds';
@@ -20,7 +20,7 @@ const process = (config, notify) => compose(
         translation: compose(
             writeTodo(config, notify),
             writeTranslations(config, notify),
-            findTranslations(config, notify, readFromFile(config)()),
+            findTranslations(config, notify, db(config).read()),
         )(armd),
     }),
     {

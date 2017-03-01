@@ -1,35 +1,17 @@
 // @flow
 
-import version from './version';
-import dbEmpty from './dbEmpty';
-import readFromFile from './readFromFile';
-import writeToFile from './writeToFile';
-import writeEmptyToFile from './writeEmptyToFile';
-import arquadFromDB from './arquadFromDB';
-import dbFromQuadAr from './dbFromQuadAr';
-import { makeFileToQuadArPipeline, makeFileToFilePipeline } from './makePipeline';
-
-import updateTranslations from './transform/updateTranslations';
-import findTranslations from './transform/findTranslations';
-import deleteTranslations from './transform/deleteTranslations';
+import dbRead from './rw/dbRead';
+import init from './init';
+import find from './find';
 import status from './status';
-
-export {
-    version,
-    dbEmpty,
-    readFromFile,
-    writeToFile,
-    writeEmptyToFile,
-    arquadFromDB,
-    dbFromQuadAr,
-    makeFileToQuadArPipeline,
-    makeFileToFilePipeline,
-};
+import update from './update';
+import del from './delete';
 
 export default (config: RIWConfig) => ({
-    init: writeEmptyToFile(config),
-    update: makeFileToFilePipeline(updateTranslations, config),
-    find: makeFileToQuadArPipeline(findTranslations, config),
+    init: init(config),
+    read: dbRead(config),
+    find: find(config),
     status: status(config),
-    delete: makeFileToFilePipeline(deleteTranslations, config),
+    update: update(config),
+    delete: del(config),
 });
