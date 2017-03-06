@@ -29,6 +29,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(fabsF02Good)).toEqual({
             ...configDefault,
             ...configOverrideF02,
+            configFile: fabsF02Good,
             rootDir: path.dirname(fabsF02Good),
         });
     });
@@ -39,6 +40,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(frelF02Good)).toEqual({
             ...configDefault,
             ...configOverrideF02,
+            configFile: fabsF02Good,
             rootDir: path.dirname(fabsF02Good),
         });
     });
@@ -64,13 +66,14 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
             ...configOverrideF03,
+            configFile: fabsF03PackageJSON,
             rootDir: dabsF03,
         });
     });
 
     it('should return the merged config: from .riw-config, ignoring key in package.json', () => {
         const dabsF04 = path.resolve(dabsFixtures, '04-riw-config');
-        const fabsF04 = path.resolve(dabsF04, '.riw-config');
+        const fabsF04 = path.resolve(dabsF04, '.riw-config.js');
 
         process.chdir(dabsF04);
 
@@ -79,6 +82,7 @@ describe('lib/config/configFromOptionalPath', () => {
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
             ...configOverrideF04,
+            configFile: fabsF04,
             rootDir: dabsF04,
         });
     });
@@ -90,6 +94,7 @@ describe('lib/config/configFromOptionalPath', () => {
 
         expect(configFromOptionalPath(undefined)).toEqual({
             ...configDefault,
+            configFile: null,
             rootDir: dabsF05,
         });
     });

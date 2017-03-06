@@ -29,6 +29,7 @@ const configFromPath = (pathConfig: Path): ?RIWConfig => {
     return {
         ...configDefault,
         ...configOverride,
+        configFile: fabs,
         rootDir: path.dirname(fabs),
     };
 };
@@ -42,9 +43,11 @@ const configFromPackage = (): ?RIWConfig => {
         return null;
     }
 
+    let fabsConfigUsed: ?AbsolutePath = fabsConfigPackage;
     let configOverride: ?Object = requireOrNull(fabsConfigPackage);
 
     if (configOverride === null) {
+        fabsConfigUsed = fabsPackageJSON;
         configOverride = requireOrNull(fabsPackageJSON);
 
         if (configOverride && configOverride.riw) {
@@ -56,12 +59,14 @@ const configFromPackage = (): ?RIWConfig => {
 
     if (configOverride === null) {
         log.warn('riw', 'No config located for the project. You probably want to add some configuration.');
+        fabsConfigUsed = null;
         configOverride = {};
     }
 
     return {
         ...configDefault,
         ...configOverride,
+        configFile: fabsConfigUsed,
         rootDir: path.dirname(fabsConfigPackage),
     };
 

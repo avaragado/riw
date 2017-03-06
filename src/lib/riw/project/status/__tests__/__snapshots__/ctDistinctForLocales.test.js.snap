@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/project/status/ctDistinctForLocales 01 1`] = `
+Object {
+  "default": null,
+  "target": Object {
+    "bb-bb": null,
+    "cc-cc": null,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 01a 1`] = `
+Object {
+  "default": null,
+  "target": Object {
+    "bb-bb": null,
+    "cc-cc": null,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 02 1`] = `
+Object {
+  "default": null,
+  "target": Object {
+    "bb-bb": 0,
+    "cc-cc": null,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 02a 1`] = `
+Object {
+  "default": null,
+  "target": Object {
+    "bb-bb": 0,
+    "cc-cc": null,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 03 1`] = `
+Object {
+  "default": 3,
+  "target": Object {
+    "bb-bb": 2,
+    "cc-cc": 1,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 03a 1`] = `
+Object {
+  "default": 3,
+  "target": Object {
+    "bb-bb": 2,
+    "cc-cc": 1,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 04 1`] = `
+Object {
+  "default": 2,
+  "target": Object {
+    "bb-bb": 2,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 04a 1`] = `
+Object {
+  "default": 2,
+  "target": Object {
+    "bb-bb": 2,
+  },
+}
+`;
+
+exports[`lib/riw/project/status/ctDistinctForLocales 04b 1`] = `
+Object {
+  "default": null,
+  "target": Object {
+    "bb-bb": null,
+    "cc-cc": null,
+  },
+}
+`;

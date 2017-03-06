@@ -1,6 +1,7 @@
 // @flow
 
 const cfg: RIWConfig = {
+    configFile: null, // overridden
     rootDir: '', // overridden
     defaultLocale: 'en-us',
     targetLocales: [],

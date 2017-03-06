@@ -5,7 +5,7 @@ import path from 'path';
 
 import mkdirp from 'mkdirp';
 
-import log from '../../../../lib/log';
+import log from '../../../log';
 
 type WriteOpt = {
     allowOverwrite?: boolean,

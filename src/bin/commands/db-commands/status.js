@@ -36,23 +36,23 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     const spinner = ora('Gathering information...').start();
 
     const status: RIWCLIDBStatusResult = riw.db.status();
-    const arlid = Object.keys(status.translation).sort(
-        (lid1, lid2) => status.translation[lid2].has.length - status.translation[lid1].has.length,
+    const arlid = Object.keys(status.locale).sort(
+        (lid1, lid2) => status.locale[lid2].has.length - status.locale[lid1].has.length,
     );
     const ctCharMax = Math.max.apply(null, arlid.map(lid => lid.length));
     const bar = createBar(status.default.length, 60);
 
-    const summary = lid => `- ${chalk.bold(lid.padEnd(ctCharMax + 2))}${bar(status.translation[lid].has.length)}`;
+    const summary = lid => `- ${chalk.bold(lid.padEnd(ctCharMax + 2))}${bar(status.locale[lid].has.length)}`;
 
     const missingPair = pair => `  - ${chalk.bold.blue(pair[0])} ${chalk.dim(pair[1])}`;
 
     const missing = lid => outdent`
-        - ${chalk.bold(lid)} [${status.translation[lid].missing.length}]
-        ${status.translation[lid].missing.map(missingPair).join('\n')}
+        - ${chalk.bold(lid)} [${status.locale[lid].missing.length}]
+        ${status.locale[lid].missing.map(missingPair).join('\n')}
 
     `;
 
-    const hasMissing = lid => status.translation[lid].missing.length > 0;
+    const hasMissing = lid => status.locale[lid].missing.length > 0;
 
     spinner.stop();
 

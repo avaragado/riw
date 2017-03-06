@@ -3,7 +3,7 @@
 exports[`lib/riw/db/transform/arStatusByLidFromQuadAr 01 1`] = `
 Object {
   "default": Array [],
-  "translation": Object {},
+  "locale": Object {},
 }
 `;
 
@@ -19,7 +19,7 @@ Object {
       "desc1",
     ],
   ],
-  "translation": Object {
+  "locale": Object {
     "aa-aa": Object {
       "has": Array [
         Array [
@@ -45,7 +45,7 @@ Object {
       "desc1",
     ],
   ],
-  "translation": Object {
+  "locale": Object {
     "aa-aa": Object {
       "has": Array [
         Array [
@@ -88,7 +88,7 @@ Object {
       "desc1",
     ],
   ],
-  "translation": Object {
+  "locale": Object {
     "aa-aa": Object {
       "has": Array [
         Array [

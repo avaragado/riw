@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/project/status/todo 01 1`] = `
+Object {
+  "todo": null,
+}
+`;
+
+exports[`lib/riw/project/status/todo 02 1`] = `
+Object {
+  "todo": Object {
+    "xx-xx": Array [
+      Object {
+        "defaultMessage": "aa",
+        "description": "aa desc",
+        "id": "md1",
+        "locale": "xx-xx",
+      },
+      Object {
+        "defaultMessage": "bb",
+        "description": "bb desc",
+        "id": "md2",
+        "locale": "xx-xx",
+      },
+    ],
+    "yy-yy": Array [
+      Object {
+        "defaultMessage": "aa",
+        "description": "aa desc",
+        "id": "md1",
+        "locale": "yy-yy",
+      },
+    ],
+    "zz-zz": Array [
+      Object {
+        "defaultMessage": "aa",
+        "description": "aa desc",
+        "id": "md1",
+        "locale": "zz-zz",
+      },
+      Object {
+        "defaultMessage": "cc",
+        "description": "cc desc",
+        "id": "md3",
+        "locale": "zz-zz",
+      },
+      Object {
+        "defaultMessage": "dd",
+        "id": "md4",
+        "locale": "zz-zz",
+      },
+    ],
+  },
+}
+`;

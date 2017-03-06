@@ -14,6 +14,7 @@ declare type OutputMode = 'single-file' | 'file-per-locale' | 'no-file';
 
 declare type RIWConfig = {
     rootDir?: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
+    configFile?: ?AbsolutePath, // added by config processing: file containing the config
     defaultLocale: LocaleId,
     targetLocales: LocaleId[],
     translationsDatabaseFile: Path,
@@ -133,12 +134,26 @@ type RIWCLIProjectTranslateResult = {
 
 type RIWCLIDBStatusResult = {
     default: RIWDBPair[],
-    translation: {
+    locale: {
         [key: LocaleId]: {
             has: RIWDBPair[],
             missing: RIWDBPair[],
         },
     },
+};
+
+type RIWCLIProjectStatusResult = {
+    default: ?number,
+    target: {
+        [key: LocaleId]: ?number,
+    },
+    todo: null | {
+        [key: LocaleId]: RIWMessageDescriptorUntranslated[],
+    },
+    dateInputNewest: number,
+    dateTodo: number,
+    dateDB: number,
+    dateConfig: number,
 };
 
 declare type RIW = {|
@@ -153,6 +168,7 @@ declare type RIW = {|
     |},
     project: {|
         translate: (opt: RIWCLIOptProjectTranslate) => RIWCLIProjectTranslateResult,
+        status: () => RIWCLIProjectStatusResult,
     |},
 |};
 

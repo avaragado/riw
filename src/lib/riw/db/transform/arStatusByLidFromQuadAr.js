@@ -20,7 +20,7 @@ type StatusFromQuadAr = (arquad: RIWDBQuad[]) => RIWCLIDBStatusResult;
 const arStatusByLidFromQuadAr: StatusFromQuadAr = compose(
     (data: Intermediate): RIWCLIDBStatusResult => ({
         default: data.arpairDefault,
-        translation: map(
+        locale: map(
             arpair => ({
                 has: arpair,
                 missing: difference(data.arpairDefault, arpair),

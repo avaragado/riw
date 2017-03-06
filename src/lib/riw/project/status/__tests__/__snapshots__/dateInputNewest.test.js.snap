@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/project/status/dateInputNewest 01 1`] = `
+Object {
+  "dateInputNewest": 0,
+}
+`;
+
+exports[`lib/riw/project/status/dateInputNewest 02 1`] = `
+Object {
+  "dateInputNewest": 1970-01-01T00:00:05.000Z,
+}
+`;
+
+exports[`lib/riw/project/status/dateInputNewest 03 1`] = `
+Object {
+  "dateInputNewest": 0,
+}
+`;
+
+exports[`lib/riw/project/status/dateInputNewest 04 1`] = `
+Object {
+  "dateInputNewest": 1970-01-01T00:00:05.000Z,
+}
+`;
