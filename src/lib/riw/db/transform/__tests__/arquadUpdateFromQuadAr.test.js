@@ -42,7 +42,25 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '03 updating message, same locale',
+        name: '03 adding message without description',
+        before: [],
+        config: {},
+        opt: {
+            translations: [
+                {
+                    defaultMessage: 'hello',
+                    locale: 'en-re',
+                    translation: 'olleh',
+                },
+            ],
+        },
+        after: [
+            ['hello', '_', 'en-re', 'olleh'],
+        ],
+    },
+
+    {
+        name: '04 updating message, same locale',
         before: [
             ['hello', 'desc1', 'en-re', 'OLD olleh'],
         ],
@@ -64,7 +82,28 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '04 updating message, new locale',
+        name: '05 updating message without description, same locale',
+        before: [
+            ['hello', '_', 'en-re', 'OLD olleh'],
+        ],
+        config: {},
+        opt: {
+            translations: [
+                {
+                    defaultMessage: 'hello',
+                    locale: 'en-re',
+                    translation: 'NEW olleh',
+                },
+            ],
+        },
+        after: [
+            ['hello', '_', 'en-re', 'OLD olleh'],
+            ['hello', '_', 'en-re', 'NEW olleh'],
+        ],
+    },
+
+    {
+        name: '06 updating message, new locale',
         before: [
             ['hello', 'desc1', 'en-re', 'olleh'],
         ],
@@ -86,7 +125,28 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '05 several messages at once',
+        name: '07 updating message without description, new locale',
+        before: [
+            ['hello', '_', 'en-re', 'olleh'],
+        ],
+        config: {},
+        opt: {
+            translations: [
+                {
+                    defaultMessage: 'hello',
+                    locale: 'en-UPPER',
+                    translation: 'HELLO',
+                },
+            ],
+        },
+        after: [
+            ['hello', '_', 'en-re', 'olleh'],
+            ['hello', '_', 'en-UPPER', 'HELLO'],
+        ],
+    },
+
+    {
+        name: '08 several messages at once',
         before: [
             ['hello', 'desc1', 'en-re', 'olleh'],
         ],
@@ -101,7 +161,6 @@ const fixtures: Fixture[] = [
                 },
                 {
                     defaultMessage: 'goodbye',
-                    description: 'desc1',
                     locale: 'en-re',
                     translation: 'eybdoog',
                 },
@@ -122,7 +181,7 @@ const fixtures: Fixture[] = [
         after: [
             ['hello', 'desc1', 'en-re', 'olleh'],
             ['hello', 'desc1', 'en-UPPER', 'HELLO'],
-            ['goodbye', 'desc1', 'en-re', 'eybdoog'],
+            ['goodbye', '_', 'en-re', 'eybdoog'],
             ['foo', 'desc1', 'en-re', 'oof'],
             ['foo', 'desc2', 'en-UPPER', 'FOO'],
         ],

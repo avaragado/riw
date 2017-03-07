@@ -35,6 +35,11 @@ const db: RIWDB = {
                 'cc-cc': '[cc-cc]1 three',
             },
         },
+        'four': {
+            '_': {
+                'aa-aa': '[aa-aa]no desc four',
+            },
+        },
     },
 };
 
@@ -78,6 +83,34 @@ const fixtures: Fixture[] = [
         opt: {
             match: {
                 translation: '[cc-cc]1 three',
+            },
+        },
+    },
+
+    {
+        name: '05 defaultMessage match for message without desc',
+        opt: {
+            match: {
+                defaultMessage: 'four',
+            },
+        },
+    },
+
+    {
+        name: '06 match with two criteria',
+        opt: {
+            match: {
+                defaultMessage: 'one',
+                locale: 'aa-aa',
+            },
+        },
+    },
+
+    {
+        name: '07 match message with default desc',
+        opt: {
+            match: {
+                description: '_',
             },
         },
     },

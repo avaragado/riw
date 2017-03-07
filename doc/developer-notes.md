@@ -13,6 +13,9 @@ There's a one-to-many mapping between flowtype types and variable naming prefixe
 | `ct` | `number` | An integer number usually indicating a total of some kind |
 | `ix` | `number` | An integer index usually into an array for looping purposes, starts at 0 |
 | `num` | `number` | An arbitrary number, not a `ct` or an `ix` |
+| `is` | `boolean` | True or false |
+| `has` | `boolean` | True or false |
+| `are` | `boolean` | True or false |
 | `json` | `string` | A JSON string (NOT an object) |
 | `path` | `Path` | Either a relative or an absolute path, to a file or directory |
 | `pabs` | `AbsolutePath` | Absolute path to file or directory |
@@ -27,6 +30,7 @@ There's a one-to-many mapping between flowtype types and variable naming prefixe
 | `lid` | `LocaleId` | A locale id, eg `en-gb` or `pt-br` |
 | `md` | `RIWMessageDescriptor` | A `react-intl` message descriptor plus a `fabs` property indicating the file the message descriptor came from |
 | `mdu` | `RIWMessageDescriptorUntranslated` | A `react-intl` message descriptor plus a `locale` property indicating a locale to which the message descriptor is not yet translated |
+| `mdt` | `RIWTranslatedMessageDescriptor` | A `defaultMessage` and (optional) `description` as in a message descriptor, plus a `locale` property and a `translation` property with the message translated to that locale |
 
 
-The `ar` prefix may be used before any of these to indicate an array of that type. For example, `ars` means an array of strings.
+The `ar` prefix may be used before any of these to indicate an array of that type. For example, `ars` means an array of strings, and `armdt` means an array of translated message descriptors.

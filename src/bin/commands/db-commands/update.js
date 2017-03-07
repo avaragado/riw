@@ -5,7 +5,6 @@ import type yargs from 'yargs';
 import outdent from 'outdent';
 import pick from 'ramda/src/pick';
 
-import { sDescriptionDefault } from '../../../lib/riw';
 import { createHandlerWithRIW } from '../../utils';
 
 export const command = 'update';
@@ -68,14 +67,12 @@ export const builder = (yyargs: yargs.Argv) => yyargs
         description: {
             alias: 'd',
             string: true,
-            default: sDescriptionDefault,
             group: 'Command options',
             desc: outdent`
                 The description for the string being translated.
                 Required IF you use the 'description' field in react-intl message descriptors,
                 AND if you use the same 'defaultMessage' in several places,
                 AND you need different translations for these identical defaultMessages.
-                Omit to use the default generic description.
             `,
         },
 

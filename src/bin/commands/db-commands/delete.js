@@ -108,12 +108,12 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     };
 
     if (argv.dryRun) {
-        const quads = riw.db.find(opt);
+        const armdt = riw.db.find(opt);
 
-        if (quads.length > 0) {
+        if (armdt.length > 0) {
             console.log(
                 chalk.bold('To be deleted [%d]:\n'),
-                quads.length,
+                armdt.length,
             );
         } else {
             console.log(
@@ -121,15 +121,15 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
             );
         }
 
-        quads.forEach((quad) => {
+        armdt.forEach((mdt) => {
             console.log(
                 ' -',
-                chalk.bold.blue(quad[0]),
-                chalk.dim(quad[1]),
+                chalk.bold.blue(mdt.defaultMessage),
+                chalk.dim(mdt.description || ''),
                 '\n',
                 ' ',
-                chalk.green(quad[2]),
-                chalk.bold.green(quad[3]),
+                chalk.green(mdt.locale),
+                chalk.bold.green(mdt.translation),
                 '\n',
             );
         });

@@ -100,7 +100,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             group: 'Command options',
             desc: outdent`
                 Output entries in JSON format as an array of
-                [defaultMessage, description, locale, translation] arrays.
+                { defaultMessage, ?description, locale, translation } objects.
                 Omit to output in human-readable form.
             `,
         },
@@ -111,16 +111,16 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         match: pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
     };
 
-    const quads = riw.db.find(opt);
+    const armdt = riw.db.find(opt);
 
     if (argv.json) {
-        console.log(JSON.stringify(quads, null, 4));
+        console.log(JSON.stringify(armdt, null, 4));
 
     } else {
-        if (quads.length > 0) {
+        if (armdt.length > 0) {
             console.log(
                 chalk.bold('Matches [%d]:\n'),
-                quads.length,
+                armdt.length,
             );
         } else {
             console.log(
@@ -128,15 +128,15 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
             );
         }
 
-        quads.forEach((quad) => {
+        armdt.forEach((mdt) => {
             console.log(
                 ' -',
-                chalk.bold.blue(quad[0]),
-                chalk.dim(quad[1]),
+                chalk.bold.blue(mdt.defaultMessage),
+                chalk.dim(mdt.description || ''),
                 '\n',
                 ' ',
-                chalk.green(quad[2]),
-                chalk.bold.green(quad[3]),
+                chalk.green(mdt.locale),
+                chalk.bold.green(mdt.translation),
                 '\n',
             );
         });

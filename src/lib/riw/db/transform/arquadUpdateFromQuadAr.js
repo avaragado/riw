@@ -2,11 +2,13 @@
 
 import map from 'ramda/src/map';
 
-const quadify = (tmd: RIWTranslatedMessageDescriptor): RIWDBQuad => [
-    tmd.defaultMessage,
-    tmd.description,
-    tmd.locale,
-    tmd.translation,
+import { sDescriptionDefault } from '../../';
+
+const quadify = (mdt: RIWTranslatedMessageDescriptor): RIWDBQuad => [
+    mdt.defaultMessage,
+    mdt.description || sDescriptionDefault,
+    mdt.locale,
+    mdt.translation,
 ];
 
 // eslint-disable-next-line no-unused-vars

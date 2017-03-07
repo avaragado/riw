@@ -87,7 +87,7 @@ declare type RIWCLIHandler = (riw: RIW, argv: yargs.Argv) => void;
 
 declare type RIWTranslatedMessageDescriptor = {
     defaultMessage: RIWDBDefaultMessage,
-    description: RIWDBDescription,
+    description?: RIWDBDescription,
     locale: LocaleId,
     translation: RIWDBTranslatedMessage,
 };
@@ -161,7 +161,7 @@ declare type RIW = {|
     db: {|
         init: () => void,
         read: () => RIWDB,
-        find: (opt: RIWCLIOptDBFind) => RIWDBQuad[],
+        find: (opt: RIWCLIOptDBFind) => RIWTranslatedMessageDescriptor[],
         status: () => RIWCLIDBStatusResult,
         update: (opt: RIWCLIOptDBUpdate) => void,
         delete: (opt: RIWCLIOptDBDelete) => void,
