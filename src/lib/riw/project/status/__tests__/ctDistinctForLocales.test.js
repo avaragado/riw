@@ -7,7 +7,7 @@ import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-const cfgExtra = {
+const cfgExtra: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     translationsOutputFile: 'fixtures/dir/[locale].json',
@@ -15,7 +15,7 @@ const cfgExtra = {
 
 type Fixture = {
     name: string,
-    cfgOverride: Object,
+    cfgOverride: RIWConfigSparse,
     in: { [key: string]: string },
 };
 
@@ -221,7 +221,7 @@ describe('lib/riw/project/status/ctDistinctForLocales', () => {
                 },
             });
 
-            const cfg = {
+            const cfg: RIWConfig = {
                 ...cfgExtra,
                 ...fixture.cfgOverride,
             };

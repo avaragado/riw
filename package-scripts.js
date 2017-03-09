@@ -2,10 +2,9 @@
 module.exports = {
     scripts: {
         build: {
-            // default: 'nps clean,lint,test,build.es5,build.modules',
+            // default: 'nps clean,lint,test,build.es5',
             default: 'nps clean && nps build.es5',
-            es5: 'NODE_ENV=es5 babel --copy-files --out-dir dist/es5 --ignore __tests__ src',
-            modules: 'NODE_ENV=modules babel --copy-files --out-dir dist/modules --ignore __tests__ src',
+            es5: 'babel --copy-files --out-dir dist --ignore __tests__ src',
         },
         release: 'standard-version',
         lint: {

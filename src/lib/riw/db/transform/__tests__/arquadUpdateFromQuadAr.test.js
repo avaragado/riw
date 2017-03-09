@@ -6,7 +6,6 @@ import cfgBase from '../../../__tests__/helpers/dummyConfig';
 type Fixture = {
     name: string,
     before: RIWDBQuad[],
-    config: Object,
     opt: RIWCLIOptDBUpdate,
     after: RIWDBQuad[],
 };
@@ -15,7 +14,6 @@ const fixtures: Fixture[] = [
     {
         name: '01 empty translations list',
         before: [],
-        config: {},
         opt: {
             translations: [],
         },
@@ -25,7 +23,6 @@ const fixtures: Fixture[] = [
     {
         name: '02 adding new message',
         before: [],
-        config: {},
         opt: {
             translations: [
                 {
@@ -44,7 +41,6 @@ const fixtures: Fixture[] = [
     {
         name: '03 adding message without description',
         before: [],
-        config: {},
         opt: {
             translations: [
                 {
@@ -64,7 +60,6 @@ const fixtures: Fixture[] = [
         before: [
             ['hello', 'desc1', 'en-re', 'OLD olleh'],
         ],
-        config: {},
         opt: {
             translations: [
                 {
@@ -86,7 +81,6 @@ const fixtures: Fixture[] = [
         before: [
             ['hello', '_', 'en-re', 'OLD olleh'],
         ],
-        config: {},
         opt: {
             translations: [
                 {
@@ -107,7 +101,6 @@ const fixtures: Fixture[] = [
         before: [
             ['hello', 'desc1', 'en-re', 'olleh'],
         ],
-        config: {},
         opt: {
             translations: [
                 {
@@ -129,7 +122,6 @@ const fixtures: Fixture[] = [
         before: [
             ['hello', '_', 'en-re', 'olleh'],
         ],
-        config: {},
         opt: {
             translations: [
                 {
@@ -150,7 +142,6 @@ const fixtures: Fixture[] = [
         before: [
             ['hello', 'desc1', 'en-re', 'olleh'],
         ],
-        config: {},
         opt: {
             translations: [
                 {
@@ -191,10 +182,7 @@ const fixtures: Fixture[] = [
 describe('lib/riw/db/transform/arquadUpdateFromQuadAr', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const cfg = { ...cfgBase, ...fixture.config };
-            const opt = fixture.opt;
-
-            const received = arquadUpdateFromQuadAr(cfg, opt)(fixture.before);
+            const received = arquadUpdateFromQuadAr(cfgBase, fixture.opt)(fixture.before);
 
             expect(received).toEqual(fixture.after);
         });

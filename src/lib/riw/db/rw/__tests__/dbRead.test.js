@@ -32,7 +32,7 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it('fails to read a missing file', () => {
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
         };
@@ -43,7 +43,7 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it('fails to read a missing file - with explicit cwd', () => {
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             rootDir: process.cwd(),
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
@@ -55,7 +55,7 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it("throws if the file content isn't JSON", () => {
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             translationsDatabaseFile: 'fixtures/02/riw-db.json',
         };
@@ -66,7 +66,7 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it('returns valid object if found', () => {
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             translationsDatabaseFile: 'fixtures/03/riw-db.json',
         };

@@ -5,7 +5,7 @@ import mock from 'mock-fs';
 import dateDB from '../dateDB';
 import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
-const cfgExtra = {
+const cfg: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     translationsDatabaseFile: 'fixtures/dir/db.json',
@@ -43,7 +43,7 @@ describe('lib/riw/project/status/dateDB', () => {
                 },
             });
 
-            const received = dateDB(cfgExtra);
+            const received = dateDB(cfg);
 
             mock.restore();
 

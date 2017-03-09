@@ -7,7 +7,7 @@ import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-const cfgExtra = {
+const cfgExtra: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     todoFile: 'fixtures/dir/TODO.json',

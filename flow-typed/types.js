@@ -13,8 +13,8 @@ declare type InputMode = 'source' | 'json';
 declare type OutputMode = 'single-file' | 'file-per-locale' | 'no-file';
 
 declare type RIWConfig = {
-    rootDir?: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
-    configFile?: ?AbsolutePath, // added by config processing: file containing the config
+    configFile: ?AbsolutePath, // added by config processing: file containing the config
+    rootDir: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
     defaultLocale: LocaleId,
     targetLocales: LocaleId[],
     translationsDatabaseFile: Path,
@@ -24,6 +24,20 @@ declare type RIWConfig = {
     translationsOutputFile: Path,
     outputMode: OutputMode,
     todoFile: Path,
+};
+
+declare type RIWConfigSparse = {
+    configFile?: ?AbsolutePath,
+    rootDir?: AbsolutePath,
+    defaultLocale?: LocaleId,
+    targetLocales?: LocaleId[],
+    translationsDatabaseFile?: Path,
+    sourceDirs?: Glob[],
+    collateDir?: Path,
+    inputMode?: InputMode,
+    translationsOutputFile?: Path,
+    outputMode?: OutputMode,
+    todoFile?: Path,
 };
 
 declare type RIWDBVersion = number;

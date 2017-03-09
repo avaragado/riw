@@ -8,7 +8,7 @@ import outdent from 'outdent';
 import { armdExtractJSON } from '../extract';
 import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
-const cfgOverride = {
+const cfgOverride: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     sourceDirs: ['fixtures/dir/**/*.js'],
@@ -19,7 +19,7 @@ const notify = () => x => x;
 type Fixture = {
     name: string,
     in: { [key: string]: string },
-    configOverride?: Object,
+    configOverride?: RIWConfigSparse,
 };
 
 const fixtures: Fixture[] = [
@@ -158,7 +158,7 @@ describe('lib/riw/project/translate/extract.json', () => {
                 },
             });
 
-            const cfg = {
+            const cfg: RIWConfig = {
                 ...cfgOverride,
                 ...fixture.configOverride,
             };

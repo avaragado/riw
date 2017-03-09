@@ -15,7 +15,7 @@ const configBase: RIWConfig = {
 
 type Fixture = {
     name: string,
-    configOverride: Object,
+    configOverride: RIWConfigSparse,
     out: AbsolutePath,
 };
 
@@ -50,7 +50,7 @@ const fixtures: Fixture[] = [
 describe('lib/translationsOutputFile/forSingleFile', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const cfg = {
+            const cfg: RIWConfig = {
                 ...configBase,
                 ...fixture.configOverride,
             };

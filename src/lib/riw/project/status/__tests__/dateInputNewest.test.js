@@ -5,14 +5,14 @@ import mock from 'mock-fs';
 import dateInputNewest from '../dateInputNewest';
 import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
-const cfgExtra = {
+const cfgExtra: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
 };
 
 type Fixture = {
     name: string,
-    cfg: Object,
+    cfg: RIWConfigSparse,
     in: {
         [key: string]: any,
     },
@@ -99,7 +99,7 @@ describe('lib/riw/project/status/dateInputNewest', () => {
                 },
             });
 
-            const cfg = {
+            const cfg: RIWConfig = {
                 ...cfgExtra,
                 ...fixture.cfg,
             };

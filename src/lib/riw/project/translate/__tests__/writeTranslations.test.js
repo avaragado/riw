@@ -20,7 +20,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             locale: {},
             armdu: [],
         };
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb'],
@@ -38,7 +38,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             locale: {},
             armdu: [],
         };
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb'],
@@ -79,7 +79,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
@@ -126,7 +126,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
@@ -175,7 +175,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
@@ -217,7 +217,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
@@ -270,7 +270,7 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             defaultLocale: 'aa-aa',
             translationsOutputFile: 'fixtures/dir/s-[locale].json',

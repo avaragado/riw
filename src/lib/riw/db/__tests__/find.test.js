@@ -5,7 +5,7 @@ import mock from 'mock-fs';
 import find from '../find';
 import cfgBase from '../../__tests__/helpers/dummyConfig';
 
-const cfg = {
+const cfg: RIWConfig = {
     ...cfgBase,
     translationsDatabaseFile: 'db.json',
 };

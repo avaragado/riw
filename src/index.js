@@ -1,4 +1,10 @@
 // @flow
 // main entry point
 
-console.log('hello');
+import createRIWFromConfig from './lib/riw';
+import { configDefault } from './lib/config';
+
+export default (configOverride: RIWConfigSparse) => createRIWFromConfig({
+    ...configDefault,
+    ...configOverride,
+});

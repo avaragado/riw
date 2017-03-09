@@ -20,7 +20,7 @@ describe('lib/riw/project/translate/writeTodo', () => {
             locale: {},
             armdu: [],
         };
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             outputMode: 'file-per-locale',
             todoFile: 'fixtures/dir/foobar/md-todo.json',
@@ -50,7 +50,7 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             outputMode: 'file-per-locale',
             todoFile: 'fixtures/dir/md-todo.json',
@@ -83,7 +83,7 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
@@ -125,7 +125,7 @@ describe('lib/riw/project/translate/writeTodo', () => {
             armdu: [],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             outputMode: 'no-file',
             todoFile: 'fixtures/dir/md-todo.json',
@@ -156,7 +156,7 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
@@ -191,7 +191,7 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg = {
+        const cfg: RIWConfig = {
             ...cfgBase,
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',

@@ -33,7 +33,7 @@ const db: RIWDB = {
     },
 };
 
-const cfgOverride = {
+const cfgOverride: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     defaultLocale: 'en-us',
@@ -48,7 +48,7 @@ const cfgOverride = {
 type Fixture = {
     name: string,
     in: { [key: string]: string },
-    configOverride?: Object,
+    configOverride?: RIWConfigSparse,
 };
 
 const fixtures: Fixture[] = [
@@ -195,7 +195,7 @@ describe('lib/riw/project/translate', () => {
                 },
             });
 
-            const cfg = {
+            const cfg: RIWConfig = {
                 ...cfgOverride,
                 ...fixture.configOverride,
             };

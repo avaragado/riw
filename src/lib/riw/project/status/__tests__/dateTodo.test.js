@@ -5,7 +5,7 @@ import mock from 'mock-fs';
 import dateTodo from '../dateTodo';
 import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
-const cfgExtra = {
+const cfgExtra: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     todoFile: 'fixtures/dir/TODO.json',

@@ -7,7 +7,7 @@ import mock from 'mock-fs';
 import dateConfig from '../dateConfig';
 import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
-const cfgExtra = {
+const cfg: RIWConfig = {
     ...cfgBase,
     rootDir: '.',
     configFile: path.resolve('fixtures/dir/config.json'),
@@ -45,7 +45,7 @@ describe('lib/riw/project/status/dateConfig', () => {
                 },
             });
 
-            const received = dateConfig(cfgExtra);
+            const received = dateConfig(cfg);
 
             mock.restore();
 

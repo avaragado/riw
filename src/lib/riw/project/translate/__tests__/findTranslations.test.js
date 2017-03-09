@@ -9,7 +9,7 @@ type Fixture = {
     name: string,
     db: RIWDB,
     armd: RIWMessageDescriptor[],
-    configOverride: Object,
+    configOverride: RIWConfigSparse,
 };
 
 const fixtures: Fixture[] = [
@@ -261,7 +261,7 @@ const fixtures: Fixture[] = [
 describe('lib/riw/project/translate/findTranslations', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const cfg = {
+            const cfg: RIWConfig = {
                 ...cfgBase,
                 ...fixture.configOverride,
             };

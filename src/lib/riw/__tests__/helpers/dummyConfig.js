@@ -1,6 +1,8 @@
 // @flow
 
 const config: RIWConfig = {
+    configFile: 'dummy',
+    rootDir: '.',
     defaultLocale: 'aa-bb',
     targetLocales: [],
     translationsDatabaseFile: 'dummy',

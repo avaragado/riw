@@ -19,7 +19,7 @@ const requireOrNull = (fabs: AbsolutePath): ?Object => {
 
 const configFromPath = (pathConfig: Path): ?RIWConfig => {
     const fabs: AbsolutePath = path.resolve(pathConfig);
-    const configOverride = requireOrNull(fabs);
+    const configOverride: ?RIWConfigSparse = requireOrNull(fabs);
 
     if (configOverride === null) {
         log.error('riw', 'File not found: %j.', fabs);
@@ -44,7 +44,7 @@ const configFromPackage = (): ?RIWConfig => {
     }
 
     let fabsConfigUsed: ?AbsolutePath = fabsConfigPackage;
-    let configOverride: ?Object = requireOrNull(fabsConfigPackage);
+    let configOverride: ?RIWConfigSparse = requireOrNull(fabsConfigPackage);
 
     if (configOverride === null) {
         fabsConfigUsed = fabsPackageJSON;
