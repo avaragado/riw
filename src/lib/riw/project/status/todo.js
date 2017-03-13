@@ -22,7 +22,7 @@ const result: Result = compose(
     ),
     loadJSONOrNull,
     (config: RIWConfig) => path.resolve(
-        config.rootDir || '.',
+        config.rootDir,
         config.todoFile,
     ),
 );

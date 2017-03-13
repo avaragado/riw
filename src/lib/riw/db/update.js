@@ -11,7 +11,7 @@ import arquadUpdateFromQuadAr from './transform/arquadUpdateFromQuadAr';
 export default (config: RIWConfig) => (opt?: RIWCLIOptDBUpdate) => compose(
     writeFromDB(config),
     dbFromQuadAr,
-    arquadUpdateFromQuadAr(config, opt),
+    arquadUpdateFromQuadAr(opt),
     arquadFromDB,
     dbRead(config),
 )();

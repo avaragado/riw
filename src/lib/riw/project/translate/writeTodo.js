@@ -13,7 +13,7 @@ export default (config: RIWConfig, notify: string => string => string) =>
     (translation: RIWFindTranslationResult) => {
         const { todoFile: pathOut, rootDir } = config;
 
-        const fabsOut = path.resolve(rootDir || process.cwd(), pathOut);
+        const fabsOut = path.resolve(rootDir, pathOut);
         const dabsOut = path.dirname(fabsOut);
 
         try {

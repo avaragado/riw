@@ -6,7 +6,7 @@ import path from 'path';
 import mkdirp from 'mkdirp';
 
 import log from '../../../log';
-import translationsOutputFile from '../../../translationsOutputFile';
+import { translationsOutputFile } from '../../../config-helper';
 
 type Notifier = (name: string) => (fabs: AbsolutePath) => AbsolutePath;
 type Writer = (

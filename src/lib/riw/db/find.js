@@ -9,7 +9,7 @@ import armdtFromQuadAr from './transform/armdtFromQuadAr';
 
 export default (config: RIWConfig) => (opt?: RIWCLIOptDBFind) => compose(
     armdtFromQuadAr,
-    arquadFindFromQuadAr(config, opt),
+    arquadFindFromQuadAr(opt),
     arquadFromDB,
     dbRead(config),
 )();

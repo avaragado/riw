@@ -30,7 +30,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     `);
 
 const sfrelFromFabsFromConfig = (config: RIWConfig) => (fabs: AbsolutePath) =>
-    chalk.green(path.relative(config.rootDir || '.', fabs));
+    chalk.green(path.relative(config.rootDir, fabs));
 
 export const handler = createHandlerWithRIW((riw: RIW) => {
     const sfrelFromFabs = sfrelFromFabsFromConfig(riw.config);

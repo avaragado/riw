@@ -4,9 +4,16 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import { configResolve } from '../../../config';
+
 import init from '../init';
 import dbEmpty from '../meta/dbEmpty';
-import cfgBase from '../../__tests__/helpers/dummyConfig';
+
+const frelDB = 'db.json';
+
+const cfgBase: RIWConfigSparseWithSource = {
+    translationsDatabaseFile: frelDB,
+};
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
@@ -22,9 +29,11 @@ describe('lib/riw/db/init', () => {
     });
 
     it('writes empty database', () => {
-        init(cfgBase)();
+        const cfg = configResolve(cfgBase);
 
-        const content = fs.readFileSync(cfgBase.translationsDatabaseFile).toString();
+        init(cfg)();
+
+        const content = fs.readFileSync(frelDB).toString();
 
         expect(content).toEqual(stringify(dbEmpty));
     });

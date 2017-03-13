@@ -14,7 +14,7 @@ const result: Result = compose(
     dateTodo => ({ dateTodo }),
     dateMTimeFromFabs,
     (config: RIWConfig) => path.resolve(
-        config.rootDir || '.',
+        config.rootDir,
         config.todoFile,
     ),
 );

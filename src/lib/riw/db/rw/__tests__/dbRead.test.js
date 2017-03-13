@@ -2,8 +2,9 @@
 
 import mock from 'mock-fs';
 
+import { configResolve } from '../../../../config';
+
 import dbRead from '../dbRead';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const db: RIWDB = {
     version: 1,
@@ -32,22 +33,9 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it('fails to read a missing file', () => {
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
-        };
-
-        expect(() => {
-            dbRead(cfg)();
-        }).toThrowError(/ENOENT/);
-    });
-
-    it('fails to read a missing file - with explicit cwd', () => {
-        const cfg: RIWConfig = {
-            ...cfgBase,
-            rootDir: process.cwd(),
-            translationsDatabaseFile: 'fixtures/01/riw-db.json',
-        };
+        });
 
         expect(() => {
             dbRead(cfg)();
@@ -55,10 +43,9 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it("throws if the file content isn't JSON", () => {
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             translationsDatabaseFile: 'fixtures/02/riw-db.json',
-        };
+        });
 
         expect(() => {
             dbRead(cfg)();
@@ -66,10 +53,9 @@ describe('lib/riw/db/rw/dbRead', () => {
     });
 
     it('returns valid object if found', () => {
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             translationsDatabaseFile: 'fixtures/03/riw-db.json',
-        };
+        });
 
         expect(dbRead(cfg)()).toEqual(db);
     });

@@ -5,8 +5,9 @@ import fs from 'fs';
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
+import { configResolve } from '../../../../config';
+
 import translate from '../';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 const parse = frel => JSON.parse(fs.readFileSync(frel).toString());
@@ -33,16 +34,15 @@ const db: RIWDB = {
     },
 };
 
-const cfgOverride: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
+const cfgBase: RIWConfigSparseWithSource = {
+    rootDir: '/fixtures',
     defaultLocale: 'en-us',
     targetLocales: ['en-up', 'en-ne'],
-    translationsDatabaseFile: 'fixtures/db.json',
-    sourceDirs: ['fixtures/dir/**/*.js'],
-    translationsOutputFile: 'fixtures/locale/[locale].json',
+    translationsDatabaseFile: 'db.json',
+    sourceDirs: ['dir/**/*.js'],
+    translationsOutputFile: 'locale/[locale].json',
     outputMode: 'file-per-locale',
-    todoFile: 'fixtures/locale/todo.json',
+    todoFile: 'locale/todo.json',
 };
 
 type Fixture = {
@@ -178,7 +178,7 @@ const fixtures: Fixture[] = [
             `,
         },
         configOverride: {
-            collateDir: 'fixtures/dir',
+            collateDir: 'dir',
             inputMode: 'json',
         },
     },
@@ -188,21 +188,21 @@ describe('lib/riw/project/translate', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
-                fixtures: {
+                '/fixtures': {
                     'dir': fixture.in,
                     'db.json': stringify(db),
                     'locale': {},
                 },
             });
 
-            const cfg: RIWConfig = {
-                ...cfgOverride,
+            const cfg = configResolve({
+                ...cfgBase,
                 ...fixture.configOverride,
-            };
+            });
 
             const received = translate(cfg)({});
-            const arfrel = fs.readdirSync('fixtures/locale');
-            const contents = arfrel.map(frel => parse(`fixtures/locale/${frel}`));
+            const arfrel = fs.readdirSync('/fixtures/locale');
+            const contents = arfrel.map(frel => parse(`/fixtures/locale/${frel}`));
 
             mock.restore();
 

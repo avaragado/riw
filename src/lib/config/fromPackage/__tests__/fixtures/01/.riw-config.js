@@ -1,0 +1,3 @@
+module.exports = {
+    keyFromRIWConfig: true,
+};

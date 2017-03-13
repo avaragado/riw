@@ -1,10 +1,14 @@
 // @flow
 // main entry point
 
-import createRIWFromConfig from './lib/riw';
-import { configDefault } from './lib/config';
+import compose from 'ramda/src/compose';
 
-export default (configOverride: RIWConfigSparse) => createRIWFromConfig({
-    ...configDefault,
-    ...configOverride,
-});
+import riwFromConfig from './lib/riw';
+import { configResolve } from './lib/config';
+
+export default (
+    compose(
+        riwFromConfig,
+        configResolve,
+    ): (config: RIWConfigSparseWithSource) => RIW
+);

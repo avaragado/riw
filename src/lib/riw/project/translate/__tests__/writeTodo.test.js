@@ -4,8 +4,9 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import { configResolve } from '../../../../config';
+
 import writeTodo from '../writeTodo';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const parse = frel => JSON.parse(fs.readFileSync(frel).toString());
 const notify = () => x => x;
@@ -20,11 +21,10 @@ describe('lib/riw/project/translate/writeTodo', () => {
             locale: {},
             armdu: [],
         };
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             outputMode: 'file-per-locale',
             todoFile: 'fixtures/dir/foobar/md-todo.json',
-        };
+        });
 
         mock({
             fixtures: {
@@ -50,11 +50,10 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             outputMode: 'file-per-locale',
             todoFile: 'fixtures/dir/md-todo.json',
-        };
+        });
 
         mock({
             fixtures: {
@@ -83,11 +82,10 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
-        };
+        });
 
         mock({
             fixtures: {
@@ -125,11 +123,10 @@ describe('lib/riw/project/translate/writeTodo', () => {
             armdu: [],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             outputMode: 'no-file',
             todoFile: 'fixtures/dir/md-todo.json',
-        };
+        });
 
         mock({
             fixtures: {
@@ -156,11 +153,10 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
-        };
+        });
 
         mock({
             fixtures: {
@@ -191,11 +187,10 @@ describe('lib/riw/project/translate/writeTodo', () => {
             ],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
-        };
+        });
 
         mock({
             fixtures: {

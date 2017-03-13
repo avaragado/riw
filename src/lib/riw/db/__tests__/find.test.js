@@ -2,12 +2,14 @@
 
 import mock from 'mock-fs';
 
-import find from '../find';
-import cfgBase from '../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../config';
 
-const cfg: RIWConfig = {
-    ...cfgBase,
-    translationsDatabaseFile: 'db.json',
+import find from '../find';
+
+const frelDB = 'db.json';
+
+const cfgBase: RIWConfigSparseWithSource = {
+    translationsDatabaseFile: frelDB,
 };
 
 const db: RIWDB = {
@@ -120,8 +122,10 @@ describe('lib/riw/db/find', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
-                [cfg.translationsDatabaseFile]: jsonDB,
+                [frelDB]: jsonDB,
             });
+
+            const cfg = configResolve(cfgBase);
 
             const received = find(cfg)(fixture.opt);
 

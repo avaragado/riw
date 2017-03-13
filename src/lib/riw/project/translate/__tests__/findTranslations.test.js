@@ -1,7 +1,8 @@
 // @flow
 
+import { configResolve } from '../../../../config';
+
 import findTranslations from '../findTranslations';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const notify = () => x => x;
 
@@ -9,7 +10,7 @@ type Fixture = {
     name: string,
     db: RIWDB,
     armd: RIWMessageDescriptor[],
-    configOverride: RIWConfigSparse,
+    configOverride: RIWConfigSparseWithSource,
 };
 
 const fixtures: Fixture[] = [
@@ -261,10 +262,7 @@ const fixtures: Fixture[] = [
 describe('lib/riw/project/translate/findTranslations', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const cfg: RIWConfig = {
-                ...cfgBase,
-                ...fixture.configOverride,
-            };
+            const cfg = configResolve(fixture.configOverride);
 
             const received = findTranslations(cfg, notify, fixture.db)(fixture.armd);
 

@@ -3,13 +3,9 @@
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
-import { armdExtractSource } from '../extract';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../../config';
 
-const cfgOverride: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
-};
+import { armdExtractSource } from '../extract';
 
 const notify = () => x => x;
 
@@ -131,16 +127,15 @@ describe('lib/riw/project/translate/extract.source', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
-                fixtures: {
+                '/fixtures': {
                     [fixture.name]: fixture.in,
                 },
             });
 
-            const cfg: RIWConfig = {
-                ...cfgOverride,
-                sourceDirs: [`fixtures/${fixture.name}/**/*.js`],
+            const cfg = configResolve({
+                sourceDirs: [`/fixtures/${fixture.name}/**/*.js`],
                 ...fixture.configOverride,
-            };
+            });
 
             const received = armdExtractSource(notify)(cfg);
 

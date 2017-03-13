@@ -1,11 +1,15 @@
 // @flow
 
-import configDefault from './configDefault';
-import fabsConfigPackageForCWD from './fabsConfigPackageForCWD';
-import configFromOptionalPath from './configFromOptionalPath';
+import configDefault from './resolve/configDefault';
+import fabsConfigPackageForCWD from './fromPackage/fabsConfigPackageForCWD';
+import configFromPath from './fromPath';
+import configFromPackage from './fromPackage';
+import configResolve from './resolve';
 
 export {
     configDefault,
     fabsConfigPackageForCWD,
-    configFromOptionalPath,
+    configFromPath,
+    configFromPackage,
+    configResolve,
 };

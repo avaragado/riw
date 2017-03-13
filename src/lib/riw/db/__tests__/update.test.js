@@ -4,12 +4,14 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
-import update from '../update';
-import cfgBase from '../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../config';
 
-const cfg: RIWConfig = {
-    ...cfgBase,
-    translationsDatabaseFile: 'db.json',
+import update from '../update';
+
+const frelDB = 'db.json';
+
+const cfg: RIWConfigSparseWithSource = {
+    translationsDatabaseFile: frelDB,
 };
 
 type Fixture = {
@@ -143,13 +145,13 @@ describe('lib/riw/db/update', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
-                [cfg.translationsDatabaseFile]: JSON.stringify(fixture.in),
+                [frelDB]: JSON.stringify(fixture.in),
             });
 
-            update(cfg)(fixture.opt);
+            update(configResolve(cfg))(fixture.opt);
 
             const dbOut: RIWDB = JSON.parse(
-                fs.readFileSync(cfg.translationsDatabaseFile).toString(),
+                fs.readFileSync(frelDB).toString(),
             );
 
             mock.restore();

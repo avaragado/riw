@@ -2,14 +2,13 @@
 
 import mock from 'mock-fs';
 
+import { configResolve } from '../../../../config';
+
 import ctDistinctForLocales from '../ctDistinctForLocales';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-const cfgExtra: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
+const cfgBase: RIWConfigSparseWithSource = {
     translationsOutputFile: 'fixtures/dir/[locale].json',
 };
 
@@ -221,10 +220,10 @@ describe('lib/riw/project/status/ctDistinctForLocales', () => {
                 },
             });
 
-            const cfg: RIWConfig = {
-                ...cfgExtra,
+            const cfg = configResolve({
+                ...cfgBase,
                 ...fixture.cfgOverride,
-            };
+            });
 
             const received = ctDistinctForLocales(cfg);
 

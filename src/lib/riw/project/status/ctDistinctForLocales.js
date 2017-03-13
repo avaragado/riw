@@ -6,7 +6,7 @@ import zipObj from 'ramda/src/zipObj';
 import pathOr from 'ramda/src/pathOr';
 import repeat from 'ramda/src/repeat';
 
-import translationsOutputFile from '../../../translationsOutputFile';
+import { translationsOutputFile } from '../../../config-helper';
 
 import loadJSONOrNull from './loadJSONOrNull';
 

@@ -5,7 +5,7 @@ import reject from 'ramda/src/reject';
 import makeQuadMatcher from '../util/makeQuadMatcher';
 
 // eslint-disable-next-line no-unused-vars
-const transformer: RIWDBConfigurableQuadsTransformer = (config, opt?: RIWCLIOptDBFind) => quads =>
+const transformer = (opt?: RIWCLIOptDBFind) => (quads: RIWDBQuad[]) =>
     (opt
         ? reject(makeQuadMatcher(opt.match), quads)
         : quads

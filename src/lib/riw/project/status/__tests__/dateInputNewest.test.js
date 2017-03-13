@@ -2,17 +2,13 @@
 
 import mock from 'mock-fs';
 
-import dateInputNewest from '../dateInputNewest';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../../config';
 
-const cfgExtra: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
-};
+import dateInputNewest from '../dateInputNewest';
 
 type Fixture = {
     name: string,
-    cfg: RIWConfigSparse,
+    cfg: RIWConfigSparseWithSource,
     in: {
         [key: string]: any,
     },
@@ -99,10 +95,7 @@ describe('lib/riw/project/status/dateInputNewest', () => {
                 },
             });
 
-            const cfg: RIWConfig = {
-                ...cfgExtra,
-                ...fixture.cfg,
-            };
+            const cfg = configResolve(fixture.cfg);
 
             const received = dateInputNewest(cfg);
 

@@ -1,7 +1,6 @@
 // @flow
 
 import arquadDeleteFromQuadAr from '../arquadDeleteFromQuadAr';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const quadsBase = [
     ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
@@ -96,7 +95,7 @@ describe('lib/riw/db/transform/arquadDeleteFromQuadAr', () => {
         it(fixture.name, () => {
             const opt = fixture.opt;
 
-            const received = arquadDeleteFromQuadAr(cfgBase, opt)(fixture.before);
+            const received = arquadDeleteFromQuadAr(opt)(fixture.before);
 
             expect(received).toEqual(fixture.after);
         });

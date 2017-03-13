@@ -5,8 +5,10 @@ import compose from 'ramda/src/compose';
 import map from 'ramda/src/map';
 import prop from 'ramda/src/prop';
 
-import * as source from './extractFromSource';
-import * as json from './extractFromJSON';
+import { arfabsInputJSON, arfabsInputSource } from '../../../config-helper';
+
+import armdFromJSONFabs from './armdFromJSONFabs';
+import armdfromSourceFabs from './armdFromSourceFabs';
 
 type MDExtractor = (arfabsFromConfig: FilesFromConfig, armdFromFabs: MessageDescriptorsFromFile) =>
     <T>(notify: string => T => T) =>
@@ -30,5 +32,5 @@ const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => c
     arfabsFromConfig,
 );
 
-export const armdExtractSource = armdExtract(source.arfabsFromConfig, source.armdFromFabs);
-export const armdExtractJSON = armdExtract(json.arfabsFromConfig, json.armdFromFabs);
+export const armdExtractSource = armdExtract(arfabsInputSource, armdfromSourceFabs);
+export const armdExtractJSON = armdExtract(arfabsInputJSON, armdFromJSONFabs);

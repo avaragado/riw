@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/config/resolve 01 empty input config 1`] = `
+Object {
+  "collateDir": "tmp/babel-plugin-react-intl",
+  "defaultLocale": "en-us",
+  "inputMode": "source",
+  "outputMode": "file-per-locale",
+  "rootDir": ".",
+  "sourceDirs": Array [
+    "src/**/*.js",
+  ],
+  "targetLocales": Array [],
+  "todoFile": "src/locale/TODO-untranslated.json",
+  "translationsDatabaseFile": "src/locale/riw-db.json",
+  "translationsOutputFile": "src/locale/[locale].json",
+}
+`;
+
+exports[`lib/config/resolve 02 empty input config with configFile 1`] = `
+Object {
+  "collateDir": "tmp/babel-plugin-react-intl",
+  "configFile": "/foo/bar/package.json",
+  "defaultLocale": "en-us",
+  "inputMode": "source",
+  "outputMode": "file-per-locale",
+  "rootDir": "/foo/bar",
+  "sourceDirs": Array [
+    "src/**/*.js",
+  ],
+  "targetLocales": Array [],
+  "todoFile": "src/locale/TODO-untranslated.json",
+  "translationsDatabaseFile": "src/locale/riw-db.json",
+  "translationsOutputFile": "src/locale/[locale].json",
+}
+`;
+
+exports[`lib/config/resolve 03 empty input config with rootDir 1`] = `
+Object {
+  "collateDir": "tmp/babel-plugin-react-intl",
+  "defaultLocale": "en-us",
+  "inputMode": "source",
+  "outputMode": "file-per-locale",
+  "rootDir": "/foo/bar",
+  "sourceDirs": Array [
+    "src/**/*.js",
+  ],
+  "targetLocales": Array [],
+  "todoFile": "src/locale/TODO-untranslated.json",
+  "translationsDatabaseFile": "src/locale/riw-db.json",
+  "translationsOutputFile": "src/locale/[locale].json",
+}
+`;
+
+exports[`lib/config/resolve 04 empty input config with both configFile and rootDir 1`] = `
+Object {
+  "collateDir": "tmp/babel-plugin-react-intl",
+  "configFile": "/a/b/c/package.json",
+  "defaultLocale": "en-us",
+  "inputMode": "source",
+  "outputMode": "file-per-locale",
+  "rootDir": "/foo/bar",
+  "sourceDirs": Array [
+    "src/**/*.js",
+  ],
+  "targetLocales": Array [],
+  "todoFile": "src/locale/TODO-untranslated.json",
+  "translationsDatabaseFile": "src/locale/riw-db.json",
+  "translationsOutputFile": "src/locale/[locale].json",
+}
+`;

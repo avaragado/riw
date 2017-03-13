@@ -4,8 +4,9 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import { configResolve } from '../../../../config';
+
 import writeTranslations from '../writeTranslations';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const parse = frel => JSON.parse(fs.readFileSync(frel).toString());
 const notify = () => x => x;
@@ -20,13 +21,12 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             locale: {},
             armdu: [],
         };
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb'],
             translationsOutputFile: '/no/placeholder/here',
             outputMode: 'file-per-locale',
-        };
+        });
 
         expect(() => {
             writeTranslations(cfg, notify)(translation);
@@ -38,13 +38,12 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             locale: {},
             armdu: [],
         };
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb'],
             translationsOutputFile: 'fixtures/dir/foobar/[locale].json',
             outputMode: 'file-per-locale',
-        };
+        });
 
         mock({
             fixtures: {
@@ -79,13 +78,12 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
             translationsOutputFile: 'fixtures/dir/s-[locale].json',
             outputMode: 'file-per-locale',
-        };
+        });
 
         mock({
             fixtures: {
@@ -126,13 +124,12 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
             translationsOutputFile: 'fixtures/dir/s-[locale].json',
             outputMode: 'single-file',
-        };
+        });
 
         mock({
             fixtures: {
@@ -175,13 +172,12 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
             translationsOutputFile: 'fixtures/dir/[locale].json',
             outputMode: 'no-file',
-        };
+        });
 
         mock({
             fixtures: {
@@ -217,13 +213,12 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             targetLocales: ['bb-bb', 'cc-cc', 'xx-xx'],
             translationsOutputFile: 'fixtures/dir/s-[locale].json',
             outputMode: 'file-per-locale',
-        };
+        });
 
         mock({
             fixtures: {
@@ -270,12 +265,11 @@ describe('lib/riw/project/translate/writeTranslations', () => {
             armdu: [],
         };
 
-        const cfg: RIWConfig = {
-            ...cfgBase,
+        const cfg = configResolve({
             defaultLocale: 'aa-aa',
             translationsOutputFile: 'fixtures/dir/s-[locale].json',
             outputMode: 'file-per-locale',
-        };
+        });
 
         mock({
             fixtures: {

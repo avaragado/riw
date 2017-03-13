@@ -2,12 +2,11 @@
 
 import mock from 'mock-fs';
 
-import dateTodo from '../dateTodo';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../../config';
 
-const cfgExtra: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
+import dateTodo from '../dateTodo';
+
+const cfgBase: RIWConfigSparseWithSource = {
     todoFile: 'fixtures/dir/TODO.json',
 };
 
@@ -43,7 +42,7 @@ describe('lib/riw/project/status/dateTodo', () => {
                 },
             });
 
-            const received = dateTodo(cfgExtra);
+            const received = dateTodo(configResolve(cfgBase));
 
             mock.restore();
 

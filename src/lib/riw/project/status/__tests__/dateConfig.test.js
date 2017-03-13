@@ -4,12 +4,11 @@ import path from 'path';
 
 import mock from 'mock-fs';
 
-import dateConfig from '../dateConfig';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../../config';
 
-const cfg: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
+import dateConfig from '../dateConfig';
+
+const cfg: RIWConfigSparseWithSource = {
     configFile: path.resolve('fixtures/dir/config.json'),
 };
 
@@ -45,7 +44,7 @@ describe('lib/riw/project/status/dateConfig', () => {
                 },
             });
 
-            const received = dateConfig(cfg);
+            const received = dateConfig(configResolve(cfg));
 
             mock.restore();
 

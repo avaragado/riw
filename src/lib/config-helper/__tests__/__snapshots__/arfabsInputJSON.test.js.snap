@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/config-helper/arfabsInputJSON 01 empty dir -> empty array 1`] = `Array []`;
+
+exports[`lib/config-helper/arfabsInputJSON 02 collateDir elsewhere -> empty array 1`] = `Array []`;
+
+exports[`lib/config-helper/arfabsInputJSON 03 flat files, collateDir rel 1`] = `
+Array [
+  "/fixtures/dir/a.json",
+  "/fixtures/dir/aa.json",
+  "/fixtures/dir/b.json",
+  "/fixtures/dir/bb.json",
+  "/fixtures/dir/c.json",
+]
+`;
+
+exports[`lib/config-helper/arfabsInputJSON 04 flat files, collateDir abs 1`] = `
+Array [
+  "/fixtures/dir/a.json",
+  "/fixtures/dir/aa.json",
+  "/fixtures/dir/b.json",
+  "/fixtures/dir/bb.json",
+  "/fixtures/dir/c.json",
+]
+`;
+
+exports[`lib/config-helper/arfabsInputJSON 05 nested files, collateDir rel 1`] = `
+Array [
+  "/fixtures/dir/a.json",
+  "/fixtures/dir/bs/b1.json",
+  "/fixtures/dir/bs/b2.json",
+  "/fixtures/dir/bs/b3.json",
+  "/fixtures/dir/bs/bbs/b4.json",
+  "/fixtures/dir/bs/bbs/b5.json",
+]
+`;
+
+exports[`lib/config-helper/arfabsInputJSON 06 nested files, collateDir rel to parent of configFile 1`] = `
+Array [
+  "/fixtures/dir/a.json",
+  "/fixtures/dir/bs/b1.json",
+  "/fixtures/dir/bs/b2.json",
+  "/fixtures/dir/bs/b3.json",
+  "/fixtures/dir/bs/bbs/b4.json",
+  "/fixtures/dir/bs/bbs/b5.json",
+]
+`;

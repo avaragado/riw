@@ -1,35 +1,18 @@
 // @flow
 
-import path from 'path';
 import fs from 'fs';
-import glob from 'glob';
 
 import compose from 'ramda/src/compose';
-import chain from 'ramda/src/chain';
 import map from 'ramda/src/map';
 import prop from 'ramda/src/prop';
 import reduce from 'ramda/src/reduce';
 import max from 'ramda/src/max';
 
-const arfabsFindByMode: { [key: InputMode]: (config: RIWConfig) => AbsolutePath[] } = {
-    source: config => chain(
-        (sGlob: Glob) => glob.sync(
-            sGlob,
-            {
-                cwd: config.rootDir,
-                absolute: true,
-            },
-        ),
-        config.sourceDirs,
-    ),
+import { arfabsInputJSON, arfabsInputSource } from '../../../config-helper';
 
-    json: config => glob.sync(
-        '**/*.json',
-        {
-            cwd: path.resolve(config.rootDir || '.', config.collateDir),
-            absolute: true,
-        },
-    ),
+const arfabsFindByMode: { [key: InputMode]: (config: RIWConfig) => AbsolutePath[] } = {
+    source: arfabsInputSource,
+    json: arfabsInputJSON,
 };
 
 export default (config: RIWConfig): { dateInputNewest: number } => compose(

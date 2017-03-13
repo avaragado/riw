@@ -5,13 +5,13 @@ import path from 'path';
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
-import { armdExtractJSON } from '../extract';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../../config';
 
-const cfgOverride: RIWConfig = {
-    ...cfgBase,
-    rootDir: '.',
-    sourceDirs: ['fixtures/dir/**/*.js'],
+import { armdExtractJSON } from '../extract';
+
+const cfgBase: RIWConfigSparseWithSource = {
+    rootDir: '/fixtures',
+    sourceDirs: ['dir/**/*.js'],
 };
 
 const notify = () => x => x;
@@ -87,7 +87,7 @@ const fixtures: Fixture[] = [
             `,
         },
         configOverride: {
-            collateDir: 'fixtures/dir',
+            collateDir: 'dir',
             inputMode: 'json',
         },
     },
@@ -143,7 +143,7 @@ const fixtures: Fixture[] = [
             `,
         },
         configOverride: {
-            collateDir: path.resolve('fixtures', 'dir'),
+            collateDir: path.resolve('/fixtures', 'dir'),
             inputMode: 'json',
         },
     },
@@ -153,15 +153,15 @@ describe('lib/riw/project/translate/extract.json', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
-                fixtures: {
+                '/fixtures': {
                     dir: fixture.in,
                 },
             });
 
-            const cfg: RIWConfig = {
-                ...cfgOverride,
+            const cfg = configResolve({
+                ...cfgBase,
                 ...fixture.configOverride,
-            };
+            });
 
             const received = armdExtractJSON(notify)(cfg);
 

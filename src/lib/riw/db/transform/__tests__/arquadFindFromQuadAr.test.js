@@ -1,7 +1,6 @@
 // @flow
 
 import arquadFindFromQuadAr from '../arquadFindFromQuadAr';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const quadsBase = [
     ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
@@ -130,7 +129,7 @@ describe('lib/riw/db/transform/arquadFindFromQuadAr', () => {
         it(fixture.name, () => {
             const opt = fixture.opt;
 
-            const received = arquadFindFromQuadAr(cfgBase, opt)(fixture.before);
+            const received = arquadFindFromQuadAr(opt)(fixture.before);
 
             expect(received).toEqual(fixture.after);
         });

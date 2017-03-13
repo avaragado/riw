@@ -1,7 +1,6 @@
 // @flow
 
 import arquadUpdateFromQuadAr from '../arquadUpdateFromQuadAr';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 type Fixture = {
     name: string,
@@ -182,7 +181,7 @@ const fixtures: Fixture[] = [
 describe('lib/riw/db/transform/arquadUpdateFromQuadAr', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const received = arquadUpdateFromQuadAr(cfgBase, fixture.opt)(fixture.before);
+            const received = arquadUpdateFromQuadAr(fixture.opt)(fixture.before);
 
             expect(received).toEqual(fixture.after);
         });

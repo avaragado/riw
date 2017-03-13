@@ -8,7 +8,7 @@ import log from '../../../log';
 export default (config: RIWConfig) => (): RIWDB => {
     const { translationsDatabaseFile: pathDB, rootDir } = config;
 
-    const pabsDB = path.resolve(rootDir || process.cwd(), pathDB);
+    const pabsDB = path.resolve(rootDir, pathDB);
     let sDB;
 
     try {

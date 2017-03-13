@@ -12,23 +12,7 @@ declare type LocaleId = string;
 declare type InputMode = 'source' | 'json';
 declare type OutputMode = 'single-file' | 'file-per-locale' | 'no-file';
 
-declare type RIWConfig = {
-    configFile: ?AbsolutePath, // added by config processing: file containing the config
-    rootDir: AbsolutePath, // added by config processing: directory holding config file (if omitted: cwd)
-    defaultLocale: LocaleId,
-    targetLocales: LocaleId[],
-    translationsDatabaseFile: Path,
-    sourceDirs: Glob[],
-    collateDir: Path,
-    inputMode: InputMode,
-    translationsOutputFile: Path,
-    outputMode: OutputMode,
-    todoFile: Path,
-};
-
 declare type RIWConfigSparse = {
-    configFile?: ?AbsolutePath,
-    rootDir?: AbsolutePath,
     defaultLocale?: LocaleId,
     targetLocales?: LocaleId[],
     translationsDatabaseFile?: Path,
@@ -38,6 +22,27 @@ declare type RIWConfigSparse = {
     translationsOutputFile?: Path,
     outputMode?: OutputMode,
     todoFile?: Path,
+};
+
+declare type RIWConfigSource = {
+    configFile?: AbsolutePath,
+    rootDir?: AbsolutePath,
+};
+
+declare type RIWConfigSparseWithSource = RIWConfigSource & RIWConfigSparse;
+
+declare type RIWConfig = {
+    rootDir: AbsolutePath,
+    configFile?: AbsolutePath, // remains optional as API user might not have one
+    defaultLocale: LocaleId,
+    targetLocales: LocaleId[],
+    translationsDatabaseFile: Path,
+    sourceDirs: Glob[],
+    collateDir: Path,
+    inputMode: InputMode,
+    translationsOutputFile: Path,
+    outputMode: OutputMode,
+    todoFile: Path,
 };
 
 declare type RIWDBVersion = number;
@@ -93,9 +98,6 @@ declare type RIWDB = {
 
 declare type RIWDBPair = [RIWDBDefaultMessage, RIWDBDescription];
 declare type RIWDBQuad = [RIWDBDefaultMessage, RIWDBDescription, LocaleId, RIWDBTranslatedMessage];
-
-declare type RIWDBQuadsTransformer = (arquad: RIWDBQuad[]) => RIWDBQuad[];
-declare type RIWDBConfigurableQuadsTransformer = (config: RIWConfig, opt?: Object) => RIWDBQuadsTransformer;
 
 declare type RIWCLIHandler = (riw: RIW, argv: yargs.Argv) => void;
 

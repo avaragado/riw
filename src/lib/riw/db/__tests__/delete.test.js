@@ -4,12 +4,14 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
-import del from '../delete';
-import cfgBase from '../../__tests__/helpers/dummyConfig';
+import { configResolve } from '../../../config';
 
-const cfg: RIWConfig = {
-    ...cfgBase,
-    translationsDatabaseFile: 'db.json',
+import del from '../delete';
+
+const frelDB = 'db.json';
+
+const cfgBase: RIWConfigSparseWithSource = {
+    translationsDatabaseFile: frelDB,
 };
 
 const db: RIWDB = {
@@ -89,13 +91,15 @@ describe('lib/riw/db/delete', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
-                [cfg.translationsDatabaseFile]: jsonDB,
+                [frelDB]: jsonDB,
             });
+
+            const cfg = configResolve(cfgBase);
 
             del(cfg)(fixture.opt);
 
             const dbOut: RIWDB = JSON.parse(
-                fs.readFileSync(cfg.translationsDatabaseFile).toString(),
+                fs.readFileSync(frelDB).toString(),
             );
 
             mock.restore();

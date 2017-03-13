@@ -14,7 +14,7 @@ const result: Result = compose(
     dateDB => ({ dateDB }),
     dateMTimeFromFabs,
     (config: RIWConfig) => path.resolve(
-        config.rootDir || '.',
+        config.rootDir,
         config.translationsDatabaseFile,
     ),
 );

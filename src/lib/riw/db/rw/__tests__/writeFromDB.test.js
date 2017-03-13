@@ -4,8 +4,9 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import { configResolve } from '../../../../config';
+
 import writeFromDB from '../writeFromDB';
-import cfgBase from '../../../__tests__/helpers/dummyConfig';
 
 const db: RIWDB = {
     version: 1,
@@ -35,23 +36,9 @@ describe('lib/riw/db/rw/writeFromDB', () => {
     });
 
     it('writes a new db file to an empty dir', () => {
-        const cfg: RIWConfig = { ...cfgBase, translationsDatabaseFile: 'fixtures/01/riw-db.json' };
-
-        expect(() => {
-            writeFromDB(cfg)(db);
-        }).not.toThrow();
-
-        const content = fs.readFileSync(cfg.translationsDatabaseFile).toString();
-
-        expect(content).toEqual(stringify(db));
-    });
-
-    it('writes a new db file to an empty dir - with explicit cwd', () => {
-        const cfg: RIWConfig = {
-            ...cfgBase,
-            rootDir: process.cwd(),
+        const cfg = configResolve({
             translationsDatabaseFile: 'fixtures/01/riw-db.json',
-        };
+        });
 
         expect(() => {
             writeFromDB(cfg)(db);
@@ -63,7 +50,9 @@ describe('lib/riw/db/rw/writeFromDB', () => {
     });
 
     it("doesn't overwrite an existing db file if told not to", () => {
-        const cfg: RIWConfig = { ...cfgBase, translationsDatabaseFile: 'fixtures/02/riw-db.json' };
+        const cfg = configResolve({
+            translationsDatabaseFile: 'fixtures/02/riw-db.json',
+        });
 
         expect(() => {
             writeFromDB(cfg, { allowOverwrite: false })(db);
@@ -71,7 +60,9 @@ describe('lib/riw/db/rw/writeFromDB', () => {
     });
 
     it("throws if it can't create a directory for the file", () => {
-        const cfg: RIWConfig = { ...cfgBase, translationsDatabaseFile: 'fixtures/03/impossible/riw-db.json' };
+        const cfg = configResolve({
+            translationsDatabaseFile: 'fixtures/03/impossible/riw-db.json',
+        });
 
         expect(() => {
             writeFromDB(cfg)(db);

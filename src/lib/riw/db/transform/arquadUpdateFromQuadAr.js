@@ -12,7 +12,7 @@ const quadify = (mdt: RIWTranslatedMessageDescriptor): RIWDBQuad => [
 ];
 
 // eslint-disable-next-line no-unused-vars
-const transformer: RIWDBConfigurableQuadsTransformer = (config, opt?: RIWCLIOptDBUpdate) => quads =>
+const transformer = (opt?: RIWCLIOptDBUpdate) => (quads: RIWDBQuad[]) =>
     (opt && opt.translations.length > 0
         ? quads.concat(map(quadify, opt.translations))
         : quads

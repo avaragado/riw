@@ -21,7 +21,7 @@ export default (config: RIWConfig, optIn: WriteOpt = {}) => (db: RIWDB): void =>
 
     const { translationsDatabaseFile: pathDB, rootDir } = config;
 
-    const pabsDB = path.resolve(rootDir || process.cwd(), pathDB);
+    const pabsDB = path.resolve(rootDir, pathDB);
     const dabsDB = path.dirname(pabsDB);
 
     const json = JSON.stringify(db, null, 4);
