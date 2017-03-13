@@ -40,7 +40,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 
         The "defaultMessage" and "description" properties identify the string being translated.
         They must be exactly as in the "todo" file of untranslated messages output by the
-        "riw project translate" command.
+        "riw app translate" command.
     `)
     .example(
         outdent`

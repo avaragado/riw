@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`lib/riw/project/status/dateMTimeFromFabs returns 0 if file does not exist 1`] = `0`;
-
-exports[`lib/riw/project/status/dateMTimeFromFabs returns mtime if file exists 1`] = `1970-01-01T00:00:02.000Z`;

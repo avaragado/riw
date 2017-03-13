@@ -127,7 +127,7 @@ type RIWCLIOptDBDelete = {
     match: RIWQuadMatcher,
 };
 
-type RIWCLIOptProjectTranslate = {
+type RIWCLIOptAppTranslate = {
     on?: {
         start?: () => void,
         startExtract?: (arfabsSource: AbsolutePath[]) => void,
@@ -143,7 +143,7 @@ type RIWCLIOptProjectTranslate = {
     },
 };
 
-type RIWCLIProjectTranslateResult = {
+type RIWCLIAppTranslateResult = {
     armd: RIWMessageDescriptor[],
     dups: RIWDuplicateIdData[],
 };
@@ -158,7 +158,7 @@ type RIWCLIDBStatusResult = {
     },
 };
 
-type RIWCLIProjectStatusResult = {
+type RIWCLIAppStatusResult = {
     default: ?number,
     target: {
         [key: LocaleId]: ?number,
@@ -182,9 +182,9 @@ declare type RIW = {|
         update: (opt: RIWCLIOptDBUpdate) => void,
         delete: (opt: RIWCLIOptDBDelete) => void,
     |},
-    project: {|
-        translate: (opt: RIWCLIOptProjectTranslate) => RIWCLIProjectTranslateResult,
-        status: () => RIWCLIProjectStatusResult,
+    app: {|
+        translate: (opt: RIWCLIOptAppTranslate) => RIWCLIAppTranslateResult,
+        status: () => RIWCLIAppStatusResult,
     |},
 |};
 

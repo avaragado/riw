@@ -1,12 +1,12 @@
 // @flow
 
 import db from './db';
-import project from './project';
+import app from './app';
 
 export const sDescriptionDefault = '_';
 
 export default (config: RIWConfig): RIW => ({
     config,
     db: db(config),
-    project: project(config),
+    app: app(config),
 });

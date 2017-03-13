@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/app/status/dateConfig 01 1`] = `
+Object {
+  "dateConfig": 0,
+}
+`;
+
+exports[`lib/riw/app/status/dateConfig 02 1`] = `
+Object {
+  "dateConfig": 1970-01-01T00:00:02.000Z,
+}
+`;

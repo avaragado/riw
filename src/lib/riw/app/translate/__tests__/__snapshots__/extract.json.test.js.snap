@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/app/translate/extract.json 01 1`] = `Array []`;
+
+exports[`lib/riw/app/translate/extract.json 02 1`] = `Array []`;
+
+exports[`lib/riw/app/translate/extract.json 03 1`] = `
+Array [
+  Object {
+    "defaultMessage": "a.1!",
+    "fabs": "/fixtures/dir/a.json",
+    "id": "a.1",
+  },
+  Object {
+    "defaultMessage": "a.1 again!",
+    "fabs": "/fixtures/dir/aa.json",
+    "id": "a.1",
+  },
+  Object {
+    "defaultMessage": "b.1!",
+    "fabs": "/fixtures/dir/b.json",
+    "id": "b.1",
+  },
+  Object {
+    "defaultMessage": "b.2!",
+    "description": "b.2 desc",
+    "fabs": "/fixtures/dir/b.json",
+    "id": "b.2",
+  },
+  Object {
+    "defaultMessage": "b.2 again!",
+    "description": "b.2 again desc",
+    "fabs": "/fixtures/dir/bb.json",
+    "id": "b.2",
+  },
+  Object {
+    "defaultMessage": "c.1!",
+    "fabs": "/fixtures/dir/c.json",
+    "id": "c.1",
+  },
+]
+`;
+
+exports[`lib/riw/app/translate/extract.json 04 1`] = `
+Array [
+  Object {
+    "defaultMessage": "a.1!",
+    "fabs": "/fixtures/dir/a.json",
+    "id": "a.1",
+  },
+  Object {
+    "defaultMessage": "a.1 again!",
+    "fabs": "/fixtures/dir/aa.json",
+    "id": "a.1",
+  },
+  Object {
+    "defaultMessage": "b.1!",
+    "fabs": "/fixtures/dir/b.json",
+    "id": "b.1",
+  },
+  Object {
+    "defaultMessage": "b.2!",
+    "description": "b.2 desc",
+    "fabs": "/fixtures/dir/b.json",
+    "id": "b.2",
+  },
+  Object {
+    "defaultMessage": "b.2 again!",
+    "description": "b.2 again desc",
+    "fabs": "/fixtures/dir/bb.json",
+    "id": "b.2",
+  },
+  Object {
+    "defaultMessage": "c.1!",
+    "fabs": "/fixtures/dir/c.json",
+    "id": "c.1",
+  },
+]
+`;

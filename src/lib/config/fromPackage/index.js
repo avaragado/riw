@@ -26,7 +26,7 @@ export default (): ?RIWConfigSparseWithSource => {
         const config: RIWConfigSparse = require(fabsPackageJSON).riw;
 
         if (!config) {
-            log.warn('riw', 'No config located for the project. You probably want to add some configuration.');
+            log.warn('riw', 'No app config found. You probably want to add some configuration.');
         }
 
         return {
