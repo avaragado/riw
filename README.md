@@ -22,7 +22,7 @@ The word "riw" seems to be Welsh for slope or hill, and rhymes with the English 
 
 ## Assumptions
 
-riw assumes you're familiar with `react-intl`, and that you already use a build system of some kind (for example, webpack).
+riw assumes you're familiar with `react-intl`, and that your app already uses a build system of some kind (for example, webpack).
 
 
 ## Concepts and jargon

@@ -6,7 +6,7 @@ import outdent from 'outdent';
 import chalk from 'chalk';
 import pick from 'ramda/src/pick';
 
-import { createHandlerWithRIW } from '../../utils';
+import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
 export const command = 'delete';
 export const desc = 'Delete translation database entries matching options';
@@ -121,18 +121,7 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
             );
         }
 
-        armdt.forEach((mdt) => {
-            console.log(
-                ' -',
-                chalk.bold.blue(mdt.defaultMessage),
-                chalk.dim(mdt.description || ''),
-                '\n',
-                ' ',
-                chalk.green(mdt.locale),
-                chalk.bold.green(mdt.translation),
-                '\n',
-            );
-        });
+        console.log(prettifyMdtAr(armdt));
 
     } else {
         riw.db.delete(opt);
