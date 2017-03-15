@@ -1,7 +1,22 @@
 {
-  "name": "react-intl-workflow",
-  "version": "0.1.1",
-  "description": "Workflow helpers for react-intl",
+  "name": "riw",
+  "version": "0.2.0",
+  "description": "react-intl workflow helper and translations database",
+  "keywords": [
+    "react-intl",
+    "i18n",
+    "internationalisation",
+    "internationalization",
+    "l10n",
+    "localisation",
+    "localization",
+    "translation",
+    "react",
+    "cli",
+    "console",
+    "terminal",
+    "term"
+  ],
   "main": "./dist/index.js",
   "bin": {
     "riw": "./dist/bin/riw.js"
@@ -10,8 +25,14 @@
     "dist/",
     "doc/"
   ],
-  "repository": {},
-  "author": "David Smith <dave@avaragado.org>",
+  "homepage": "https://github.com/avaragado/riw#readme",
+  "repository": "avaragado/riw",
+  "bugs": "https://github.com/avaragado/riw/issues",
+  "author": {
+    "name": "David Smith",
+    "email": "github@avaragado.org",
+    "url": "https://avaragado.org"
+  },
   "license": "MIT",
   "scripts": {
     "start": "nps",
