@@ -121,5 +121,10 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
         },
     };
 
-    riw.app.translate(opt);
+    try {
+        riw.app.translate(opt);
+
+    } catch (err) {
+        // ignore;
+    }
 });

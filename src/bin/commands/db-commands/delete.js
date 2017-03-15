@@ -108,13 +108,21 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     };
 
     if (argv.dryRun) {
-        const armdt = riw.db.find(opt);
+        let armdt;
+
+        try {
+            armdt = riw.db.find(opt);
+
+        } catch (err) {
+            return;
+        }
 
         if (armdt.length > 0) {
             console.log(
                 chalk.bold('To be deleted [%d]:\n'),
                 armdt.length,
             );
+
         } else {
             console.log(
                 chalk.bold('No matches'),
@@ -124,6 +132,11 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         console.log(prettifyMdtAr(armdt));
 
     } else {
-        riw.db.delete(opt);
+        try {
+            riw.db.delete(opt);
+
+        } catch (err) {
+            // ignore;
+        }
     }
 });

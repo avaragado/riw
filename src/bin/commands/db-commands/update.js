@@ -104,5 +104,10 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         ],
     };
 
-    riw.db.update(opt);
+    try {
+        riw.db.update(opt);
+
+    } catch (err) {
+        // ignore
+    }
 });

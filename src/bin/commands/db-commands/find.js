@@ -111,7 +111,14 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         match: pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
     };
 
-    const armdt = riw.db.find(opt);
+    let armdt;
+
+    try {
+        armdt = riw.db.find(opt);
+
+    } catch (err) {
+        return;
+    }
 
     if (argv.json) {
         console.log(JSON.stringify(armdt, null, 4));

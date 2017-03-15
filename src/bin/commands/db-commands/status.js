@@ -3,7 +3,6 @@
 import type yargs from 'yargs';
 
 import outdent from 'outdent';
-import ora from 'ora';
 import chalk from 'chalk';
 
 import { createHandlerWithRIW, createBar } from '../../utils';
@@ -33,9 +32,24 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 const bold = x => chalk.bold(x);
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    const spinner = ora('Gathering information...').start();
+    let status: RIWCLIDBStatusResult;
 
-    const status: RIWCLIDBStatusResult = riw.db.status();
+    try {
+        status = riw.db.status();
+
+    } catch (err) {
+        return;
+    }
+
+    if (status.default.length === 0) {
+        console.log(outdent`
+            Database is empty.
+            Use ${chalk.bold('riw db update')} or ${chalk.bold('riw db import')} to add entries.
+        `);
+
+        return;
+    }
+
     const arlid = Object.keys(status.locale).sort(
         (lid1, lid2) => status.locale[lid2].has.length - status.locale[lid1].has.length,
     );
@@ -53,8 +67,6 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     `;
 
     const hasMissing = lid => status.locale[lid].missing.length > 0;
-
-    spinner.stop();
 
     console.log(outdent`
         Database contains:
