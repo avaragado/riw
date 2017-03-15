@@ -31,7 +31,7 @@ riw assumes you're familiar with `react-intl`, and that your app already uses a 
 
 1. `yarn add --dev riw`
 1. Add to `package.json`:
-   ```json
+   ```json5
    "riw": {
        "defaultLocale": "en-us", // locale of the source strings
        "targetLocales": ["fr-fr", "pt-br", ...], // other locales the app should support
