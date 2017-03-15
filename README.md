@@ -17,7 +17,7 @@ The word "riw" seems to be Welsh for slope or hill, and rhymes with the English 
 
 - riw doesn't perform any automated text translation or interface with any translators or translation services. It tells you which messages need translating, lets you update its translations database with the translations once you have them, and produces shippable, `react-intl`-compatible JSON files for each locale you want to support.
 
-- riw doesn't provide a mechanism for generating unique `react-intl` message descriptor ids. How you define these depends on your app's requirements. However, it does let you identify any duplicate ids.
+- riw doesn't provide a mechanism for generating unique `react-intl` message descriptor ids. How you define these depends on your app's requirements. However, it does let you identify any duplicate ids. ([See the FAQ](doc/faq.md) for a possible naming scheme.)
 
 - riw doesn't import the generated JSON locale files into your app or plug them into `react-intl`'s `IntlProvider`. You implement this behaviour yourself.
 

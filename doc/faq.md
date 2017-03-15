@@ -33,6 +33,39 @@ If there is any chance of ambiguity, add a description.
 Not yet. At the moment, only string descriptions work.
 
 
+## How do I ensure message descriptor ids are unique?
+
+Each `react-intl` message descriptor must include an id that uniquely identifies the message within your app. It uses this id to identify which string to display. However, `react-intl` does not impose or recommend any naming scheme for ids. riw helps by pointing out, as part of the output of `riw app translate`, if you've used the same id more than once.
+
+You might want to use a naming scheme to make it easy to select unique ids.
+
+`react-intl` and riw treat ids as completely opaque: you're free to use whichever naming scheme makes sense for your app. One possible naming scheme is based on the component's location in your repository. For example, you might have a repository that looks like this (ignoring irrelevant files):
+
+```
+src
+├── route1
+│   └── components
+│       ├── MyComponent1.js
+│       └── MyComponent2.js
+├── route2
+│   └── components
+│       └── MyComponent1.js
+└── route3
+    └── components
+        ├── MyComponent1.js
+        ├── MyComponent2.js
+        └── MyComponent3.js
+```
+
+Your id algorithm could be:
+
+1. Take the path to the component file within the repository. For example, `src/route2/components/MyComponent1.js`.
+1. Remove the `src/` prefix and `.js` suffix: `route2/components/MyComponent1`
+1. Add a suffix, unique within the component, for each string used by the component: `route2/components/MyComponent1/title`, `route2/components/MyComponent1/button/cancel`, `route2/components/MyComponent1/button/ok`, and so on.
+
+Translation services typically also require or allow you to supply an id with each string that needs translation. This is another way to include some context with a string to help translators understand its usage. For example, the ids used above include `button` to indicate the string corresponds to a button label (and these are almost always verbs).
+
+
 ## How do I check the translations returned by a translator/translation service?
 
 Translations need two kinds of checks: **sanity** checks and **quality** checks.
