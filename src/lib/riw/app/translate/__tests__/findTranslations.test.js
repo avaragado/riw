@@ -38,7 +38,7 @@ const fixtures: Fixture[] = [
             {
                 id: 'md1',
                 defaultMessage: 'a',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -63,7 +63,7 @@ const fixtures: Fixture[] = [
             {
                 id: 'md1',
                 defaultMessage: 'a',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -88,7 +88,7 @@ const fixtures: Fixture[] = [
                 id: 'md1',
                 defaultMessage: 'a',
                 description: 'a desc',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -117,7 +117,7 @@ const fixtures: Fixture[] = [
                 id: 'md1',
                 defaultMessage: 'a',
                 description: 'a desc',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -143,7 +143,7 @@ const fixtures: Fixture[] = [
                 id: 'md1',
                 defaultMessage: 'a',
                 description: 'a desc',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -169,7 +169,7 @@ const fixtures: Fixture[] = [
                 id: 'md1',
                 defaultMessage: 'a',
                 description: 'a desc',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -194,7 +194,7 @@ const fixtures: Fixture[] = [
             {
                 id: 'md1',
                 defaultMessage: 'a',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {
@@ -238,18 +238,18 @@ const fixtures: Fixture[] = [
             {
                 id: 'md1',
                 defaultMessage: 'a1',
-                fabs: '/a.js',
+                file: '/a.js',
             },
             {
                 id: 'md2',
                 defaultMessage: 'c1',
-                fabs: '/c.js',
+                file: '/c.js',
             },
             {
                 id: 'md3',
                 defaultMessage: 'a1',
                 description: 'a1 desc',
-                fabs: '/a.js',
+                file: '/a.js',
             },
         ],
         configOverride: {

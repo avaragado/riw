@@ -12,7 +12,7 @@ Object {
   "armdu": Array [
     Object {
       "defaultMessage": "a",
-      "fabs": "/a.js",
+      "file": "/a.js",
       "id": "md1",
       "locale": "en-up",
     },
@@ -42,7 +42,7 @@ Object {
     Object {
       "defaultMessage": "a",
       "description": "a desc",
-      "fabs": "/a.js",
+      "file": "/a.js",
       "id": "md1",
       "locale": "en-up",
     },
@@ -61,7 +61,7 @@ Object {
     Object {
       "defaultMessage": "a",
       "description": "a desc",
-      "fabs": "/a.js",
+      "file": "/a.js",
       "id": "md1",
       "locale": "en-up",
     },
@@ -80,7 +80,7 @@ Object {
     Object {
       "defaultMessage": "a",
       "description": "a desc",
-      "fabs": "/a.js",
+      "file": "/a.js",
       "id": "md1",
       "locale": "en-up",
     },
@@ -126,14 +126,14 @@ Object {
   "armdu": Array [
     Object {
       "defaultMessage": "c1",
-      "fabs": "/c.js",
+      "file": "/c.js",
       "id": "md2",
       "locale": "en-ne",
     },
     Object {
       "defaultMessage": "a1",
       "description": "a1 desc",
-      "fabs": "/a.js",
+      "file": "/a.js",
       "id": "md3",
       "locale": "en-ne",
     },

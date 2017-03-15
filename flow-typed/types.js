@@ -55,7 +55,7 @@ declare type RIWMessageDescriptor = {
     id: RIWMessageId,
     defaultMessage: RIWDBDefaultMessage,
     description?: RIWDBDescription,
-    fabs: AbsolutePath, // added by riw
+    file: AbsolutePath, // added by riw
 };
 
 declare type RIWMessageDescriptorUntranslated = {

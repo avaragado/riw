@@ -22,7 +22,7 @@ const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => c
         fabs => ({
             fabs,
             armd: map(
-                md => ({ ...md, fabs }),
+                md => ({ ...md, file: fabs }),
                 armdFromFabs(fabs),
             ),
         }),

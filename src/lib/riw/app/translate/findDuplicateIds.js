@@ -15,8 +15,8 @@ const find: DuplicateFinder = notify => compose(
     toPairs,
     filter(arfabs => arfabs.length > 1),
     reduce(
-        (arfabsById, md) => {
-            arfabsById[md.id] = (arfabsById[md.id] || []).concat(md.fabs);
+        (arfabsById, md: RIWMessageDescriptor) => {
+            arfabsById[md.id] = (arfabsById[md.id] || []).concat(md.file);
             return arfabsById;
         },
         {},

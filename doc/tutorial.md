@@ -179,7 +179,7 @@ All the missing translations are in the TODO file, by default `src/locale/TODO-u
     "id": "app.greeting",
     "defaultMessage": "Welcome to my wonderful app",
     "description": "Main body heading after user logs in",
-    "fabs": "/Users/avaragado/my-react-app/src/components/Welcome.js",
+    "file": "/Users/avaragado/my-react-app/src/components/Welcome.js",
     "locale": "fr-fr"
 },
 ```

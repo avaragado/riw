@@ -9,19 +9,19 @@ Array [
   Object {
     "defaultMessage": "a.1!",
     "description": undefined,
-    "fabs": "/fixtures/03/a.js",
+    "file": "/fixtures/03/a.js",
     "id": "a.1",
   },
   Object {
     "defaultMessage": "b.1!",
     "description": undefined,
-    "fabs": "/fixtures/03/b.js",
+    "file": "/fixtures/03/b.js",
     "id": "b.1",
   },
   Object {
     "defaultMessage": "b.2!",
     "description": "b.2 desc",
-    "fabs": "/fixtures/03/b.js",
+    "file": "/fixtures/03/b.js",
     "id": "b.2",
   },
 ]
@@ -32,37 +32,37 @@ Array [
   Object {
     "defaultMessage": "a.1!",
     "description": undefined,
-    "fabs": "/fixtures/04/a.js",
+    "file": "/fixtures/04/a.js",
     "id": "a.1",
   },
   Object {
     "defaultMessage": "a.1 again!",
     "description": undefined,
-    "fabs": "/fixtures/04/aa.js",
+    "file": "/fixtures/04/aa.js",
     "id": "a.1",
   },
   Object {
     "defaultMessage": "b.1!",
     "description": undefined,
-    "fabs": "/fixtures/04/b.js",
+    "file": "/fixtures/04/b.js",
     "id": "b.1",
   },
   Object {
     "defaultMessage": "b.2!",
     "description": "b.2 desc",
-    "fabs": "/fixtures/04/b.js",
+    "file": "/fixtures/04/b.js",
     "id": "b.2",
   },
   Object {
     "defaultMessage": "b.2 again!",
     "description": "b.2 again desc",
-    "fabs": "/fixtures/04/bb.js",
+    "file": "/fixtures/04/bb.js",
     "id": "b.2",
   },
   Object {
     "defaultMessage": "c.1!",
     "description": undefined,
-    "fabs": "/fixtures/04/c.js",
+    "file": "/fixtures/04/c.js",
     "id": "c.1",
   },
 ]
