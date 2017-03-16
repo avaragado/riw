@@ -1,5 +1,17 @@
 # FAQ/troubleshooting
 
+## I get "unexpected token" and a stack trace when I run `riw app translate`
+
+This might indicate your app doesn't have a `.babelrc` file appropriate to your source files. This can happen if you put all your configuration for babel inside your webpack `babel-loader` configuration.
+
+riw runs babel itself, to extract your `react-intl` message descriptors, but relies on your app's own babel configuration for the additional presets and plugins your app requires.
+
+To fix:
+
+- **Either** add a simple `.babelrc` file appropriate for your source files
+- **Or** set up your webpack configuration to use `babel-plugin-react-intl`, and configure riw to pick up your message descriptors from the JSON files output by this plugin. See the `inputMode` setting in [riw configuration](./config.md). In this case you need to create a build in your usual way, using webpack, before running `riw app translate`.
+
+
 ## I've made the tiniest change to a default message or a description and the translation is lost!
 
 It's not lost: it's still in the translations database. But `riw app translate` looks in that database for identical string matches only. riw must work this way as the tiniest change to a default message or a description likely invalidates the translation of that message. It's better for an app to fall back to the message in the default locale than to show a translation that might be out of date in a potentially confusing or dangerous way.
