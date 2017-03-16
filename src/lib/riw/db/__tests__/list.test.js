@@ -4,7 +4,7 @@ import mock from 'mock-fs';
 
 import { configResolve } from '../../../config';
 
-import find from '../find';
+import list from '../list';
 
 const frelDB = 'db.json';
 
@@ -49,7 +49,7 @@ const jsonDB = JSON.stringify(db, null, 4);
 
 type Fixture = {
     name: string,
-    opt: RIWCLIOptDBFind,
+    opt: RIWCLIOptDBList,
 };
 
 const fixtures: Fixture[] = [
@@ -118,7 +118,7 @@ const fixtures: Fixture[] = [
     },
 ];
 
-describe('lib/riw/db/find', () => {
+describe('lib/riw/db/list', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             mock({
@@ -127,7 +127,7 @@ describe('lib/riw/db/find', () => {
 
             const cfg = configResolve(cfgBase);
 
-            const received = find(cfg)(fixture.opt);
+            const received = list(cfg)(fixture.opt);
 
             mock.restore();
 

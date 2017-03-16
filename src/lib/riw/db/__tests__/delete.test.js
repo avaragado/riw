@@ -46,7 +46,7 @@ const jsonDB = JSON.stringify(db, null, 4);
 
 type Fixture = {
     name: string,
-    opt: RIWCLIOptDBFind,
+    opt: RIWCLIOptDBList,
 };
 
 const fixtures: Fixture[] = [

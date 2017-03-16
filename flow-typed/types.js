@@ -119,7 +119,7 @@ type RIWCLIOptDBUpdate = {
     translations: RIWTranslatedMessageDescriptor[],
 };
 
-type RIWCLIOptDBFind = {
+type RIWCLIOptDBList = {
     match: RIWQuadMatcher,
 };
 
@@ -177,7 +177,7 @@ declare type RIW = {|
     db: {|
         init: () => void,
         read: () => RIWDB,
-        find: (opt: RIWCLIOptDBFind) => RIWTranslatedMessageDescriptor[],
+        list: (opt: RIWCLIOptDBList) => RIWTranslatedMessageDescriptor[],
         status: () => RIWCLIDBStatusResult,
         update: (opt: RIWCLIOptDBUpdate) => void,
         delete: (opt: RIWCLIOptDBDelete) => void,

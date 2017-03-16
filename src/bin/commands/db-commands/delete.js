@@ -111,7 +111,7 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         let armdt;
 
         try {
-            armdt = riw.db.find(opt);
+            armdt = riw.db.list(opt);
 
         } catch (err) {
             return;

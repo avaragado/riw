@@ -8,7 +8,7 @@ import arquadFromDB from './transform/arquadFromDB';
 import dbFromQuadAr from './transform/dbFromQuadAr';
 import arquadDeleteFromQuadAr from './transform/arquadDeleteFromQuadAr';
 
-export default (config: RIWConfig) => (opt?: RIWCLIOptDBFind) => compose(
+export default (config: RIWConfig) => (opt?: RIWCLIOptDBList) => compose(
     writeFromDB(config),
     dbFromQuadAr,
     arquadDeleteFromQuadAr(opt),

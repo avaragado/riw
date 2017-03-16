@@ -1,6 +1,6 @@
 // @flow
 
-import arquadFindFromQuadAr from '../arquadFindFromQuadAr';
+import arquadFilterFromQuadAr from '../arquadFilterFromQuadAr';
 
 const quadsBase = [
     ['one', 'desc1', 'aa-aa', '[aa-aa]1 one'],
@@ -17,7 +17,7 @@ const quadsBase = [
 type Fixture = {
     name: string,
     before: RIWDBQuad[],
-    opt: RIWCLIOptDBFind,
+    opt: RIWCLIOptDBList,
     after: RIWDBQuad[],
 };
 
@@ -124,12 +124,12 @@ const fixtures: Fixture[] = [
     },
 ];
 
-describe('lib/riw/db/transform/arquadFindFromQuadAr', () => {
+describe('lib/riw/db/transform/arquadFilterFromQuadAr', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
             const opt = fixture.opt;
 
-            const received = arquadFindFromQuadAr(opt)(fixture.before);
+            const received = arquadFilterFromQuadAr(opt)(fixture.before);
 
             expect(received).toEqual(fixture.after);
         });

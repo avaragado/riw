@@ -248,7 +248,7 @@ Check any changes to the translations database into source control.
 
 Other useful `riw db` commands:
 
-- `riw db find` returns entries matching certain criteria
+- `riw db list` shows entries matching certain criteria
 - `riw db delete` deletes entries matching certain criteria
 - `riw db status` shows information about the database such as the locales it contains and how complete each locale is
 

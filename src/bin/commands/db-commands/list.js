@@ -8,8 +8,8 @@ import pick from 'ramda/src/pick';
 
 import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
-export const command = 'find';
-export const desc = 'Find translation database entries matching options';
+export const command = 'list';
+export const desc = 'Show translation database entries matching options';
 
 const here = `db ${command}`;
 
@@ -22,7 +22,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             [--translation <localeString>]
             [--json]
 
-        Outputs translation database entries matching all of the options supplied.
+        Lists translation database entries matching all of the options supplied.
         Omitted options match any value.
 
         Each database entry comprises the string in the default locale, the description
@@ -34,7 +34,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
                 --defaultMessage "Hello {name}"
 
         `,
-        'Finds all database entries for the defaultMessage "Hello {name}", and outputs in readable form',
+        'Lists all database entries for the defaultMessage "Hello {name}", and outputs in readable form',
     )
     .example(
         outdent`
@@ -43,7 +43,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
                 --json
 
         `,
-        'Finds all database entries for translations into fr-fr, and outputs as JSON',
+        'Lists all database entries for translations into fr-fr, and outputs as JSON',
     )
     .example(
         outdent`
@@ -52,7 +52,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
                 --locale pt-br
 
         `,
-        'Finds all database entries for translations into pt-br with the default description, _, and outputs in readable form',
+        'Lists all database entries for translations into pt-br with the default description, _, and outputs in readable form',
     )
     .options({
         defaultMessage: {
@@ -60,7 +60,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries matching the string being translated.
+                List entries matching the string being translated.
                 Omit to match any string.
             `,
         },
@@ -70,7 +70,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries with this description.
+                List entries with this description.
                 Omit to match any description.
             `,
         },
@@ -80,7 +80,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries with this locale.
+                List entries with this locale.
                 Omit to match any locale.
             `,
         },
@@ -90,7 +90,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             string: true,
             group: 'Command options',
             desc: outdent`
-                Output entries with this translated string.
+                List entries with this translated string.
                 Omit to match any translated string.
             `,
         },
@@ -107,14 +107,14 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     });
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    const opt: RIWCLIOptDBFind = {
+    const opt: RIWCLIOptDBList = {
         match: pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
     };
 
     let armdt;
 
     try {
-        armdt = riw.db.find(opt);
+        armdt = riw.db.list(opt);
 
     } catch (err) {
         return;

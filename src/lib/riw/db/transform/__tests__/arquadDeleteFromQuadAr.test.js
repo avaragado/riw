@@ -16,7 +16,7 @@ const quadsBase = [
 type Fixture = {
     name: string,
     before: RIWDBQuad[],
-    opt: RIWCLIOptDBFind,
+    opt: RIWCLIOptDBList,
     after: RIWDBQuad[],
 };
 
