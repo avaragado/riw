@@ -1,6 +1,6 @@
 {
   "name": "riw",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "react-intl workflow helper and translations database",
   "keywords": [
     "react-intl",
