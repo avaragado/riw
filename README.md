@@ -55,3 +55,4 @@ Check everything into source control. There are no temporary files.
 - [Configuration settings](doc/config.md)
 - [FAQ/troubleshooting](doc/faq.md)
 - [Using riw programmatically](doc/library.md)
+- [Example repository showing how to add react-intl and riw to a React app](https://github.com/avaragado/riw-example)

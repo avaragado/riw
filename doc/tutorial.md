@@ -37,7 +37,9 @@ Importantly, riw fits into your current development process and does not constra
 
 ## Using riw
 
-The view from 10,000 feet:
+If you enjoy scrolling through diffs, the [riw-example](https://github.com/avaragado/riw-example) repostory shows how to take a simple React app with hardcoded strings, internationalise it with `react-intl`, and then use it with riw.
+
+Meanwhile, here's the view from 10,000 feet:
 
 1. Install riw
 1. Define your riw configuration settings – primarily the default and target locales
