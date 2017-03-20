@@ -5,6 +5,7 @@ import type yargs from 'yargs';
 import outdent from 'outdent';
 import chalk from 'chalk';
 
+import type { RIW, DBStatusResult } from '../../..';
 import { createHandlerWithRIW, createBar } from '../../utils';
 
 export const command = 'status';
@@ -32,7 +33,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 const bold = x => chalk.bold(x);
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    let status: RIWCLIDBStatusResult;
+    let status: DBStatusResult;
 
     try {
         status = riw.db.status();

@@ -5,11 +5,12 @@ import path from 'path';
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
+import type { ConfigSparse, ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import { armdExtractJSON } from '../extract';
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     rootDir: '/fixtures',
     sourceDirs: ['dir/**/*.js'],
 };
@@ -19,7 +20,7 @@ const notify = () => x => x;
 type Fixture = {
     name: string,
     in: { [key: string]: string },
-    configOverride?: RIWConfigSparse,
+    configOverride?: ConfigSparse,
 };
 
 const fixtures: Fixture[] = [

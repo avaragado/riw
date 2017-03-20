@@ -4,16 +4,18 @@ import path from 'path';
 
 import compose from 'ramda/src/compose';
 
+import type { Config } from '../../../config';
+
 import dateMTimeFromFabs from './dateMTimeFromFabs';
 
-type Result = (config: RIWConfig) => {
+type Result = (config: Config) => {
     dateDB: number,
 };
 
 const result: Result = compose(
     dateDB => ({ dateDB }),
     dateMTimeFromFabs,
-    (config: RIWConfig) => path.resolve(
+    (config: Config) => path.resolve(
         config.rootDir,
         config.translationsDatabaseFile,
     ),

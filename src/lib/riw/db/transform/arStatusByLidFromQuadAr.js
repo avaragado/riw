@@ -6,19 +6,22 @@ import reduce from 'ramda/src/reduce';
 import difference from 'ramda/src/difference';
 import uniq from 'ramda/src/uniq';
 
+import type { LocaleId, DefaultPair, TranslationQuad } from '../../../../types';
+import type { DBStatusResult } from '../';
+
 type LocalePairMap = {
-    [key: LocaleId]: RIWDBPair[],
+    [key: LocaleId]: DefaultPair[],
 };
 
 type Intermediate = {
-    arpairDefault: RIWDBPair[],
+    arpairDefault: DefaultPair[],
     ararpairDefaultByLid: LocalePairMap,
 }
 
-type StatusFromQuadAr = (arquad: RIWDBQuad[]) => RIWCLIDBStatusResult;
+type StatusFromQuadAr = (arquad: TranslationQuad[]) => DBStatusResult;
 
 const arStatusByLidFromQuadAr: StatusFromQuadAr = compose(
-    (data: Intermediate): RIWCLIDBStatusResult => ({
+    (data: Intermediate): DBStatusResult => ({
         default: data.arpairDefault,
         locale: map(
             arpair => ({
@@ -28,13 +31,13 @@ const arStatusByLidFromQuadAr: StatusFromQuadAr = compose(
             data.ararpairDefaultByLid,
         ),
     }),
-    (arquad: RIWDBQuad[]): Intermediate => ({
+    (arquad: TranslationQuad[]): Intermediate => ({
         arpairDefault: compose(
             uniq,
-            map((quad: RIWDBQuad) => quad.slice(0, 2)),
+            map((quad: TranslationQuad) => quad.slice(0, 2)),
         )(arquad),
         ararpairDefaultByLid: reduce(
-            (ararpairByLocale: LocalePairMap, quad: RIWDBQuad) => {
+            (ararpairByLocale: LocalePairMap, quad: TranslationQuad) => {
                 const [defaultMessage, description, lid] = quad;
 
                 if (lid in ararpairByLocale) {

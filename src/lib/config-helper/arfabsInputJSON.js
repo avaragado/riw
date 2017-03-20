@@ -4,6 +4,8 @@ import path from 'path';
 
 import glob from 'glob';
 
+import type { FilesFromConfig } from './';
+
 const arfabsInputJSON: FilesFromConfig = config =>
     glob.sync(
         '**/*.json',

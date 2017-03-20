@@ -6,9 +6,10 @@ import mock from 'mock-fs';
 
 import { configResolve } from '../../../../config';
 
+import type { TranslationsDB } from '../../';
 import writeFromDB from '../writeFromDB';
 
-const db: RIWDB = {
+const db: TranslationsDB = {
     version: 1,
     data: {},
 };

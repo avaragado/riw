@@ -8,6 +8,8 @@ import outdent from 'outdent';
 import ora from 'ora';
 import chalk from 'chalk';
 
+import type { AbsolutePath, MessageDescriptorWithFile } from '../../../types';
+import type { RIW, Config, AppTranslateSpec, TranslationLookupResult, DuplicateIdData } from '../../..';
 import { createHandlerWithRIW, createBar } from '../../utils';
 
 export const command = 'translate';
@@ -29,7 +31,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
         and where the final files are saved. See configuration documentation for details.
     `);
 
-const sfrelFromFabsFromConfig = (config: RIWConfig) => (fabs: AbsolutePath) =>
+const sfrelFromFabsFromConfig = (config: Config) => (fabs: AbsolutePath) =>
     chalk.green(path.relative(config.rootDir, fabs));
 
 export const handler = createHandlerWithRIW((riw: RIW) => {
@@ -41,7 +43,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     let ctMD = 0;
     let bar;
 
-    const opt: RIWCLIOptAppTranslate = {
+    const opt: AppTranslateSpec = {
         on: {
             start: () => {
                 spinner.text = {
@@ -65,7 +67,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
                 spinner.text = `${bar(numFile)} [${ctMD}] ${sfrelFromFabs(fabs)}`;
                 spinner.render();
             },
-            endExtract: (armd: RIWMessageDescriptor[]) => {
+            endExtract: (armd: MessageDescriptorWithFile[]) => {
                 spinner.succeed(
                     `Found ${chalk.bold(
                         armd.length.toString(),
@@ -80,14 +82,14 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
                 spinner.text = 'Checking for duplicate message descriptor ids...';
                 spinner.start();
             },
-            endDupCheck: (dups: RIWDuplicateIdData[]) => {
+            endDupCheck: (dups: DuplicateIdData[]) => {
                 if (dups.length) {
                     spinner.fail(`Duplicate message descriptor ids (${dups.length}):`);
                     console.log(dups.map(
                         dup => outdent`
                             ${outdent}
                               - ${chalk.red.bold(dup.id)} used in:
-                                ${dup.arfabs.map(sfrelFromFabs).join('\n    ')}
+                                ${dup.files.map(sfrelFromFabs).join('\n    ')}
                         `,
                     ).join('\n'));
 
@@ -99,14 +101,14 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
                 spinner.text = 'Finding translations...';
                 spinner.start();
             },
-            endLookup: (translation: RIWFindTranslationResult) => {
-                const { armdu } = translation;
+            endLookup: (translation: TranslationLookupResult) => {
+                const { todos } = translation;
 
                 if (riw.config.targetLocales.length === 0) {
                     spinner.fail('No translations: Define "targetLocales" in your riw configuration');
 
-                } else if (armdu.length) {
-                    spinner.fail(`Missing translations: ${armdu.length}`);
+                } else if (todos.length) {
+                    spinner.fail(`Missing translations: ${todos.length}`);
 
                 } else {
                     spinner.succeed('All messages have translations for every locale');

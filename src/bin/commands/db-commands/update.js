@@ -5,6 +5,7 @@ import type yargs from 'yargs';
 import outdent from 'outdent';
 import pick from 'ramda/src/pick';
 
+import type { RIW, DBUpdateSpec } from '../../..';
 import { createHandlerWithRIW } from '../../utils';
 
 export const command = 'update';
@@ -98,7 +99,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     });
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    const opt: RIWCLIOptDBUpdate = {
+    const opt: DBUpdateSpec = {
         translations: [
             pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
         ],

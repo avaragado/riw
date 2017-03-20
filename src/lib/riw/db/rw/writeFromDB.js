@@ -5,7 +5,10 @@ import path from 'path';
 
 import mkdirp from 'mkdirp';
 
+import type { Config } from '../../../config';
 import log from '../../../log';
+
+import type { TranslationsDB } from '../';
 
 type WriteOpt = {
     allowOverwrite?: boolean,
@@ -15,7 +18,7 @@ const optDefault: WriteOpt = {
     allowOverwrite: true,
 };
 
-export default (config: RIWConfig, optIn: WriteOpt = {}) => (db: RIWDB): void => {
+export default (config: Config, optIn: WriteOpt = {}) => (db: TranslationsDB): void => {
     const opt = { ...optDefault, ...optIn };
     const flag = opt.allowOverwrite ? 'w' : 'wx';
 

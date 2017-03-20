@@ -2,14 +2,19 @@
 
 exports[`lib/riw/app/translate/findTranslations 01 nothing gets nothing 1`] = `
 Object {
-  "armdu": Array [],
   "locale": Object {},
+  "todos": Array [],
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 02 no db: md misses 1`] = `
 Object {
-  "armdu": Array [
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+  },
+  "todos": Array [
     Object {
       "defaultMessage": "a",
       "file": "/a.js",
@@ -17,28 +22,28 @@ Object {
       "locale": "en-up",
     },
   ],
-  "locale": Object {
-    "en-aa": Object {
-      "md1": "a",
-    },
-  },
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 03 db missing target locale: md ignored 1`] = `
 Object {
-  "armdu": Array [],
   "locale": Object {
     "en-aa": Object {
       "md1": "a",
     },
   },
+  "todos": Array [],
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 04 db has missing defaultMessage: md misses 1`] = `
 Object {
-  "armdu": Array [
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+  },
+  "todos": Array [
     Object {
       "defaultMessage": "a",
       "description": "a desc",
@@ -47,17 +52,17 @@ Object {
       "locale": "en-up",
     },
   ],
-  "locale": Object {
-    "en-aa": Object {
-      "md1": "a",
-    },
-  },
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 05 db has missing defined description: md misses 1`] = `
 Object {
-  "armdu": Array [
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+  },
+  "todos": Array [
     Object {
       "defaultMessage": "a",
       "description": "a desc",
@@ -66,17 +71,17 @@ Object {
       "locale": "en-up",
     },
   ],
-  "locale": Object {
-    "en-aa": Object {
-      "md1": "a",
-    },
-  },
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 06 db has missing locale: md misses 1`] = `
 Object {
-  "armdu": Array [
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+  },
+  "todos": Array [
     Object {
       "defaultMessage": "a",
       "description": "a desc",
@@ -85,17 +90,11 @@ Object {
       "locale": "en-up",
     },
   ],
-  "locale": Object {
-    "en-aa": Object {
-      "md1": "a",
-    },
-  },
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 07 simple match works 1`] = `
 Object {
-  "armdu": Array [],
   "locale": Object {
     "en-aa": Object {
       "md1": "a",
@@ -104,12 +103,12 @@ Object {
       "md1": "A",
     },
   },
+  "todos": Array [],
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 08 no description with default works 1`] = `
 Object {
-  "armdu": Array [],
   "locale": Object {
     "en-aa": Object {
       "md1": "a",
@@ -118,26 +117,12 @@ Object {
       "md1": "A",
     },
   },
+  "todos": Array [],
 }
 `;
 
 exports[`lib/riw/app/translate/findTranslations 09 simple multi 1`] = `
 Object {
-  "armdu": Array [
-    Object {
-      "defaultMessage": "c1",
-      "file": "/c.js",
-      "id": "md2",
-      "locale": "en-ne",
-    },
-    Object {
-      "defaultMessage": "a1",
-      "description": "a1 desc",
-      "file": "/a.js",
-      "id": "md3",
-      "locale": "en-ne",
-    },
-  ],
   "locale": Object {
     "en-aa": Object {
       "md1": "a1",
@@ -153,5 +138,20 @@ Object {
       "md3": "A1 DESC",
     },
   },
+  "todos": Array [
+    Object {
+      "defaultMessage": "c1",
+      "file": "/c.js",
+      "id": "md2",
+      "locale": "en-ne",
+    },
+    Object {
+      "defaultMessage": "a1",
+      "description": "a1 desc",
+      "file": "/a.js",
+      "id": "md3",
+      "locale": "en-ne",
+    },
+  ],
 }
 `;

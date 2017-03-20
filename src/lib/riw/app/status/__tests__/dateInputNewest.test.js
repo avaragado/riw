@@ -2,13 +2,14 @@
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import dateInputNewest from '../dateInputNewest';
 
 type Fixture = {
     name: string,
-    cfg: RIWConfigSparseWithSource,
+    cfg: ConfigSparseWithSource,
     in: {
         [key: string]: any,
     },

@@ -12,6 +12,7 @@ import map from 'ramda/src/map';
 import pick from 'ramda/src/pick';
 import groupBy from 'ramda/src/groupBy';
 
+import type { RIW, DBUpdateSpec } from '../../..';
 import { createHandlerWithRIW } from '../../utils';
 
 const cmd = 'import';
@@ -68,7 +69,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     const { valid = [], invalid = [] } = argv.file;
 
-    const opt: RIWCLIOptDBUpdate = {
+    const opt: DBUpdateSpec = {
         translations: map(
             pick(['defaultMessage', 'description', 'locale', 'translation']),
             valid,

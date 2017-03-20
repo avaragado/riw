@@ -2,6 +2,8 @@
 
 import path from 'path';
 
+import type { Config, ConfigSparseWithSource } from '../../config';
+
 import configDefault from './configDefault';
 
 const maybeAddRootDir = ({ configFile, rootDir }) => (
@@ -10,7 +12,7 @@ const maybeAddRootDir = ({ configFile, rootDir }) => (
         : {}
 );
 
-export default (config: RIWConfigSparseWithSource): RIWConfig => ({
+export default (config: ConfigSparseWithSource): Config => ({
     ...configDefault,
     ...config,
     ...maybeAddRootDir(config),

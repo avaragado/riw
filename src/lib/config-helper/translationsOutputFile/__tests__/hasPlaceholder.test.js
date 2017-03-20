@@ -1,16 +1,17 @@
 // @flow
 
+import type { ConfigSparse, ConfigSparseWithSource } from '../../../config';
 import { configResolve } from '../../../config';
 import tof from '../';
 
-const configBase: RIWConfigSparse = {
+const configBase: ConfigSparse = {
     // common for these tests:
     translationsOutputFile: 'dummy',
 };
 
 type Fixture = {
     name: string,
-    configOverride: RIWConfigSparseWithSource,
+    configOverride: ConfigSparseWithSource,
     out: boolean,
 };
 

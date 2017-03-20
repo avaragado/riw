@@ -1,5 +1,6 @@
 // @flow
 
+import type { AbsolutePath } from '../../../../types';
 import fabsConfigPackageFromPackageJSONFabs from '../fabsConfigPackageFromPackageJSONFabs';
 
 describe('lib/config/fabsConfigPackageFromPackageJSONFabs', () => {

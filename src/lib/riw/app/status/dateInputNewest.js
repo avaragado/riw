@@ -8,14 +8,16 @@ import prop from 'ramda/src/prop';
 import reduce from 'ramda/src/reduce';
 import max from 'ramda/src/max';
 
+import type { AbsolutePath } from '../../../../types';
+import type { InputMode, Config } from '../../../config';
 import { arfabsInputJSON, arfabsInputSource } from '../../../config-helper';
 
-const arfabsFindByMode: { [key: InputMode]: (config: RIWConfig) => AbsolutePath[] } = {
+const arfabsFindByMode: { [key: InputMode]: (config: Config) => AbsolutePath[] } = {
     source: arfabsInputSource,
     json: arfabsInputJSON,
 };
 
-export default (config: RIWConfig): { dateInputNewest: number } => compose(
+export default (config: Config): { dateInputNewest: number } => compose(
     dateInputNewest => ({ dateInputNewest }),
     reduce(max, 0),
     map(compose(prop('mtime'), fs.statSync)),

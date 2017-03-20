@@ -4,6 +4,7 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../config';
 import { configResolve } from '../../../config';
 
 import init from '../init';
@@ -11,7 +12,7 @@ import dbEmpty from '../meta/dbEmpty';
 
 const frelDB = 'db.json';
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     translationsDatabaseFile: frelDB,
 };
 

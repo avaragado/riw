@@ -8,6 +8,7 @@
 
 import path from 'path';
 
+import type { AbsolutePath } from '../../../../types';
 import fabsConfigPackageForCWD from '../fabsConfigPackageForCWD';
 
 describe('lib/config/fromPackage/fabsConfigPackageForCWD', () => {

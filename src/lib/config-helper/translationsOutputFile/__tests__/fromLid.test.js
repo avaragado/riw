@@ -2,10 +2,12 @@
 
 import path from 'path';
 
+import type { AbsolutePath, LocaleId } from '../../../../types';
+import type { ConfigSparse, ConfigSparseWithSource } from '../../../config';
 import { configResolve } from '../../../config';
 import tof from '../';
 
-const configBase: RIWConfigSparse = {
+const configBase: ConfigSparse = {
     // common for these tests:
     translationsOutputFile: 'dummy',
     outputMode: 'file-per-locale',
@@ -13,7 +15,7 @@ const configBase: RIWConfigSparse = {
 
 type Fixture = {
     name: string,
-    configOverride: RIWConfigSparseWithSource,
+    configOverride: ConfigSparseWithSource,
     in: LocaleId,
     out: AbsolutePath,
 };

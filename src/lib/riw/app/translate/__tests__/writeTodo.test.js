@@ -4,6 +4,7 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import type { TranslationLookupResult } from '../findTranslations';
 import { configResolve } from '../../../../config';
 
 import writeTodo from '../writeTodo';
@@ -17,9 +18,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
     });
 
     it('01 throws if it cannot create the parent directory', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [],
+            todos: [],
         };
         const cfg = configResolve({
             outputMode: 'file-per-locale',
@@ -41,9 +42,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
     });
 
     it('02 writes a file, if configured as file-per-locale', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [
+            todos: [
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
                 { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
@@ -69,13 +70,13 @@ describe('lib/riw/app/translate/writeTodo', () => {
 
         expect(arfrel).toEqual(['md-todo.json']);
 
-        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.armdu);
+        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.todos);
     });
 
     it('03 writes a file, if configured as single-file', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [
+            todos: [
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
                 { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
@@ -101,11 +102,11 @@ describe('lib/riw/app/translate/writeTodo', () => {
 
         expect(arfrel).toEqual(['md-todo.json']);
 
-        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.armdu);
+        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.todos);
     });
 
     it('04 writes no file if configured as no-file', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {
                 'aa-aa': {
                     's.1': 'aa-aa s.1',
@@ -120,7 +121,7 @@ describe('lib/riw/app/translate/writeTodo', () => {
                     's.2': 'cc-cc s.2',
                 },
             },
-            armdu: [],
+            todos: [],
         };
 
         const cfg = configResolve({
@@ -144,9 +145,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
     });
 
     it('05 overwrites existing file', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [
+            todos: [
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
                 { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
@@ -174,13 +175,13 @@ describe('lib/riw/app/translate/writeTodo', () => {
 
         expect(arfrel).toEqual(['md-todo.json']);
 
-        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.armdu);
+        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.todos);
     });
 
     it('06 returns its input', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [
+            todos: [
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
                 { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
                 { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },

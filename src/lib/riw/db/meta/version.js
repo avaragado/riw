@@ -1,5 +1,7 @@
 // @flow
 
-const numVersion: RIWDBVersion = 1;
+import type { Version } from '../';
+
+const numVersion: Version = 1;
 
 export default numVersion;

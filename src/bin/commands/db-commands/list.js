@@ -6,6 +6,7 @@ import outdent from 'outdent';
 import chalk from 'chalk';
 import pick from 'ramda/src/pick';
 
+import type { RIW, DBListSpec } from '../../..';
 import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
 export const command = 'list';
@@ -107,7 +108,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     });
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
-    const opt: RIWCLIOptDBList = {
+    const opt: DBListSpec = {
         match: pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
     };
 

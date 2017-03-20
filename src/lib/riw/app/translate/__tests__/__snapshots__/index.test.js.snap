@@ -5,8 +5,8 @@ Object {
   "armd": Array [],
   "dups": Array [],
   "translation": Object {
-    "armdu": Array [],
     "locale": Object {},
+    "todos": Array [],
   },
 }
 `;
@@ -34,8 +34,8 @@ Object {
   "armd": Array [],
   "dups": Array [],
   "translation": Object {
-    "armdu": Array [],
     "locale": Object {},
+    "todos": Array [],
   },
 }
 `;
@@ -115,7 +115,23 @@ Object {
     },
   ],
   "translation": Object {
-    "armdu": Array [
+    "locale": Object {
+      "en-ne": Object {
+        "a.1": "!1.a",
+        "b.1": "!1.b",
+      },
+      "en-up": Object {
+        "a.1": "A.1!",
+        "b.2": "B.2!",
+      },
+      "en-us": Object {
+        "a.1": "a.1 again!",
+        "b.1": "b.1!",
+        "b.2": "b.2 again!",
+        "c.1": "c.1!",
+      },
+    },
+    "todos": Array [
       Object {
         "defaultMessage": "a.1 again!",
         "description": undefined,
@@ -173,22 +189,6 @@ Object {
         "locale": "en-ne",
       },
     ],
-    "locale": Object {
-      "en-ne": Object {
-        "a.1": "!1.a",
-        "b.1": "!1.b",
-      },
-      "en-up": Object {
-        "a.1": "A.1!",
-        "b.2": "B.2!",
-      },
-      "en-us": Object {
-        "a.1": "a.1 again!",
-        "b.1": "b.1!",
-        "b.2": "b.2 again!",
-        "c.1": "c.1!",
-      },
-    },
   },
 }
 `;
@@ -327,7 +327,23 @@ Object {
     },
   ],
   "translation": Object {
-    "armdu": Array [
+    "locale": Object {
+      "en-ne": Object {
+        "a.1": "!1.a",
+        "b.1": "!1.b",
+      },
+      "en-up": Object {
+        "a.1": "A.1!",
+        "b.2": "B.2!",
+      },
+      "en-us": Object {
+        "a.1": "a.1 again!",
+        "b.1": "b.1!",
+        "b.2": "b.2 again!",
+        "c.1": "c.1!",
+      },
+    },
+    "todos": Array [
       Object {
         "defaultMessage": "a.1 again!",
         "file": "/fixtures/dir/aa.json",
@@ -380,22 +396,6 @@ Object {
         "locale": "en-ne",
       },
     ],
-    "locale": Object {
-      "en-ne": Object {
-        "a.1": "!1.a",
-        "b.1": "!1.b",
-      },
-      "en-up": Object {
-        "a.1": "A.1!",
-        "b.2": "B.2!",
-      },
-      "en-us": Object {
-        "a.1": "a.1 again!",
-        "b.1": "b.1!",
-        "b.2": "b.2 again!",
-        "c.1": "c.1!",
-      },
-    },
   },
 }
 `;

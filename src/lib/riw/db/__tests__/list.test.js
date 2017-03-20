@@ -2,17 +2,19 @@
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../config';
 import { configResolve } from '../../../config';
 
+import type { TranslationsDB, DBListSpec } from '../';
 import list from '../list';
 
 const frelDB = 'db.json';
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     translationsDatabaseFile: frelDB,
 };
 
-const db: RIWDB = {
+const db: TranslationsDB = {
     version: 1,
     data: {
         'one': {
@@ -49,7 +51,7 @@ const jsonDB = JSON.stringify(db, null, 4);
 
 type Fixture = {
     name: string,
-    opt: RIWCLIOptDBList,
+    opt: DBListSpec,
 };
 
 const fixtures: Fixture[] = [

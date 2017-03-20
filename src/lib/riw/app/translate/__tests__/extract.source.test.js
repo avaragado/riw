@@ -3,6 +3,7 @@
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
+import type { ConfigSparse } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import { armdExtractSource } from '../extract';
@@ -12,7 +13,7 @@ const notify = () => x => x;
 type Fixture = {
     name: string,
     in: { [key: string]: string },
-    configOverride?: RIWConfigSparse,
+    configOverride?: ConfigSparse,
 };
 
 const fixtures: Fixture[] = [

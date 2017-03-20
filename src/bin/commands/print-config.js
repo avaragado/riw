@@ -3,6 +3,7 @@
 import type yargs from 'yargs';
 import outdent from 'outdent';
 
+import type { RIW } from '../..';
 import { createHandlerWithRIW } from '../utils';
 
 export const command = 'print-config';

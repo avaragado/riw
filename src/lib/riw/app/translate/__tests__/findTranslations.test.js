@@ -1,6 +1,9 @@
 // @flow
 
+import type { MessageDescriptorWithFile } from '../../../../../types';
+import type { ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
+import type { TranslationsDB } from '../../../db';
 
 import findTranslations from '../findTranslations';
 
@@ -8,9 +11,9 @@ const notify = () => x => x;
 
 type Fixture = {
     name: string,
-    db: RIWDB,
-    armd: RIWMessageDescriptor[],
-    configOverride: RIWConfigSparseWithSource,
+    db: TranslationsDB,
+    armd: MessageDescriptorWithFile[],
+    configOverride: ConfigSparseWithSource,
 };
 
 const fixtures: Fixture[] = [

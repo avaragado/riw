@@ -3,9 +3,11 @@
 import compose from 'ramda/src/compose';
 import prop from 'ramda/src/prop';
 
+import type { Config } from '../../../config';
+
 import dateMTimeFromFabs from './dateMTimeFromFabs';
 
-type Result = (config: RIWConfig) => {
+type Result = (config: Config) => {
     dateConfig: number,
 };
 

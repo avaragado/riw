@@ -2,19 +2,21 @@
 
 import mock from 'mock-fs';
 
+import type { UntranslatedMessageDescriptor } from '../../../../../types';
+import type { ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import todo from '../todo';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     todoFile: 'fixtures/dir/TODO.json',
 };
 
 type Fixture = {
     name: string,
-    in: ?RIWMessageDescriptorUntranslated[],
+    in: ?UntranslatedMessageDescriptor[],
 };
 
 const fixtures: Fixture[] = [

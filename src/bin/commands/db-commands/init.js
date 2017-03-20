@@ -5,6 +5,7 @@ import type yargs from 'yargs';
 import outdent from 'outdent';
 
 import log from '../../../lib/log';
+import type { RIW } from '../../..';
 import { createHandlerWithRIW } from '../../utils';
 
 export const command = 'init';

@@ -9,6 +9,7 @@ import sum from 'ramda/src/sum';
 import sortBy from 'ramda/src/sortBy';
 import reverse from 'ramda/src/reverse';
 
+import type { RIW, AppStatusResult } from '../../..';
 import { createHandlerWithRIW, createBar } from '../../utils';
 
 export const command = 'status';
@@ -65,7 +66,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
         dateTodo,
         dateDB,
         dateConfig,
-    }: RIWCLIAppStatusResult = riw.app.status();
+    }: AppStatusResult = riw.app.status();
 
     if (ctDefault == null) {
         spinner.fail(outdent`

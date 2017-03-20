@@ -4,6 +4,9 @@ import toPairs from 'ramda/src/toPairs';
 import chain from 'ramda/src/chain';
 import map from 'ramda/src/map';
 
+import type { TranslationQuad } from '../../../../types';
+import type { TranslationsDB } from '../';
+
 const quadify = obj => chain(
     ([key, val]) => {
         if (typeof val === 'string') {
@@ -18,4 +21,4 @@ const quadify = obj => chain(
     toPairs(obj),
 );
 
-export default (db: RIWDB): RIWDBQuad[] => quadify(db.data);
+export default (db: TranslationsDB): TranslationQuad[] => quadify(db.data);

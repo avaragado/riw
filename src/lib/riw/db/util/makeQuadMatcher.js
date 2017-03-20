@@ -1,6 +1,21 @@
 // @flow
 
-export default (match: RIWQuadMatcher) => (quad: RIWDBQuad): boolean => (
+import type {
+    LocaleId,
+    DefaultMessage,
+    Description,
+    TranslatedMessage,
+    TranslationQuad,
+} from '../../../../types';
+
+export type TranslationMatchSpec = {
+    defaultMessage?: DefaultMessage,
+    description?: Description,
+    locale?: LocaleId,
+    translation?: TranslatedMessage,
+};
+
+export default (match: TranslationMatchSpec) => (quad: TranslationQuad): boolean => (
     (!match.defaultMessage || quad[0] === match.defaultMessage) &&
     (!match.description || quad[1] === match.description) &&
     (!match.locale || quad[2] === match.locale) &&

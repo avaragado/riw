@@ -7,32 +7,51 @@ import reduce from 'ramda/src/reduce';
 import pathOr from 'ramda/src/pathOr';
 import assocPath from 'ramda/src/assocPath';
 
+import type {
+    LocaleId,
+    MessageId,
+    TranslatedMessage,
+    MessageDescriptorWithFile,
+    UntranslatedMessageDescriptor,
+} from '../../../../types';
+import type { Config } from '../../../config';
+import type { Notifier } from '../../../notify';
+import type { TranslationsDB } from '../../db';
 import { sDescriptionDefault } from '../../';
 
-type LocaleMapper = (config: RIWConfig) => (md: RIWMessageDescriptor) =>
-    RIWMessageDescriptorUntranslated;
+type LocaleMapper = (config: Config) => (md: MessageDescriptorWithFile) =>
+    UntranslatedMessageDescriptor;
 
-type TranslationLookup = {
-    mdu: RIWMessageDescriptorUntranslated,
-    result: RIWDBTranslatedMessage | null,
-};
+type Lookup = {|
+    mdu: UntranslatedMessageDescriptor,
+    result: TranslatedMessage | null,
+|};
 
-type LookerUpper = (config: RIWConfig, db: RIWDB) => (mdu: RIWMessageDescriptorUntranslated) =>
-    TranslationLookup;
+export type TranslationLookupResult = {|
+    locale: {
+        [key: LocaleId]: {
+            [key: MessageId]: TranslatedMessage,
+        },
+    },
+    todos: UntranslatedMessageDescriptor[],
+|};
 
-type LookupReducer = (acc: RIWFindTranslationResult, lookup: TranslationLookup) =>
-    RIWFindTranslationResult;
+type LookerUpper = (config: Config, db: TranslationsDB) =>
+    (mdu: UntranslatedMessageDescriptor) => Lookup;
 
-type TranslationFinder = <T>(
-    config: RIWConfig,
-    notify: string => T => T,
-    db: RIWDB
-) => (armd: RIWMessageDescriptor[]) => RIWFindTranslationResult;
+type LookupReducer = (acc: TranslationLookupResult, lookup: Lookup) =>
+    TranslationLookupResult;
+
+type TranslationFinder = (
+    config: Config,
+    notify: Notifier,
+    db: TranslationsDB
+) => (armd: MessageDescriptorWithFile[]) => TranslationLookupResult;
 
 
-const resultEmpty: RIWFindTranslationResult = {
+const resultEmpty: TranslationLookupResult = {
     locale: {},
-    armdu: [],
+    todos: [],
 };
 
 const eachLocale: LocaleMapper = config => md => map(
@@ -59,10 +78,10 @@ const reduceLookup: LookupReducer = (acc, lookup) => {
         return assocPath(['locale', mdu.locale, mdu.id], result, acc);
     }
 
-    return {
-        ...acc,
-        armdu: acc.armdu.concat(mdu),
-    };
+    return ({
+        locale: acc.locale,
+        todos: acc.todos.concat(mdu),
+    }: TranslationLookupResult);
 };
 
 const find: TranslationFinder = (config, notify, db) => compose(

@@ -4,6 +4,7 @@ import path from 'path';
 
 import mock from 'mock-fs';
 
+import type { AbsolutePath } from '../../../../types';
 import fabsPackageJSONFromDabs from '../fabsPackageJSONFromDabs';
 
 describe('lib/config/fromPackage/fabsPackageJSONFromDabs', () => {

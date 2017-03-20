@@ -6,8 +6,16 @@ import reduce from 'ramda/src/reduce';
 import toPairs from 'ramda/src/toPairs';
 import filter from 'ramda/src/filter';
 
-type DuplicateFinder = <T>(notify: string => T => T) =>
-    RIWMessageDescriptor[] => RIWDuplicateIdData[];
+import type { MessageId, AbsolutePath, MessageDescriptorWithFile } from '../../../../types';
+import type { Notifier } from '../../../notify';
+
+export type DuplicateIdData = {|
+    id: MessageId,
+    files: AbsolutePath[],
+|};
+
+type DuplicateFinder = (notify: Notifier) => (armd: MessageDescriptorWithFile[])
+    => DuplicateIdData[];
 
 const find: DuplicateFinder = notify => compose(
     notify('endDupCheck'),
@@ -15,7 +23,7 @@ const find: DuplicateFinder = notify => compose(
     toPairs,
     filter(arfabs => arfabs.length > 1),
     reduce(
-        (arfabsById, md: RIWMessageDescriptor) => {
+        (arfabsById, md: MessageDescriptorWithFile) => {
             arfabsById[md.id] = (arfabsById[md.id] || []).concat(md.file);
             return arfabsById;
         },

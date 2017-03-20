@@ -1,5 +1,7 @@
 // @flow
 
+import type { Config } from '../';
+
 export default ({
     rootDir: '.',
     defaultLocale: 'en-us',
@@ -11,4 +13,4 @@ export default ({
     translationsOutputFile: 'src/locale/[locale].json',
     outputMode: 'file-per-locale',
     todoFile: 'src/locale/TODO-untranslated.json',
-}: RIWConfig);
+}: Config);

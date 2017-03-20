@@ -3,6 +3,8 @@
 import reduce from 'ramda/src/reduce';
 import assocPath from 'ramda/src/assocPath';
 
+import type { TranslationQuad } from '../../../../types';
+import type { TranslationsDB } from '../';
 import dbEmpty from '../meta/dbEmpty';
 
 const unquadify = reduce(
@@ -10,7 +12,7 @@ const unquadify = reduce(
     {},
 );
 
-const fromQuads = (quads: RIWDBQuad[]): RIWDB => ({
+const fromQuads = (quads: TranslationQuad[]): TranslationsDB => ({
     ...dbEmpty,
     data: unquadify(quads),
 });

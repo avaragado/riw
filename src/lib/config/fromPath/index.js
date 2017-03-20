@@ -2,14 +2,16 @@
 
 import path from 'path';
 
+import type { Path, AbsolutePath } from '../../../types';
+import type { ConfigSparse, ConfigSparseWithSource } from '../../config';
 import log from '../../log';
 
-export default (pathConfig: Path): ?RIWConfigSparseWithSource => {
+export default (pathConfig: Path): ?ConfigSparseWithSource => {
     const fabs: AbsolutePath = path.resolve(pathConfig);
 
     try {
         return {
-            ...(require(fabs): RIWConfigSparse),
+            ...(require(fabs): ConfigSparse),
             configFile: fabs,
         };
 

@@ -9,6 +9,8 @@ import chain from 'ramda/src/chain';
 import values from 'ramda/src/values';
 import dropLast from 'ramda/src/dropLast';
 
+import type { TranslatedMessageDescriptor } from '../../types';
+
 const grouper = compose(
     JSON.stringify,
     pick(['defaultMessage', 'description']),
@@ -40,7 +42,7 @@ const formatGroupFromMdtAr = armdt => [
     '\n',
 ];
 
-type Prettifier = RIWTranslatedMessageDescriptor[] => string;
+type Prettifier = TranslatedMessageDescriptor[] => string;
 
 const prettify: Prettifier = compose(
     join(''),

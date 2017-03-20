@@ -4,20 +4,23 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../config';
 import { configResolve } from '../../../config';
 
+import type { TranslationsDB } from '../';
+import type { DBUpdateSpec } from '../update';
 import update from '../update';
 
 const frelDB = 'db.json';
 
-const cfg: RIWConfigSparseWithSource = {
+const cfg: ConfigSparseWithSource = {
     translationsDatabaseFile: frelDB,
 };
 
 type Fixture = {
     name: string,
-    in: RIWDB,
-    opt: RIWCLIOptDBUpdate,
+    in: TranslationsDB,
+    opt: DBUpdateSpec,
 };
 
 const fixtures: Fixture[] = [
@@ -150,7 +153,7 @@ describe('lib/riw/db/update', () => {
 
             update(configResolve(cfg))(fixture.opt);
 
-            const dbOut: RIWDB = JSON.parse(
+            const dbOut: TranslationsDB = JSON.parse(
                 fs.readFileSync(frelDB).toString(),
             );
 

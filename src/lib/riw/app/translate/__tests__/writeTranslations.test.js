@@ -4,6 +4,7 @@ import fs from 'fs';
 
 import mock from 'mock-fs';
 
+import type { TranslationLookupResult } from '../findTranslations';
 import { configResolve } from '../../../../config';
 
 import writeTranslations from '../writeTranslations';
@@ -17,9 +18,9 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('01 throws if config missing placeholder', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [],
+            todos: [],
         };
         const cfg = configResolve({
             defaultLocale: 'aa-aa',
@@ -34,9 +35,9 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('02 throws if it cannot create the parent directory', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {},
-            armdu: [],
+            todos: [],
         };
         const cfg = configResolve({
             defaultLocale: 'aa-aa',
@@ -60,7 +61,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('03 writes a file for each target locale, including default, if so configured', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {
                 'aa-aa': {
                     's.1': 'aa-aa s.1',
@@ -75,7 +76,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
                     's.2': 'cc-cc s.2',
                 },
             },
-            armdu: [],
+            todos: [],
         };
 
         const cfg = configResolve({
@@ -106,7 +107,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('04 writes a single file for all target locales, including default, if so configured', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {
                 'aa-aa': {
                     's.1': 'aa-aa s.1',
@@ -121,7 +122,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
                     's.2': 'cc-cc s.2',
                 },
             },
-            armdu: [],
+            todos: [],
         };
 
         const cfg = configResolve({
@@ -154,7 +155,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('05 writes no files if so configured', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {
                 'aa-aa': {
                     's.1': 'aa-aa s.1',
@@ -169,7 +170,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
                     's.2': 'cc-cc s.2',
                 },
             },
-            armdu: [],
+            todos: [],
         };
 
         const cfg = configResolve({
@@ -195,7 +196,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('06 overwrites existing files', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {
                 'aa-aa': {
                     's.1': 'aa-aa s.1',
@@ -210,7 +211,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
                     's.2': 'cc-cc s.2',
                 },
             },
-            armdu: [],
+            todos: [],
         };
 
         const cfg = configResolve({
@@ -247,7 +248,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
     });
 
     it('07 returns its input', () => {
-        const translation: RIWFindTranslationResult = {
+        const translation: TranslationLookupResult = {
             locale: {
                 'aa-aa': {
                     's.1': 'aa-aa s.1',
@@ -262,7 +263,7 @@ describe('lib/riw/app/translate/writeTranslations', () => {
                     's.2': 'cc-cc s.2',
                 },
             },
-            armdu: [],
+            todos: [],
         };
 
         const cfg = configResolve({

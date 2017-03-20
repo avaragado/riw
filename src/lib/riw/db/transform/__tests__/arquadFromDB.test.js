@@ -1,10 +1,11 @@
 // @flow
 
+import type { TranslationsDB } from '../../';
 import arquadFromDB from '../arquadFromDB';
 
 type Fixture = {
     name: string,
-    in: RIWDB,
+    in: TranslationsDB,
 };
 
 const fixtures: Fixture[] = [

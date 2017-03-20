@@ -5,14 +5,19 @@ import compose from 'ramda/src/compose';
 import map from 'ramda/src/map';
 import prop from 'ramda/src/prop';
 
+import type { MessageDescriptor, AbsolutePath, MessageDescriptorWithFile } from '../../../../types';
+import type { Config } from '../../../config';
+import type { FilesFromConfig } from '../../../config-helper';
+import type { Notifier } from '../../../notify';
 import { arfabsInputJSON, arfabsInputSource } from '../../../config-helper';
 
 import armdFromJSONFabs from './armdFromJSONFabs';
 import armdfromSourceFabs from './armdFromSourceFabs';
 
+export type MessageDescriptorsFromFile = (fabs: AbsolutePath) => MessageDescriptor[];
+
 type MDExtractor = (arfabsFromConfig: FilesFromConfig, armdFromFabs: MessageDescriptorsFromFile) =>
-    <T>(notify: string => T => T) =>
-    (config: RIWConfig) => RIWMessageDescriptor[];
+    (notify: Notifier) => (config: Config) => MessageDescriptorWithFile[];
 
 const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => compose(
     notify('endExtract'),
@@ -22,7 +27,7 @@ const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => c
         fabs => ({
             fabs,
             armd: map(
-                md => ({ ...md, file: fabs }),
+                md => ({ ...md, file: fabs }: MessageDescriptorWithFile),
                 armdFromFabs(fabs),
             ),
         }),

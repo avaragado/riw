@@ -2,11 +2,12 @@
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import dateTodo from '../dateTodo';
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     todoFile: 'fixtures/dir/TODO.json',
 };
 

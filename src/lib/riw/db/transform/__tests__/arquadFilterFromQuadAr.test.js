@@ -1,5 +1,7 @@
 // @flow
 
+import type { TranslationQuad } from '../../../../../types';
+import type { DBListSpec } from '../../';
 import arquadFilterFromQuadAr from '../arquadFilterFromQuadAr';
 
 const quadsBase = [
@@ -16,9 +18,9 @@ const quadsBase = [
 
 type Fixture = {
     name: string,
-    before: RIWDBQuad[],
-    opt: RIWCLIOptDBList,
-    after: RIWDBQuad[],
+    before: TranslationQuad[],
+    opt: DBListSpec,
+    after: TranslationQuad[],
 };
 
 const fixtures: Fixture[] = [

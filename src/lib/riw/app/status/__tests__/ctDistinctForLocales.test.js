@@ -2,19 +2,20 @@
 
 import mock from 'mock-fs';
 
+import type { ConfigSparse, ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import ctDistinctForLocales from '../ctDistinctForLocales';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     translationsOutputFile: 'fixtures/dir/[locale].json',
 };
 
 type Fixture = {
     name: string,
-    cfgOverride: RIWConfigSparse,
+    cfgOverride: ConfigSparse,
     in: { [key: string]: string },
 };
 

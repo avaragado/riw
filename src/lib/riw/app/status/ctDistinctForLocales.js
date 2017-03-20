@@ -6,11 +6,13 @@ import zipObj from 'ramda/src/zipObj';
 import pathOr from 'ramda/src/pathOr';
 import repeat from 'ramda/src/repeat';
 
+import type { LocaleId } from '../../../../types';
+import type { OutputMode, Config } from '../../../config';
 import { translationsOutputFile } from '../../../config-helper';
 
 import loadJSONOrNull from './loadJSONOrNull';
 
-type Reader = (config: RIWConfig) => {
+type Reader = (config: Config) => {
     default: ?number,
     target: {
         [key: LocaleId]: ?number,

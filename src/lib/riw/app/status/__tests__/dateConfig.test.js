@@ -4,11 +4,12 @@ import path from 'path';
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import dateConfig from '../dateConfig';
 
-const cfg: RIWConfigSparseWithSource = {
+const cfg: ConfigSparseWithSource = {
     configFile: path.resolve('fixtures/dir/config.json'),
 };
 

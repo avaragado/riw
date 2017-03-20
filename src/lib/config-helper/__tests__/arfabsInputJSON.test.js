@@ -4,6 +4,7 @@ import path from 'path';
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../config';
 import { configResolve } from '../../config';
 
 import arfabsInputJSON from '../arfabsInputJSON';
@@ -13,7 +14,7 @@ type Tree = { [key: string]: string | Tree };
 type Fixture = {
     name: string,
     in: Tree,
-    cfg: RIWConfigSparseWithSource,
+    cfg: ConfigSparseWithSource,
 };
 
 const fixtures: Fixture[] = [

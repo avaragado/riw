@@ -5,25 +5,29 @@ import path from 'path';
 
 import mkdirp from 'mkdirp';
 
+import type { AbsolutePath, LocaleId } from '../../../../types';
 import log from '../../../log';
+import type { OutputMode, Config } from '../../../config';
 import { translationsOutputFile } from '../../../config-helper';
+
+import type { TranslationLookupResult } from './findTranslations';
 
 type Notifier = (name: string) => (fabs: AbsolutePath) => AbsolutePath;
 type Writer = (
-    config: RIWConfig,
+    config: Config,
     notify: Notifier,
     tof: {
         fromLid: (lid: LocaleId) => AbsolutePath,
         forSingleFile: () => AbsolutePath,
     },
-    translation: RIWFindTranslationResult,
+    translation: TranslationLookupResult,
 ) => void;
 
 type WriterMap = { [key: OutputMode]: Writer };
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 
-const arlidInclude = (config: RIWConfig): LocaleId[] =>
+const arlidInclude = (config: Config): LocaleId[] =>
     config.targetLocales.concat(config.defaultLocale);
 
 const arWriterByMode: WriterMap = {
@@ -56,8 +60,8 @@ const arWriterByMode: WriterMap = {
     'no-file': () => {},
 };
 
-export default (config: RIWConfig, notify: Notifier) =>
-    (translation: RIWFindTranslationResult) => {
+export default (config: Config, notify: Notifier) =>
+    (translation: TranslationLookupResult) => {
         const tof = translationsOutputFile(config);
         const { translationsOutputFile: pathOut } = config;
 

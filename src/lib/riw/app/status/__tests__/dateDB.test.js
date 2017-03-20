@@ -2,11 +2,12 @@
 
 import mock from 'mock-fs';
 
+import type { ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
 
 import dateDB from '../dateDB';
 
-const cfg: RIWConfigSparseWithSource = {
+const cfg: ConfigSparseWithSource = {
     translationsDatabaseFile: 'fixtures/dir/db.json',
 };
 

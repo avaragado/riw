@@ -2,18 +2,18 @@
 
 import type yargs from 'yargs';
 
-import { configFromPath, configFromPackage } from '../../lib/config';
-import createRIW from '../../';
+import type { RIW } from '../../';
+import { createRIW, configFromPath, configFromPackage } from '../../';
 
-export default (handler: RIWCLIHandler) => (argv: yargs.Argv) => {
+type Handler = (riw: RIW, argv: yargs.Argv) => void;
+
+export default (handler: Handler) => (argv: yargs.Argv) => {
     const config = argv.config
         ? configFromPath(argv.config)
         : configFromPackage();
 
     if (config) {
-        const riw = createRIW(config);
-
-        return handler(riw, argv);
+        return handler(createRIW(config), argv);
     }
 
     // we've already output an error message.

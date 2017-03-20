@@ -1,11 +1,13 @@
 // @flow
 
+import type { TranslationQuad } from '../../../../../types';
+import type { TranslationMatchSpec } from '../makeQuadMatcher';
 import makeQuadMatcher from '../makeQuadMatcher';
 
 type Fixture = {
     name: string,
-    in: RIWDBQuad,
-    match: RIWQuadMatcher,
+    in: TranslationQuad,
+    match: TranslationMatchSpec,
     out: boolean,
 };
 

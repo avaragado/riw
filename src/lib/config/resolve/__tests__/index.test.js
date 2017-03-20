@@ -1,10 +1,11 @@
 // @flow
 
+import type { ConfigSparseWithSource } from '../../';
 import configResolve from '../';
 
 type Fixture = {
     name: string,
-    in: RIWConfigSparseWithSource,
+    in: ConfigSparseWithSource,
 };
 
 const fixtures: Fixture[] = [

@@ -5,6 +5,9 @@ import pluginReactIntl from 'babel-plugin-react-intl';
 import pathOr from 'ramda/src/pathOr';
 import compose from 'ramda/src/compose';
 
+import type { AbsolutePath } from '../../../../types';
+import type { MessageDescriptorsFromFile } from './extract';
+
 const outputBabelFromFabs = (fabs: AbsolutePath): babel.BabelFileResult => {
     try {
         return transformFileSync(fabs, {

@@ -5,14 +5,16 @@ import fs from 'fs';
 import mock from 'mock-fs';
 import outdent from 'outdent';
 
+import type { ConfigSparse, ConfigSparseWithSource } from '../../../../config';
 import { configResolve } from '../../../../config';
+import type { TranslationsDB } from '../../../db';
 
 import translate from '../';
 
 const stringify = obj => JSON.stringify(obj, null, 4);
 const parse = frel => JSON.parse(fs.readFileSync(frel).toString());
 
-const db: RIWDB = {
+const db: TranslationsDB = {
     version: 1,
     data: {
         'a.1!': {
@@ -34,7 +36,7 @@ const db: RIWDB = {
     },
 };
 
-const cfgBase: RIWConfigSparseWithSource = {
+const cfgBase: ConfigSparseWithSource = {
     rootDir: '/fixtures',
     defaultLocale: 'en-us',
     targetLocales: ['en-up', 'en-ne'],
@@ -48,7 +50,7 @@ const cfgBase: RIWConfigSparseWithSource = {
 type Fixture = {
     name: string,
     in: { [key: string]: string },
-    configOverride?: RIWConfigSparse,
+    configOverride?: ConfigSparse,
 };
 
 const fixtures: Fixture[] = [

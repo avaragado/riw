@@ -1,12 +1,13 @@
 // @flow
 
+import type { MessageDescriptorWithFile } from '../../../../../types';
 import findDuplicateIds from '../findDuplicateIds';
 
 const notify = () => x => x;
 
 type Fixture = {
     name: string,
-    in: RIWMessageDescriptor[],
+    in: MessageDescriptorWithFile[],
 };
 
 const fixtures: Fixture[] = [

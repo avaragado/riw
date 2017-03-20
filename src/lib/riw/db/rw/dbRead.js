@@ -3,9 +3,12 @@
 import fs from 'fs';
 import path from 'path';
 
+import type { Config } from '../../../config';
 import log from '../../../log';
 
-export default (config: RIWConfig) => (): RIWDB => {
+import type { TranslationsDB } from '../';
+
+export default (config: Config) => (): TranslationsDB => {
     const { translationsDatabaseFile: pathDB, rootDir } = config;
 
     const pabsDB = path.resolve(rootDir, pathDB);

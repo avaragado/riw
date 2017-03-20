@@ -2,11 +2,12 @@
 
 import map from 'ramda/src/map';
 
+import type { TranslatedMessageDescriptor, TranslationQuad } from '../../../../types';
 import { sDescriptionDefault } from '../../';
 
-type Transformer = (quads: RIWDBQuad[]) => RIWTranslatedMessageDescriptor[];
+type Transformer = (quads: TranslationQuad[]) => TranslatedMessageDescriptor[];
 
-const fromQuad = (quad: RIWDBQuad): RIWTranslatedMessageDescriptor => ({
+const fromQuad = (quad: TranslationQuad): TranslatedMessageDescriptor => ({
     defaultMessage: quad[0],
     locale: quad[2],
     translation: quad[3],

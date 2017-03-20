@@ -1,10 +1,11 @@
 // @flow
 
+import type { TranslationQuad } from '../../../../../types';
 import arStatusByLidFromQuadAr from '../arStatusByLidFromQuadAr';
 
 type Fixture = {
     name: string,
-    in: RIWDBQuad[],
+    in: TranslationQuad[],
 };
 
 const fixtures: Fixture[] = [

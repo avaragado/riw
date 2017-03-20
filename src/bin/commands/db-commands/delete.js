@@ -6,6 +6,7 @@ import outdent from 'outdent';
 import chalk from 'chalk';
 import pick from 'ramda/src/pick';
 
+import type { RIW, DBListSpec } from '../../..';
 import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
 export const command = 'delete';
@@ -103,7 +104,7 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         process.exit();
     }
 
-    const opt: RIWCLIOptDBDelete = {
+    const opt: DBListSpec = {
         match: pick(['defaultMessage', 'description', 'locale', 'translation'], argv),
     };
 

@@ -1,8 +1,9 @@
 // @flow
 
+import type { TranslationsDB } from '../';
 import version from './version';
 
-const dbEmpty: RIWDB = {
+const dbEmpty: TranslationsDB = {
     version,
     data: {},
 };

@@ -1,12 +1,14 @@
 // @flow
 
+import type { TranslationQuad } from '../../../../../types';
+import type { DBUpdateSpec } from '../../update';
 import arquadUpdateFromQuadAr from '../arquadUpdateFromQuadAr';
 
 type Fixture = {
     name: string,
-    before: RIWDBQuad[],
-    opt: RIWCLIOptDBUpdate,
-    after: RIWDBQuad[],
+    before: TranslationQuad[],
+    opt: DBUpdateSpec,
+    after: TranslationQuad[],
 };
 
 const fixtures: Fixture[] = [

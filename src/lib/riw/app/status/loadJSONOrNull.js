@@ -2,6 +2,8 @@
 
 import fs from 'fs';
 
+import type { AbsolutePath } from '../../../../types';
+
 type Result = Object | any[] | null;
 
 export default (fabs: AbsolutePath): Result => {
