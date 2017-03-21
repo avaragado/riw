@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/transform/armdtFromQuadAr 01 no quads 1`] = `Array []`;
+
+exports[`lib/riw/db/transform/armdtFromQuadAr 02 some quads 1`] = `
+Array [
+  Object {
+    "defaultMessage": "one",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 one",
+  },
+  Object {
+    "defaultMessage": "one",
+    "description": "desc2",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]2 one",
+  },
+  Object {
+    "defaultMessage": "one",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 one",
+  },
+  Object {
+    "defaultMessage": "one",
+    "description": "desc2",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]2 one",
+  },
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 two",
+  },
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 two",
+  },
+  Object {
+    "defaultMessage": "three",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 three",
+  },
+  Object {
+    "defaultMessage": "three",
+    "description": "desc1",
+    "locale": "cc-cc",
+    "translation": "[cc-cc]1 three",
+  },
+  Object {
+    "defaultMessage": "four",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]no desc four",
+  },
+  Object {
+    "defaultMessage": "four",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 four",
+  },
+]
+`;

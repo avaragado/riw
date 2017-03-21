@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bin/utils/createBar 01 1`] = `"[32m          [39m [2m0/100[22m"`;
+
+exports[`bin/utils/createBar 02 1`] = `"[32m⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿[39m [2m200/200[22m"`;
+
+exports[`bin/utils/createBar 03 1`] = `"[32m⣿⣿⣿⣿⣿     [39m [2m50/100[22m"`;
+
+exports[`bin/utils/createBar 04 1`] = `"[32m⣿⣿⡆       [39m [2m19/80[22m"`;
+
+exports[`bin/utils/createBar 05 1`] = `"[32m⣿⣿⡇       [39m [2m20/80[22m"`;
+
+exports[`bin/utils/createBar 06 1`] = `"[32m          [39m [2m1/100[22m"`;
+
+exports[`bin/utils/createBar 07 1`] = `"[32m⡀         [39m [2m2/100[22m"`;
+
+exports[`bin/utils/createBar 08 1`] = `"[32m⣿⣿⣿⣿⣿⡆    [39m [2m54/100[22m"`;

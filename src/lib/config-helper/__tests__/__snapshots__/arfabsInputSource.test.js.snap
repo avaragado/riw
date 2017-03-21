@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/config-helper/arfabsInputSource 01 empty dir -> empty array 1`] = `Array []`;
+
+exports[`lib/config-helper/arfabsInputSource 02 sourceDirs elsewhere -> empty array 1`] = `Array []`;
+
+exports[`lib/config-helper/arfabsInputSource 03 flat files, sourceDirs rel 1`] = `
+Array [
+  "/fixtures/dir/a.js",
+  "/fixtures/dir/b.js",
+]
+`;
+
+exports[`lib/config-helper/arfabsInputSource 04 flat files, sourceDirs abs 1`] = `
+Array [
+  "/fixtures/dir/a.js",
+  "/fixtures/dir/b.js",
+]
+`;
+
+exports[`lib/config-helper/arfabsInputSource 05 nested files, multiple sourceDirs rel 1`] = `
+Array [
+  "/fixtures/dir/a/aa.js",
+  "/fixtures/dir/a/ab.js",
+  "/fixtures/dir/b/ba.js",
+  "/fixtures/dir/b/bb.js",
+]
+`;
+
+exports[`lib/config-helper/arfabsInputSource 06 nested files, multiple sourceDirs rel to parent of configFile 1`] = `
+Array [
+  "/fixtures/dir/a/aa.js",
+  "/fixtures/dir/a/ab.js",
+  "/fixtures/dir/b/ba.js",
+  "/fixtures/dir/b/bb.js",
+]
+`;

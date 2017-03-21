@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/update 01 empty db, no messages to update 1`] = `
+Object {
+  "data": Object {},
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/update 02 adding new message 1`] = `
+Object {
+  "data": Object {
+    "hello": Object {
+      "desc1": Object {
+        "en-re": "olleh",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/update 03 updating message, same locale 1`] = `
+Object {
+  "data": Object {
+    "hello": Object {
+      "desc1": Object {
+        "en-re": "NEW olleh",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/update 04 updating message, new locale 1`] = `
+Object {
+  "data": Object {
+    "hello": Object {
+      "desc1": Object {
+        "en-UPPER": "HELLO",
+        "en-re": "olleh",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/update 05 several messages at once 1`] = `
+Object {
+  "data": Object {
+    "foo": Object {
+      "desc1": Object {
+        "en-re": "oof",
+      },
+      "desc2": Object {
+        "en-UPPER": "FOO",
+      },
+    },
+    "goodbye": Object {
+      "desc1": Object {
+        "en-re": "eybdoog",
+      },
+    },
+    "hello": Object {
+      "desc1": Object {
+        "en-UPPER": "HELLO",
+        "en-re": "olleh",
+      },
+    },
+  },
+  "version": 1,
+}
+`;

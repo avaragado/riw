@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/list 01 defaultMessage match 1`] = `
+Array [
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 two",
+  },
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 two",
+  },
+]
+`;
+
+exports[`lib/riw/db/list 02 description match 1`] = `
+Array [
+  Object {
+    "defaultMessage": "one",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 one",
+  },
+  Object {
+    "defaultMessage": "one",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 one",
+  },
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 two",
+  },
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 two",
+  },
+  Object {
+    "defaultMessage": "three",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 three",
+  },
+  Object {
+    "defaultMessage": "three",
+    "description": "desc1",
+    "locale": "cc-cc",
+    "translation": "[cc-cc]1 three",
+  },
+]
+`;
+
+exports[`lib/riw/db/list 03 locale match 1`] = `
+Array [
+  Object {
+    "defaultMessage": "one",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 one",
+  },
+  Object {
+    "defaultMessage": "one",
+    "description": "desc2",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]2 one",
+  },
+  Object {
+    "defaultMessage": "two",
+    "description": "desc1",
+    "locale": "bb-bb",
+    "translation": "[bb-bb]1 two",
+  },
+]
+`;
+
+exports[`lib/riw/db/list 04 translation match 1`] = `
+Array [
+  Object {
+    "defaultMessage": "three",
+    "description": "desc1",
+    "locale": "cc-cc",
+    "translation": "[cc-cc]1 three",
+  },
+]
+`;
+
+exports[`lib/riw/db/list 05 defaultMessage match for message without desc 1`] = `
+Array [
+  Object {
+    "defaultMessage": "four",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]no desc four",
+  },
+]
+`;
+
+exports[`lib/riw/db/list 06 match with two criteria 1`] = `
+Array [
+  Object {
+    "defaultMessage": "one",
+    "description": "desc1",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]1 one",
+  },
+  Object {
+    "defaultMessage": "one",
+    "description": "desc2",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]2 one",
+  },
+]
+`;
+
+exports[`lib/riw/db/list 07 match message with default desc 1`] = `
+Array [
+  Object {
+    "defaultMessage": "four",
+    "locale": "aa-aa",
+    "translation": "[aa-aa]no desc four",
+  },
+]
+`;

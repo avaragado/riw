@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/riw/db/delete 01 defaultMessage match 1`] = `
+Object {
+  "data": Object {
+    "one": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 one",
+        "bb-bb": "[bb-bb]1 one",
+      },
+      "desc2": Object {
+        "aa-aa": "[aa-aa]2 one",
+        "bb-bb": "[bb-bb]2 one",
+      },
+    },
+    "three": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 three",
+        "cc-cc": "[cc-cc]1 three",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/delete 02 description match 1`] = `
+Object {
+  "data": Object {
+    "one": Object {
+      "desc2": Object {
+        "aa-aa": "[aa-aa]2 one",
+        "bb-bb": "[bb-bb]2 one",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/delete 03 locale match 1`] = `
+Object {
+  "data": Object {
+    "one": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 one",
+      },
+      "desc2": Object {
+        "aa-aa": "[aa-aa]2 one",
+      },
+    },
+    "three": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 three",
+        "cc-cc": "[cc-cc]1 three",
+      },
+    },
+    "two": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 two",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/delete 04 translation match 1`] = `
+Object {
+  "data": Object {
+    "one": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 one",
+        "bb-bb": "[bb-bb]1 one",
+      },
+      "desc2": Object {
+        "aa-aa": "[aa-aa]2 one",
+        "bb-bb": "[bb-bb]2 one",
+      },
+    },
+    "three": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 three",
+      },
+    },
+    "two": Object {
+      "desc1": Object {
+        "aa-aa": "[aa-aa]1 two",
+        "bb-bb": "[bb-bb]1 two",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
