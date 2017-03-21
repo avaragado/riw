@@ -2,11 +2,8 @@
 
 import chalk from 'chalk';
 
+import { name, version } from '../../../package.json';
 import log from '../../lib/log';
-
-// babel-plugin-inline-package-json@2.0.0 only supports require, and only in this icky form.
-const name = require('../../../package.json').name;
-const version = require('../../../package.json').version;
 
 export const command = 'version';
 export const desc = 'Print version information';

@@ -6,7 +6,7 @@ module.exports = {
             quick: 'nps clean && nps build.es5 && nps flow.copySource',
             es5: 'babel --copy-files --out-dir dist --ignore __tests__ src',
         },
-        release: 'standard-version',
+        release: 'nps build && standard-version',
         lint: {
             default: 'concurrently "nps lint.js" "nps flow"',
             js: 'eslint src',

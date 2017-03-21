@@ -11,8 +11,7 @@
     "plugins": [
         "transform-runtime",
         "transform-flow-strip-types",
-        "transform-object-rest-spread",
-        "inline-package-json"
+        "transform-object-rest-spread"
     ],
     "env": {
         // jest needs this
