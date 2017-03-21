@@ -3,7 +3,7 @@
 exports[`lib/config/resolve 01 empty input config 1`] = `
 Object {
   "collateDir": "tmp/babel-plugin-react-intl",
-  "defaultLocale": "en-us",
+  "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "rootDir": ".",
@@ -21,7 +21,7 @@ exports[`lib/config/resolve 02 empty input config with configFile 1`] = `
 Object {
   "collateDir": "tmp/babel-plugin-react-intl",
   "configFile": "/foo/bar/package.json",
-  "defaultLocale": "en-us",
+  "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "rootDir": "/foo/bar",
@@ -38,7 +38,7 @@ Object {
 exports[`lib/config/resolve 03 empty input config with rootDir 1`] = `
 Object {
   "collateDir": "tmp/babel-plugin-react-intl",
-  "defaultLocale": "en-us",
+  "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "rootDir": "/foo/bar",
@@ -56,7 +56,7 @@ exports[`lib/config/resolve 04 empty input config with both configFile and rootD
 Object {
   "collateDir": "tmp/babel-plugin-react-intl",
   "configFile": "/a/b/c/package.json",
-  "defaultLocale": "en-us",
+  "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "rootDir": "/foo/bar",

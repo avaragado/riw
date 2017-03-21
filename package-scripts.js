@@ -2,8 +2,8 @@
 module.exports = {
     scripts: {
         build: {
-            // default: 'nps clean,lint,test,build.es5',
-            default: 'nps clean && nps build.es5 && nps flow.copySource',
+            default: 'nps clean && nps lint && nps test && nps build.es5 && nps flow.copySource',
+            quick: 'nps clean && nps build.es5 && nps flow.copySource',
             es5: 'babel --copy-files --out-dir dist --ignore __tests__ src',
         },
         release: 'standard-version',

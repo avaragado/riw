@@ -12,6 +12,8 @@ This project is not associated with the `react-intl` project.
 
 The word "riw" seems to be Welsh for slope or hill, and rhymes with the English word "drew".
 
+There's an example repository, [`riw-example`](https://github.com/avaragado/riw-example), showing (in its commit history) how to migrate a simple React app with hard-coded strings to `react-intl`, and then how to use riw with it.
+
 
 ## Which problems doesn't riw solve?
 
@@ -33,12 +35,12 @@ riw assumes you're familiar with `react-intl`, and that your app already uses a 
 1. Add to `package.json`:
    ```json5
    "riw": {
-       "defaultLocale": "en-us", // locale of the source strings
-       "targetLocales": ["fr-fr", "pt-br", ...], // other locales the app should support
+       "defaultLocale": "en-US", // locale of the source strings
+       "targetLocales": ["fr-FR", "pt-BR", ...], // other locales the app should support
    }
    ```
 1. `yarn run riw db init` – initialise empty db at `src/locale/riw-db.json`
-1. `yarn run riw app translate` – outputs `src/locale/[locale].json` and `src/locale/TODO-untranslated.json`
+1. `yarn run riw app translate` – outputs `src/locale/[locale].json` and `src/locale/TODO-untranslated.json` (might need to add a `.babelrc` in your app)
 1. Update your app to import strings from `src/locale/[locale].json` for each target locale, and plug them into `react-intl`'s `IntlProvider` at the appropriate time.
 1. LOOP:
 1. Translate everything in the `TODO-untranslated.json` file. Meanwhile, keep developing your app in the usual way.

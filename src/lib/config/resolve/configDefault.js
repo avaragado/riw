@@ -4,7 +4,7 @@ import type { Config } from '../';
 
 export default ({
     rootDir: '.',
-    defaultLocale: 'en-us',
+    defaultLocale: 'en-US',
     targetLocales: [],
     translationsDatabaseFile: 'src/locale/riw-db.json',
     sourceDirs: ['src/**/*.js'],

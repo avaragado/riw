@@ -27,7 +27,7 @@ For options with type `Path` or `Glob`, the string value is a filesystem path. R
 ### `defaultLocale`
 
 - Type: `LocaleId`
-- Default value: `en-us`
+- Default value: `en-US`
 
 The locale id that riw assigns to every `react-intl` message descriptor's `defaultMessage`.
 

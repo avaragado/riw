@@ -7,7 +7,7 @@ A React app usually consists of a large number of components. Each component may
 Default message strings within message descriptors typically have three purposes:
 
 - As **fallbacks**, for use if `react-intl` can't find a string with the correct message descriptor id from the currently defined id/string mappings plugged into `IntlProvider`.
-- As strings in the **default locale** (AKA base locale, master locale, source locale). If your developers or UX engineers use `en-gb` for these strings, consciously or unconsciously, your default locale is `en-gb`.
+- As strings in the **default locale** (AKA base locale, master locale, source locale). If your developers or UX engineers use `en-GB` for these strings, consciously or unconsciously, your default locale is `en-GB`.
 - As the **translation source**, together with any associated descriptions, supplied to a translation service.
 
 With `react-intl`, to translate a component you need to:
@@ -100,7 +100,7 @@ Once riw is installed, you can see the current configuration settings in full us
 $ riw print-config
 {
     "rootDir": "/Users/avaragado/my-react-app",
-    "defaultLocale": "en-us",
+    "defaultLocale": "en-US",
     "targetLocales": [],
     "translationsDatabaseFile": "src/locale/riw-db.json",
     "sourceDirs": [
@@ -119,8 +119,8 @@ Relative paths in your configuration settings are treated as relative to the `ro
 
 The most likely settings you'll want to override are:
 
-- `targetLocales`: The value is an array of locale ids. For example: `["fr-fr", "pt-br"]` for French in France, and Brazilian Portuguese.
-- `defaultLocale`: this defaults to `en-us` but your app might use another locale.
+- `targetLocales`: The value is an array of locale ids. For example: `["fr-FR", "pt-BR"]` for French in France, and Brazilian Portuguese.
+- `defaultLocale`: this defaults to `en-US` but your app might use another locale.
 
 
 ### ➌ Initialise the riw translations database
@@ -155,18 +155,20 @@ Depending on the size of your app, this might take some time to complete. This c
    - If no match is found, it's added to the TODO file.
 1. Reports all the results.
 
+(If you see an "unexpected token" error with a stack trace on running `riw app translate`, you might need to add a `.babelrc` file. [See the FAQ](./faq.md).)
+
 Here's some example output:
 
 ```bash
 ✔ Found 943 message descriptors from 711 files
 ✔ No duplicate message descriptor ids
 ✖ Missing translations: 4715
-✔ Saved /Users/avaragado/my-react-app/src/locale/fr-fr.json
-✔ Saved /Users/avaragado/my-react-app/src/locale/es-es.json
-✔ Saved /Users/avaragado/my-react-app/src/locale/de-de.json
-✔ Saved /Users/avaragado/my-react-app/src/locale/pt-br.json
-✔ Saved /Users/avaragado/my-react-app/src/locale/ja-jp.json
-✔ Saved /Users/avaragado/my-react-app/src/locale/en-us.json
+✔ Saved /Users/avaragado/my-react-app/src/locale/fr-FR.json
+✔ Saved /Users/avaragado/my-react-app/src/locale/es-ES.json
+✔ Saved /Users/avaragado/my-react-app/src/locale/de-DE.json
+✔ Saved /Users/avaragado/my-react-app/src/locale/pt-BR.json
+✔ Saved /Users/avaragado/my-react-app/src/locale/ja-JP.json
+✔ Saved /Users/avaragado/my-react-app/src/locale/en-US.json
 ✔ Saved /Users/avaragado/my-react-app/src/locale/TODO-untranslated.json
 ```
 
@@ -182,7 +184,7 @@ All the missing translations are in the TODO file, by default `src/locale/TODO-u
     "defaultMessage": "Welcome to my wonderful app",
     "description": "Main body heading after user logs in",
     "file": "/Users/avaragado/my-react-app/src/components/Welcome.js",
-    "locale": "fr-fr"
+    "locale": "fr-FR"
 },
 ```
 
@@ -241,7 +243,7 @@ $ riw db import TODO-with-translations.json
 If you can't produce a file in the suitable format for `riw db import`, you can update the database string by string using `riw db update`. For example:
 
 ```bash
-$ riw db update --defaultMessage "Welcome to my wonderful app" --description "Main body heading after user logs in" --locale fr-fr --translation "Bienvenue dans ma merveilleuse application"
+$ riw db update --defaultMessage "Welcome to my wonderful app" --description "Main body heading after user logs in" --locale fr-FR --translation "Bienvenue dans ma merveilleuse application"
 ```
 
 Check any changes to the translations database into source control.
