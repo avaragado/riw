@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 
 import mkdirp from 'mkdirp';
 
@@ -66,8 +67,8 @@ export default (config: Config, notify: Notifier) =>
         const { translationsOutputFile: pathOut } = config;
 
         if (!tof.hasPlaceholder()) {
-            log.error('riw', `Include "${tof.sPlaceholder}" placeholder somewhere in your translationsOutputFile setting.`);
-            log.error('riw', `Current translationsOutputFile setting: ${pathOut}`);
+            log.error('The ', chalk.bold(tof.sPlaceholder), ' placeholder is missing from your ', chalk.bold('translationsOutputFile'), ' setting.');
+            log.error('Current setting: ', chalk.bold(pathOut));
 
             throw new Error(`Configuration error: translationsOutputFile needs "${tof.sPlaceholder}`);
         }
@@ -76,8 +77,9 @@ export default (config: Config, notify: Notifier) =>
 
         try {
             mkdirp.sync(dabsOut);
+
         } catch (err) {
-            log.error('riw', `Unable to create directory ${dabsOut} for riw translations file(s).`);
+            log.error('Unable to create directory ', chalk.bold(dabsOut), ' for riw translation file(s).');
             throw err;
         }
 

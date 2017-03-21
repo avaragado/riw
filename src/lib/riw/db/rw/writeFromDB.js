@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 
 import mkdirp from 'mkdirp';
 
@@ -31,15 +32,17 @@ export default (config: Config, optIn: WriteOpt = {}) => (db: TranslationsDB): v
 
     try {
         mkdirp.sync(dabsDB);
+
     } catch (err) {
-        log.error('riw', `Unable to create directory ${dabsDB} for riw database file.`);
+        log.error('Unable to create directory ', chalk.bold(dabsDB), ' for riw database file.');
         throw err;
     }
 
     try {
         fs.writeFileSync(pabsDB, json, { flag });
     } catch (err) {
-        log.error('riw', `Unable to create riw database file ${pabsDB}. It might already exist.`);
+
+        log.error('Unable to create riw database file ', chalk.bold(pabsDB), '. It might already exist.');
         throw err;
     }
 };

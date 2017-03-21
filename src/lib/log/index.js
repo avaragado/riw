@@ -1,9 +1,12 @@
 // @flow
 
-import log from 'npmlog';
+import chalk from 'chalk';
 
-// levels in order: silly, verbose, info, http, warn, error, silent
+const log = process.env.LOGLEVEL === 'silent'
+    ? () => {}
+    : (...ars: string[]) => console.log(ars.join(''));
 
-log.level = process.env.LOGLEVEL || 'info';
+log.warn = (...ars) => log(chalk.red('WARNING '), ...ars);
+log.error = (...ars) => log(chalk.red.bold('ERROR '), ...ars);
 
 export default log;

@@ -13,6 +13,7 @@ import pick from 'ramda/src/pick';
 import groupBy from 'ramda/src/groupBy';
 
 import type { RIW, DBUpdateSpec } from '../../..';
+import log from '../../../lib/log';
 import { createHandlerWithRIW } from '../../utils';
 
 const cmd = 'import';
@@ -78,7 +79,7 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
 
     try {
         riw.db.update(opt);
-        console.log(outdent`
+        log(outdent`
             - Imported ${chalk.bold(valid.length.toString())} translation(s).
             - Ignored ${chalk.bold(invalid.length.toString())} object(s) missing required keys.
         `);

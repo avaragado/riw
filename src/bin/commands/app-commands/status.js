@@ -10,6 +10,7 @@ import sortBy from 'ramda/src/sortBy';
 import reverse from 'ramda/src/reverse';
 
 import type { RIW, AppStatusResult } from '../../..';
+import log from '../../../lib/log';
 import { createHandlerWithRIW, createBar } from '../../utils';
 
 export const command = 'status';
@@ -158,7 +159,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
         barTotal(ctMessageHave)
     } ${pctComplete}% complete`;
 
-    console.log(outdent`
+    log(outdent`
 
         App settings:
         - Default locale: ${sFromLidAr([riw.config.defaultLocale])}
@@ -172,7 +173,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     `);
 
     if (ctTodo > 0) {
-        console.log(outdent`
+        log(outdent`
             Todo file contains:
             - ${chalk.bold(ctTodo.toString())} messages to translate
             - ${chalk.bold(arlidTodo.length.toString())} locales – ${sFromLidAr(arlidTodo)}

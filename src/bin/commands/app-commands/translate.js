@@ -10,6 +10,7 @@ import chalk from 'chalk';
 
 import type { AbsolutePath, MessageDescriptorWithFile } from '../../../types';
 import type { RIW, Config, AppTranslateSpec, TranslationLookupResult, DuplicateIdData } from '../../..';
+import log from '../../../lib/log';
 import { createHandlerWithRIW, createBar } from '../../utils';
 
 export const command = 'translate';
@@ -85,7 +86,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
             endDupCheck: (dups: DuplicateIdData[]) => {
                 if (dups.length) {
                     spinner.fail(`Duplicate message descriptor ids (${dups.length}):`);
-                    console.log(dups.map(
+                    log(dups.map(
                         dup => outdent`
                             ${outdent}
                               - ${chalk.red.bold(dup.id)} used in:

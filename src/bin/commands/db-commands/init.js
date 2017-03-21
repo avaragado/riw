@@ -3,6 +3,7 @@
 import type yargs from 'yargs';
 
 import outdent from 'outdent';
+import chalk from 'chalk';
 
 import log from '../../../lib/log';
 import type { RIW } from '../../..';
@@ -23,6 +24,6 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 export const handler = createHandlerWithRIW((riw: RIW) => {
     riw.db.init();
 
-    log.info('riw', `Created empty riw database file ${riw.config.translationsDatabaseFile}.`);
-    log.info('riw', 'We recommend you check this file into git.');
+    log('Created empty riw database file ', chalk.bold(riw.config.translationsDatabaseFile));
+    log('We recommend you check this file into git.');
 });

@@ -7,6 +7,7 @@ import chalk from 'chalk';
 import pick from 'ramda/src/pick';
 
 import type { RIW, DBListSpec } from '../../..';
+import log from '../../../lib/log';
 import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
 export const command = 'list';
@@ -124,18 +125,11 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     if (argv.json) {
         console.log(JSON.stringify(armdt, null, 4));
 
-    } else {
-        if (armdt.length > 0) {
-            console.log(
-                chalk.bold('\nMatches [%d]:\n'),
-                armdt.length,
-            );
-        } else {
-            console.log(
-                chalk.bold('No matches'),
-            );
-        }
+    } else if (armdt.length > 0) {
+        log(chalk.bold(`\nMatches [${armdt.length.toString()}]:\n`));
+        log(prettifyMdtAr(armdt));
 
-        console.log(prettifyMdtAr(armdt));
+    } else {
+        log(chalk.bold('No matches'));
     }
 });

@@ -1,6 +1,7 @@
 // @flow
 
 import path from 'path';
+import chalk from 'chalk';
 
 import type { Path, AbsolutePath } from '../../../types';
 import type { ConfigSparse, ConfigSparseWithSource } from '../../config';
@@ -16,7 +17,7 @@ export default (pathConfig: Path): ?ConfigSparseWithSource => {
         };
 
     } catch (err) {
-        log.error('riw', 'File not found: %j.', fabs);
+        log.error('File not found: ', chalk.bold(fabs));
         return null;
     }
 };

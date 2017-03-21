@@ -6,7 +6,10 @@ import pathOr from 'ramda/src/pathOr';
 import compose from 'ramda/src/compose';
 
 import type { AbsolutePath } from '../../../../types';
+import log from '../../../log';
+
 import type { MessageDescriptorsFromFile } from './extract';
+
 
 const outputBabelFromFabs = (fabs: AbsolutePath): babel.BabelFileResult => {
     try {
@@ -15,7 +18,7 @@ const outputBabelFromFabs = (fabs: AbsolutePath): babel.BabelFileResult => {
         });
 
     } catch (err) {
-        console.log(err);
+        log.error(err);
         throw err;
     }
 };

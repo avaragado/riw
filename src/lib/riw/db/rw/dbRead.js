@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 
 import type { Config } from '../../../config';
 import log from '../../../log';
@@ -18,7 +19,7 @@ export default (config: Config) => (): TranslationsDB => {
         sDB = fs.readFileSync(pabsDB, 'utf8').toString();
 
     } catch (err) {
-        log.error('riw', `Unable to read riw database file ${pabsDB}.`);
+        log.error('Unable to read riw database file ', chalk.bold(pabsDB));
         throw err;
     }
 
@@ -26,7 +27,8 @@ export default (config: Config) => (): TranslationsDB => {
         return JSON.parse(sDB);
 
     } catch (err) {
-        log.error('riw', `Unable to parse riw database file ${pabsDB}. Could be malformed JSON.`);
+        log.error('Unable to parse riw database file ', chalk.bold(pabsDB));
+        log.error('Could be malformed JSON.');
         throw err;
     }
 };

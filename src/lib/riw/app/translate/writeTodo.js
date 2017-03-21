@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 
 import mkdirp from 'mkdirp';
 
@@ -21,8 +22,9 @@ export default (config: Config, notify: string => string => string) =>
 
         try {
             mkdirp.sync(dabsOut);
+
         } catch (err) {
-            log.error('riw', `Unable to create directory ${dabsOut} for riw todo file(s).`);
+            log.error('Unable to create directory ', chalk.bold(dabsOut), ' for riw TODO file.');
             throw err;
         }
 

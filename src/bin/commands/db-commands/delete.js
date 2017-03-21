@@ -7,6 +7,7 @@ import chalk from 'chalk';
 import pick from 'ramda/src/pick';
 
 import type { RIW, DBListSpec } from '../../..';
+import log from '../../../lib/log';
 import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
 export const command = 'delete';
@@ -100,7 +101,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 
 export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     if (!(argv.defaultMessage || argv.description || argv.locale || argv.translation)) {
-        console.log('You must supply an option.');
+        log.error('You must supply an option.');
         process.exit();
     }
 
@@ -119,18 +120,12 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         }
 
         if (armdt.length > 0) {
-            console.log(
-                chalk.bold('To be deleted [%d]:\n'),
-                armdt.length,
-            );
+            log(chalk.bold(`To be deleted [${armdt.length.toString()}]:\n`));
+            log(prettifyMdtAr(armdt));
 
         } else {
-            console.log(
-                chalk.bold('No matches'),
-            );
+            log(chalk.bold('No matches'));
         }
-
-        console.log(prettifyMdtAr(armdt));
 
     } else {
         try {

@@ -6,6 +6,7 @@ import outdent from 'outdent';
 import chalk from 'chalk';
 
 import type { RIW, DBStatusResult } from '../../..';
+import log from '../../../lib/log';
 import { createHandlerWithRIW, createBar } from '../../utils';
 
 export const command = 'status';
@@ -43,7 +44,7 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     }
 
     if (status.default.length === 0) {
-        console.log(outdent`
+        log(outdent`
             Database is empty.
             Use ${chalk.bold('riw db update')} or ${chalk.bold('riw db import')} to add entries.
         `);
@@ -69,7 +70,7 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
 
     const hasMissing = lid => status.locale[lid].missing.length > 0;
 
-    console.log(outdent`
+    log(outdent`
         Database contains:
         - ${chalk.bold(status.default.length.toString())} distinct message/description pairs
         - ${chalk.bold(arlid.length.toString())} locales with translations – ${arlid.map(bold).join(', ')}
@@ -82,13 +83,13 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         const arlidMissing = arlid.filter(hasMissing);
 
         if (arlidMissing.length > 0) {
-            console.log(outdent`
+            log(outdent`
 
                 Missing translations:
                 ${arlidMissing.map(missing).join('\n')}
             `);
         } else {
-            console.log(outdent`
+            log(outdent`
 
                 🎉  There are no missing translations.
             `);
