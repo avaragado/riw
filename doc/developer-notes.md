@@ -73,7 +73,7 @@ There's a one-to-many mapping between Flow types and variable naming prefixes. F
 | `db` | `TranslationsDB` | An riw translation database object |
 | `opt` | `Object` | An options object; may have a more specific Flow type in some circumstances |
 | `quad` | `TranslationQuad` | A tuple describing a default message, description, locale and translation |
-| `lid` | `LocaleId` | A locale id, eg `en-gb` or `pt-br` |
+| `lid` | `LocaleId` | A locale id, eg `en-GB` or `pt-BR` |
 | `md` | `MessageDescriptorWithFile` | A `react-intl` message descriptor plus a `file` property indicating the file the message descriptor came from |
 | `mdu` | `UntranslatedMessageDescriptor` | A `react-intl` message descriptor plus a `locale` property indicating a locale to which the message descriptor is not yet translated |
 | `mdt` | `TranslatedMessageDescriptor` | A `defaultMessage` and (optional) `description` as in a message descriptor, plus a `locale` property and a `translation` property with the message translated to that locale |

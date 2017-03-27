@@ -4,7 +4,7 @@ This document assumes you've read [Installing, configuring and using riw](doc/tu
 
 
 ```js
-import createRIW from 'riw';
+import { createRIW } from 'riw';
 
 const riw = createRIW(configOverrides);
 

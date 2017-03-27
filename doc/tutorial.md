@@ -2,7 +2,7 @@
 
 ## Overview
 
-A React app usually consists of a large number of components. Each component may display messages to the user. When we internationalise a component with `react-intl` we typically remove these strings from the innards of a render method and define them separately, but nearby, as `react-intl` message descriptors: objects with a unique id, default message (the string), and optional description (important context for translators).
+A React app usually consists of a large number of components. Each component may display messages to the user. When we internationalise a component with `react-intl` we typically remove these strings from the innards of a render method and define them separately – but nearby – as `react-intl` message descriptors: objects with a unique id, a default message (the string), and an optional description (important context for translators).
 
 Default message strings within message descriptors typically have three purposes:
 
@@ -31,9 +31,9 @@ Importantly, riw fits into your current development process and does not constra
 
 - **Default locale**: The locale of your app's `react-intl` default messages (the `defaultMessage` strings of message descriptors). This is usually but not necessarily a user-selectable locale for your app.
 
-- **Target locale**: A locale you want your app to support (other than the default locale).
+- **Target locale**: A locale, other than the default locale, you want your app to support.
 
-- **Locale id**: This document uses `ll-tt` format for locale ids: lower case for locale and for territory/region, with a dash as separator. You can use any string format you want, eg `lll_TTT`, BUT you must be consistent. In particular, you must use the same format in your app and for the translations database.
+- **Locale id**: This document uses `ll-TT` format for locale ids: lower case for locale and upper case for territory/region, with a dash as separator. You can use any string format you want, eg `lll_ttt`, BUT you must be consistent. In particular, you must use the same format in your app and for the translations database.
 
 ## Using riw
 
@@ -88,7 +88,7 @@ riw has a small number of [configuration settings](./config.md), and you can sto
 | As the default export of a module `.riw-config.js` in the same directory as your `package.json` file | Use this if you need to derive any configuration settings programmatically |
 | As the default export of a module elsewhere | Use this if you can't use either method above. You'll need to run the `riw` command with the `--config` option to locate the file. |
 
-riw doesn't combine these locations: if you specify `--config`, riw won't look in `package.json` or `.riw-config.js`. If you omit `--config` and there's a `.riw-config` file, riw won't look in `package.json`.
+riw doesn't combine these locations: if you specify `--config`, riw won't look in `package.json` or `.riw-config.js`. If you omit `--config` and there's a `.riw-config.js` file, riw won't look in `package.json`.
 
 riw uses the configuration from one of these locations to override the default settings. See [riw configuration](./config.md) for all the settings and their defaults.
 
@@ -125,9 +125,9 @@ The most likely settings you'll want to override are:
 
 ### ➌ Initialise the riw translations database
 
-Many apps can share a translations database, potentially reducing translation costs. If you already have a translations database, include the path in your riw configuration settings and ignore this section.
+Many apps can share a riw translations database, potentially reducing translation costs. If you already have a riw translations database, include the path in your riw configuration settings and ignore this section.
 
-If you don't already have a translations database, set one up now:
+If you don't already have a riw translations database, set one up now:
 
 ```bash
 $ riw db init
@@ -148,9 +148,9 @@ $ riw app translate
 
 Depending on the size of your app, this might take some time to complete. This command:
 
-1. Finds all `react-intl` message descriptors in your app. (By default, it uses the `react-intl` babel plugin to extract them from your code. If you have a build system that already does this, you can instead configure riw to pick up the JSON files this plugin outputs.)
+1. Finds all `react-intl` message descriptors in your app. (By default, it uses the `react-intl` babel plugin to extract them from your code. If you have a build system that already does this, perhaps using webpack, you can instead configure riw to pick up the JSON files this plugin outputs.)
 1. Reports any duplicate message descriptor ids it finds. (`react-intl` leaves ids up to you, and it's easy to accidentally duplicate them, leading to confusing messages in your app.)
-1. Looks up every message descriptor's defaultMessage and description (if present) in the translations database, for each of your app's target locales.
+1. Looks up every message descriptor's `defaultMessage` and `description` (if present) in the riw translations database, for each of your app's target locales.
    - If a match is found, it's output in the appropriate locale file.
    - If no match is found, it's added to the TODO file.
 1. Reports all the results.
@@ -172,7 +172,7 @@ Here's some example output:
 ✔ Saved /Users/avaragado/my-react-app/src/locale/TODO-untranslated.json
 ```
 
-Unsurprisingly, as your translations database is empty, you have lots of missing translations! If you look at the files in `src/locale`, you'll see that most of them are small: empty objects, `{}`.
+With a newly initialised database (which is empty), running `riw app translate` unsurprisingly reports lots of missing translations. But it creates a JSON file for each locale anyway, even if it contains no strings. If you look at the files in `src/locale` now, you'll see that most of them are small: empty objects, `{}`.
 
 However, the file for your default locale is complete: it contains mappings from `react-intl` id to strings for all the default messages currently defined in your code.
 
@@ -192,7 +192,7 @@ Check all these files into your source control system.
 
 ### ➎ Update your app to load strings from the output files
 
-... and plug those strings and the current locale into the `react-intl` `IntlProvider` component.
+... and to plug those strings and the current locale into the `react-intl` `IntlProvider` component.
 
 How you do this depends on your app.
 
@@ -223,16 +223,29 @@ Different translation services have different requirements. The objects in the T
 
 ### ➏.➋ Update the riw translations database
 
-**Caution** Sanity check all results from translators. [See the FAQ](./faq.md) for tips.
+**Caution:** Sanity check all results from translators. [See the FAQ](./faq.md) for tips.
 
-Translation services return completed translations in different ways. riw needs this data for each string:
+Translation services return completed translations in different ways. For each individual translation, riw needs:
 
 - The string in the default locale that was supplied to the translation service
 - The description that was supplied to the translation service, if any
 - The locale for the translation
 - The result of the translation
 
-The ideal format: a JSON file with an array of objects, where each object has _at least_ the properties `defaultMessage`, `description` (if supplied to translators), `locale`, and `translation`. (The TODO file, augmented with a `translation` property for each object, works well.)
+The ideal format: a JSON file with an array of objects, where each object has _at least_ the properties `defaultMessage`, `description` (if supplied to translators), `locale`, and `translation`. The TODO file, augmented with a `translation` property for each object, works well. Here's an example of that (the properties `id` and `file` would be ignored here):
+
+```json
+[
+    {
+        "id": "app.greeting",
+        "defaultMessage": "Welcome to my wonderful app",
+        "description": "Main body heading after user logs in",
+        "file": "/Users/avaragado/my-react-app/src/components/Welcome.js",
+        "locale": "fr-FR",
+        "translation": "Bienvenue dans ma merveilleuse application",
+    }
+]
+```
 
 If you have a file in the ideal format, say `TODO-with-translations.json`, you can update the translations database with the command:
 
@@ -245,6 +258,8 @@ If you can't produce a file in the suitable format for `riw db import`, you can 
 ```bash
 $ riw db update --defaultMessage "Welcome to my wonderful app" --description "Main body heading after user logs in" --locale fr-FR --translation "Bienvenue dans ma merveilleuse application"
 ```
+
+Running `riw db update` multiple times is much slower than running `riw db import`.
 
 Check any changes to the translations database into source control.
 

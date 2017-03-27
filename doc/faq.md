@@ -27,7 +27,7 @@ The goal of a description is to give context to a translator. In many cases this
 
 Context is more important with short messages, especially where words in the default locale act as both verbs and nouns, for example. Also, where messages include arguments in braces, it's often helpful to explain what the argument represents.
 
-Example: the word "Email" is used in en-gb in multiple ways:
+Example: the word "Email" is used in en-GB in multiple ways:
 
 - noun: A single email, as in "I've sent you an email"
 - noun: Multiple emails, as in "I have too much email".
