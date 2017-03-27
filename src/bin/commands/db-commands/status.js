@@ -4,10 +4,11 @@ import type yargs from 'yargs';
 
 import outdent from 'outdent';
 import chalk from 'chalk';
+import { bardot } from 'bardot';
 
 import type { RIW, DBStatusResult } from '../../..';
 import log from '../../../lib/log';
-import { createHandlerWithRIW, createBar } from '../../utils';
+import { createHandlerWithRIW } from '../../utils';
 
 export const command = 'status';
 export const desc = 'Show information about translations in the database';
@@ -56,9 +57,11 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         (lid1, lid2) => status.locale[lid2].has.length - status.locale[lid1].has.length,
     );
     const ctCharMax = Math.max.apply(null, arlid.map(lid => lid.length));
-    const bar = createBar(status.default.length, 60);
+    const bar = bardot
+        .widthFill(ctCharMax + 4) // leave room for '- ', padded locale, '  '
+        .maximum(status.default.length);
 
-    const summary = lid => `- ${chalk.bold(lid.padEnd(ctCharMax + 2))}${bar(status.locale[lid].has.length)}`;
+    const summary = lid => `- ${chalk.bold(lid.padEnd(ctCharMax + 2))}${bar.current(status.locale[lid].has.length).toString()}`;
 
     const missingPair = pair => `  - ${chalk.bold.blue(pair[0])} ${chalk.dim(pair[1])}`;
 

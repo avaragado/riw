@@ -24,3 +24,6 @@ module.ignore_non_literal_requires=true
 
 # used by flow-coverage-report
 suppress_comment=.*\\$FLOW_FIXME
+
+# default suppression (needed as we customise above)
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

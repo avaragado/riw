@@ -7,11 +7,12 @@ import type yargs from 'yargs';
 import outdent from 'outdent';
 import ora from 'ora';
 import chalk from 'chalk';
+import { bardot } from 'bardot';
 
 import type { AbsolutePath, MessageDescriptorWithFile } from '../../../types';
 import type { RIW, Config, AppTranslateSpec, TranslationLookupResult, DuplicateIdData } from '../../..';
 import log from '../../../lib/log';
-import { createHandlerWithRIW, createBar } from '../../utils';
+import { createHandlerWithRIW } from '../../utils';
 
 export const command = 'translate';
 export const desc = 'Generate JSON containing translations for the app';
@@ -35,14 +36,23 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 const sfrelFromFabsFromConfig = (config: Config) => (fabs: AbsolutePath) =>
     chalk.green(path.relative(config.rootDir, fabs));
 
+const squashToLength = (ctCharMax: number) => (str: string) => (
+    str.length > ctCharMax
+    ? `${str.slice(0, (ctCharMax / 2) - 3)}...${str.slice(-ctCharMax / 2)}`
+    : str
+);
+
 export const handler = createHandlerWithRIW((riw: RIW) => {
+    // $FlowFixMe flow moans at process.stdout.columns, no idea how to fix
+    const ctCharLine = process.stdout.columns;
     const sfrelFromFabs = sfrelFromFabsFromConfig(riw.config);
+    const squash = squashToLength(ctCharLine / 2);
 
     const spinner = ora();
     let ctFile;
     let numFile = 0;
     let ctMD = 0;
-    let bar;
+    let bar = bardot.widthBar((ctCharLine / 2) - 10); // leave room for ctMD
 
     const opt: AppTranslateSpec = {
         on: {
@@ -56,16 +66,16 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
             },
             startExtract: (arfabs) => {
                 ctFile = arfabs.length;
-                bar = createBar(ctFile);
+                bar = bar.maximum(ctFile);
                 spinner.text = `Processing ${ctFile} files...`;
             },
             startExtractFile: (fabs) => {
                 numFile += 1;
-                spinner.text = `${bar(numFile)} [${ctMD}] ${sfrelFromFabs(fabs)}`;
+                spinner.text = `${bar.current(numFile).toString()} [${ctMD}] ${squash(sfrelFromFabs(fabs))}`;
             },
             endExtractFile: ({ armd, fabs }) => {
                 ctMD += armd.length;
-                spinner.text = `${bar(numFile)} [${ctMD}] ${sfrelFromFabs(fabs)}`;
+                spinner.text = `${bar.current(numFile).toString()} [${ctMD}] ${squash(sfrelFromFabs(fabs))}`;
                 spinner.render();
             },
             endExtract: (armd: MessageDescriptorWithFile[]) => {

@@ -8,10 +8,11 @@ import chalk from 'chalk';
 import sum from 'ramda/src/sum';
 import sortBy from 'ramda/src/sortBy';
 import reverse from 'ramda/src/reverse';
+import { bardot, template } from 'bardot';
 
 import type { RIW, AppStatusResult } from '../../..';
 import log from '../../../lib/log';
-import { createHandlerWithRIW, createBar } from '../../utils';
+import { createHandlerWithRIW } from '../../utils';
 
 export const command = 'status';
 export const desc = 'Show information about translations in your app';
@@ -36,7 +37,6 @@ export const builder = (yyargs: yargs.Argv) => yyargs
         },
     });
 
-const ctCharBar = 60;
 const sAbsent = chalk.red('(absent)');
 const sTotal = 'TOTAL';
 
@@ -129,10 +129,21 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
 
     const ctMessageHave = ctDefault + sum(arlidTarget.map(lid => target[lid] || 0));
     const ctMessageWant = ctDefault * (1 + riw.config.targetLocales.length);
-    const pctComplete = Math.round((100 * ctMessageHave) / ctMessageWant);
 
-    const barTarget = createBar(ctDefault, ctCharBar);
-    const barTotal = createBar(ctMessageWant, ctCharBar);
+    // fill the line.
+    // can't use bardot's widthFill as we want bars with different numbers to line up.
+    // $FlowFixMe flow moans at process.stdout.columns, no idea how to fix
+    const ctCharBar = process.stdout.columns
+        - padder('').length  // space for locale
+        - (ctMessageWant.toString().length * 2) // space for TOTAL numbers
+        - 19; // space derived from remaining spaces and the "% complete" suffix
+    const barTarget = bardot
+        .maximum(ctDefault)
+        .widthBar(ctCharBar);
+    const barTotal = bardot
+        .maximum(ctMessageWant)
+        .widthBar(ctCharBar)
+        .template(template.barCurMaxPct);
 
     const arlidTodo = Object.keys(todo || {});
     const ctTodo = todo == null ? 0 : sum(arlidTodo.map(lid => todo[lid].length));
@@ -140,7 +151,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     const summaryDefault = `- ${
         chalk.bold(padder(riw.config.defaultLocale))
     }${
-        barTarget(ctDefault)
+        barTarget.current(ctDefault).toString()
     } ${
         chalk.dim('total messages')
     }`;
@@ -148,7 +159,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     const summaryTarget = lid => `- ${
         chalk.bold(padder(lid))
     }${
-        barTarget(target[lid] || 0)
+        barTarget.current(target[lid] || 0).toString()
     }${
         absent(target[lid])
     }`;
@@ -156,8 +167,8 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     const summaryTotal = `- ${
         chalk.bold(padder(sTotal))
     }${
-        barTotal(ctMessageHave)
-    } ${pctComplete}% complete`;
+        barTotal.current(ctMessageHave).toString()
+    } complete`;
 
     log(outdent`
 
