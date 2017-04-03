@@ -74,12 +74,14 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
     const hasMissing = lid => status.locale[lid].missing.length > 0;
 
     log(outdent`
+
         Database contains:
         - ${chalk.bold(status.default.length.toString())} distinct message/description pairs
         - ${chalk.bold(arlid.length.toString())} locales with translations – ${arlid.map(bold).join(', ')}
 
         Locale summary:
         ${arlid.map(summary).join('\n')}
+
     `);
 
     if (argv.missing) {
@@ -87,14 +89,14 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
 
         if (arlidMissing.length > 0) {
             log(outdent`
-
                 Missing translations:
                 ${arlidMissing.map(missing).join('\n')}
+
             `);
         } else {
             log(outdent`
-
                 🎉  There are no missing translations.
+
             `);
         }
     }
