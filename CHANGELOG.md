@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/avaragado/riw/compare/v0.4.2...v0.5.0) (2017-04-04)
+
+
+### Features
+
+* **cli:** defer to package dependency if both global/local install ([dfb96d1](https://github.com/avaragado/riw/commit/dfb96d1)), closes [#4](https://github.com/avaragado/riw/issues/4)
+
+
+
 <a name="0.4.2"></a>
 ## [0.4.2](https://github.com/avaragado/riw/compare/v0.4.1...v0.4.2) (2017-04-03)
 
