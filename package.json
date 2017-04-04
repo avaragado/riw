@@ -19,7 +19,7 @@
   ],
   "main": "./dist/index.js",
   "bin": {
-    "riw": "./dist/bin/riw.js"
+    "riw": "./dist/bin/cli-shim.js"
   },
   "files": [
     "dist/",
@@ -55,7 +55,7 @@
     "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "flow-bin": "^0.42.0",
+    "flow-bin": "^0.43.0",
     "flow-copy-source": "^1.1.0",
     "flow-coverage-report": "^0.3.0",
     "flow-typed": "^2.0.0",
@@ -72,6 +72,7 @@
     "babel-runtime": "^6.23.0",
     "bardot": "^0.2.1",
     "chalk": "^1.1.3",
+    "fallback-cli": "^2.0.2",
     "find-up": "^2.1.0",
     "glob": "^7.1.1",
     "mkdirp": "^0.5.1",

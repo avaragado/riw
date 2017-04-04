@@ -56,7 +56,7 @@ Let's look at each of these in turn.
 
 ### ➊ Install riw
 
-You can install riw as a package dependency or globally.
+You can install riw as a package dependency or globally, or both.
 
 ```bash
 $ yarn add --dev riw   # or yarn global add riw
@@ -68,15 +68,22 @@ or
 $ npm install --save-dev riw   # use npm -g for global
 ```
 
-If installed globally, `riw` does NOT defer to a local package dependency if there is one. These instructions assume you've installed riw as a package dependency.
-
 Installing riw gives you a script for use from the command line, and a [library for use programmatically](./library.md).
 
-The script is installed at `node_modules/.bin/riw`.  Users of `yarn` can run the script easily:
+When installed as a package dependency, users of `yarn` can run the script easily:
 
 ```bash
-$ yarn run riw
+$ yarn run riw help
 ```
+
+When installed globally, you can run `riw` directly:
+
+```bash
+$ riw help
+```
+
+If installed both globally and as a package dependency, running `riw` directly will run the package dependency. These instructions assume you can run `riw` directly.
+
 
 ### ➋ Define your riw configuration settings
 
@@ -115,7 +122,7 @@ $ riw print-config
 }
 ```
 
-Relative paths in your configuration settings are treated as relative to the `rootDir` output by `riw print-config`.
+Relative paths in your configuration settings are treated as relative to the `rootDir` output by `riw print-config` (usually the directory containing `package.json`).
 
 The most likely settings you'll want to override are:
 
@@ -155,7 +162,7 @@ Depending on the size of your app, this might take some time to complete. This c
    - If no match is found, it's added to the TODO file.
 1. Reports all the results.
 
-(If you see an "unexpected token" error with a stack trace on running `riw app translate`, you might need to add a `.babelrc` file. [See the FAQ](./faq.md).)
+(If you see an "unexpected token" error on running `riw app translate`, you might need to add a `.babelrc` file. [See the FAQ](./faq.md).)
 
 Here's some example output:
 
