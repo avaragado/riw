@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/avaragado/riw/compare/v0.5.0...v0.6.0) (2017-04-11)
+
+
+### Features
+
+* support objects as descriptions in react-intl message descriptors ([adc45a6](https://github.com/avaragado/riw/commit/adc45a6)), closes [#2](https://github.com/avaragado/riw/issues/2)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/avaragado/riw/compare/v0.4.2...v0.5.0) (2017-04-04)
 
