@@ -54,7 +54,28 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '03 updating message, same locale',
+        name: '03 adding new message with object description',
+        in: {
+            version: 1,
+            data: {},
+        },
+        opt: {
+            translations: [
+                {
+                    defaultMessage: 'hello',
+                    description: {
+                        label: 'desc1',
+                        foo: 123,
+                    },
+                    locale: 'en-re',
+                    translation: 'olleh',
+                },
+            ],
+        },
+    },
+
+    {
+        name: '04 updating message, same locale',
         in: {
             version: 1,
             data: {
@@ -78,7 +99,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '04 updating message, new locale',
+        name: '05 updating message, new locale',
         in: {
             version: 1,
             data: {
@@ -102,7 +123,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '05 several messages at once',
+        name: '06 several messages at once',
         in: {
             version: 1,
             data: {
@@ -135,7 +156,11 @@ const fixtures: Fixture[] = [
                 },
                 {
                     defaultMessage: 'foo',
-                    description: 'desc2',
+                    description: {
+                        z: 1,
+                        a: 2,
+                        ddd: 'desc2',
+                    },
                     locale: 'en-UPPER',
                     translation: 'FOO',
                 },

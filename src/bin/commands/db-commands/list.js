@@ -7,6 +7,7 @@ import chalk from 'chalk';
 import pick from 'ramda/src/pick';
 
 import type { RIW, DBListSpec } from '../../..';
+import { sDescriptionDefault } from '../../../';
 import log from '../../../lib/log';
 import { createHandlerWithRIW, prettifyMdtAr } from '../../utils';
 
@@ -41,20 +42,20 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     .example(
         outdent`
             $0 ${here}
-                --locale fr-fr
+                --locale fr-FR
                 --json
 
         `,
-        'Lists all database entries for translations into fr-fr, and outputs as JSON',
+        'Lists all database entries for translations into fr-FR, and outputs as JSON',
     )
     .example(
         outdent`
             $0 ${here}
                 --description _
-                --locale pt-br
+                --locale pt-BR
 
         `,
-        'Lists all database entries for translations into pt-br with the default description, _, and outputs in readable form',
+        `Lists all database entries for translations into pt-BR with the default description, ${sDescriptionDefault}, and outputs in readable form`,
     )
     .options({
         defaultMessage: {
@@ -74,7 +75,9 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             desc: outdent`
                 List entries with this description.
                 Omit to match any description.
+                Prefix with "JSON": to parse remainder as JSON.
             `,
+            coerce: (arg: string) => (arg.startsWith('JSON:') ? JSON.parse(arg.slice(5)) : arg),
         },
 
         locale: {

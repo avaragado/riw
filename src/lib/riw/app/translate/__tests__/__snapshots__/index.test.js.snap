@@ -86,6 +86,14 @@ Object {
       "id": "b.2",
     },
     Object {
+      "defaultMessage": "b.3!",
+      "description": Object {
+        "label": "b.3 desc",
+      },
+      "file": "/fixtures/dir/b.js",
+      "id": "b.3",
+    },
+    Object {
       "defaultMessage": "b.2 again!",
       "description": "b.2 again desc",
       "file": "/fixtures/dir/bb.js",
@@ -123,11 +131,13 @@ Object {
       "en-up": Object {
         "a.1": "A.1!",
         "b.2": "B.2!",
+        "b.3": "B.3!",
       },
       "en-us": Object {
         "a.1": "a.1 again!",
         "b.1": "b.1!",
         "b.2": "b.2 again!",
+        "b.3": "b.3!",
         "c.1": "c.1!",
       },
     },
@@ -158,6 +168,15 @@ Object {
         "description": "b.2 desc",
         "file": "/fixtures/dir/b.js",
         "id": "b.2",
+        "locale": "en-ne",
+      },
+      Object {
+        "defaultMessage": "b.3!",
+        "description": Object {
+          "label": "b.3 desc",
+        },
+        "file": "/fixtures/dir/b.js",
+        "id": "b.3",
         "locale": "en-ne",
       },
       Object {
@@ -211,11 +230,13 @@ Array [
   Object {
     "a.1": "A.1!",
     "b.2": "B.2!",
+    "b.3": "B.3!",
   },
   Object {
     "a.1": "a.1 again!",
     "b.1": "b.1!",
     "b.2": "b.2 again!",
+    "b.3": "b.3!",
     "c.1": "c.1!",
   },
   Array [
@@ -242,6 +263,15 @@ Array [
       "description": "b.2 desc",
       "file": "/fixtures/dir/b.js",
       "id": "b.2",
+      "locale": "en-ne",
+    },
+    Object {
+      "defaultMessage": "b.3!",
+      "description": Object {
+        "label": "b.3 desc",
+      },
+      "file": "/fixtures/dir/b.js",
+      "id": "b.3",
       "locale": "en-ne",
     },
     Object {
@@ -299,6 +329,14 @@ Object {
       "id": "b.2",
     },
     Object {
+      "defaultMessage": "b.3!",
+      "description": Object {
+        "label": "b.3 desc",
+      },
+      "file": "/fixtures/dir/b.json",
+      "id": "b.3",
+    },
+    Object {
       "defaultMessage": "b.2 again!",
       "description": "b.2 again desc",
       "file": "/fixtures/dir/bb.json",
@@ -335,11 +373,13 @@ Object {
       "en-up": Object {
         "a.1": "A.1!",
         "b.2": "B.2!",
+        "b.3": "B.3!",
       },
       "en-us": Object {
         "a.1": "a.1 again!",
         "b.1": "b.1!",
         "b.2": "b.2 again!",
+        "b.3": "b.3!",
         "c.1": "c.1!",
       },
     },
@@ -367,6 +407,15 @@ Object {
         "description": "b.2 desc",
         "file": "/fixtures/dir/b.json",
         "id": "b.2",
+        "locale": "en-ne",
+      },
+      Object {
+        "defaultMessage": "b.3!",
+        "description": Object {
+          "label": "b.3 desc",
+        },
+        "file": "/fixtures/dir/b.json",
+        "id": "b.3",
         "locale": "en-ne",
       },
       Object {
@@ -418,11 +467,13 @@ Array [
   Object {
     "a.1": "A.1!",
     "b.2": "B.2!",
+    "b.3": "B.3!",
   },
   Object {
     "a.1": "a.1 again!",
     "b.1": "b.1!",
     "b.2": "b.2 again!",
+    "b.3": "b.3!",
     "c.1": "c.1!",
   },
   Array [
@@ -449,6 +500,15 @@ Array [
       "description": "b.2 desc",
       "file": "/fixtures/dir/b.json",
       "id": "b.2",
+      "locale": "en-ne",
+    },
+    Object {
+      "defaultMessage": "b.3!",
+      "description": Object {
+        "label": "b.3 desc",
+      },
+      "file": "/fixtures/dir/b.json",
+      "id": "b.3",
       "locale": "en-ne",
     },
     Object {

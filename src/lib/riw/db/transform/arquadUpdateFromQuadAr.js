@@ -4,11 +4,11 @@ import map from 'ramda/src/map';
 
 import type { TranslatedMessageDescriptor, TranslationQuad } from '../../../../types';
 import type { DBUpdateSpec } from '../update';
-import { sDescriptionDefault } from '../../';
+import { descriptionSerialised } from '../../../config-helper';
 
 const quadify = (mdt: TranslatedMessageDescriptor): TranslationQuad => [
     mdt.defaultMessage,
-    mdt.description || sDescriptionDefault,
+    descriptionSerialised(mdt.description),
     mdt.locale,
     mdt.translation,
 ];

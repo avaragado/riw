@@ -66,6 +66,14 @@ const fixtures: Fixture[] = [
                         "id": "b.2",
                         "description": "b.2 desc",
                         "defaultMessage": "b.2!"
+                    },
+                    {
+                        "id": "b.3",
+                        "description": {
+                            "foo": "bar",
+                            "abc": "def"
+                        },
+                        "defaultMessage": "b.3!"
                     }
                 ]
             `,

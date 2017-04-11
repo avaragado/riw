@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/config-helper/descriptionSerialised 01 - undefined becomes default description 1`] = `"_"`;
+
+exports[`lib/config-helper/descriptionSerialised 02 - string remains as-is 1`] = `"foobar baz"`;
+
+exports[`lib/config-helper/descriptionSerialised 03 - object is stringified with sorted keys 1`] = `"{\\"a\\":2,\\"m\\":6,\\"nested\\":{\\"a\\":4,\\"m\\":5,\\"z\\":3},\\"z\\":1}"`;
+
+exports[`lib/config-helper/descriptionSerialised 04 - object is stringified with sorted keys 1`] = `"{\\"a\\":2,\\"m\\":6,\\"nested\\":{\\"a\\":4,\\"m\\":5,\\"z\\":3},\\"z\\":1}"`;

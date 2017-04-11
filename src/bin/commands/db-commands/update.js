@@ -26,33 +26,43 @@ export const builder = (yyargs: yargs.Argv) => yyargs
         outdent`
             $0 ${here}
                 --defaultMessage "Hello {name}"
-                --locale fr-fr
+                --locale fr-FR
                 --translation "Bonjour {name}"
 
         `,
-        'Update the fr-fr translation for a welcome message.',
+        'Update the fr-FR translation for a welcome message.',
     )
     .example(
         outdent`
             $0 ${here}
                 --defaultMessage "Export"
                 --description "The button a user presses to start exporting data"
-                --locale fr-fr
+                --locale fr-FR
                 --translation "Exporter"
 
         `,
-        'Update the fr-fr translation for a button, with a description to disambiguate meaning.',
+        'Update the fr-FR translation for a button, with a description to disambiguate meaning.',
     )
     .example(
         outdent`
             $0 ${here}
                 --defaultMessage "Export"
                 --description "The section heading describing an export"
-                --locale fr-fr
+                --locale fr-FR
                 --translation "Exportation"
 
         `,
-        'Update the fr-fr translation for a label, with a description to disambiguate meaning.',
+        'Update the fr-FR translation for a label, with a description to disambiguate meaning.',
+    )
+    .example(
+        outdent`
+            $0 ${here}
+                --defaultMessage "Hello"
+                --description 'JSON:{"property": "value", "property2": 123}'
+                --locale pt-BR
+                --translation "Olá"
+        `,
+        'Update a pt-BR translation, using an object description expressed as a JSON string.',
     )
     .options({
         defaultMessage: {
@@ -74,7 +84,9 @@ export const builder = (yyargs: yargs.Argv) => yyargs
                 Required IF you use the 'description' field in react-intl message descriptors,
                 AND if you use the same 'defaultMessage' in several places,
                 AND you need different translations for these identical defaultMessages.
+                If this has the prefix "JSON:", the remainder is parsed as JSON. Otherwise it's left as-is.
             `,
+            coerce: (arg: string) => (arg.startsWith('JSON:') ? JSON.parse(arg.slice(5)) : arg),
         },
 
         locale: {

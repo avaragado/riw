@@ -17,7 +17,7 @@ import type {
 import type { Config } from '../../../config';
 import type { Notifier } from '../../../notify';
 import type { TranslationsDB } from '../../db';
-import { sDescriptionDefault } from '../../';
+import { descriptionSerialised } from '../../../config-helper';
 
 type LocaleMapper = (config: Config) => (md: MessageDescriptorWithFile) =>
     UntranslatedMessageDescriptor;
@@ -66,7 +66,7 @@ const includeLookup: LookerUpper = (config, db) => mdu => ({
         : pathOr(null, [
             'data',
             mdu.defaultMessage,
-            mdu.description || sDescriptionDefault,
+            descriptionSerialised(mdu.description),
             mdu.locale,
         ], db),
 });

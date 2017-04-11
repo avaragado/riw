@@ -38,6 +38,17 @@ const fixtures: Fixture[] = [
     },
     {
         name: '04',
+        in: ['one', '{"a":1,"label":"desc one"}', 'aa-bb', '[aa-bb] one'],
+        match: {
+            description: {
+                label: 'desc one',
+                a: 1,
+            },
+        },
+        out: true,
+    },
+    {
+        name: '05',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             description: 'one',
@@ -45,7 +56,27 @@ const fixtures: Fixture[] = [
         out: false,
     },
     {
-        name: '05',
+        name: '06',
+        in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
+        match: {
+            description: {
+                label: 'desc one',
+            },
+        },
+        out: false,
+    },
+    {
+        name: '07',
+        in: ['one', '{"a":1,"label":"desc one"}', 'aa-bb', '[aa-bb] one'],
+        match: {
+            description: {
+                label: 'desc one',
+            },
+        },
+        out: false,
+    },
+    {
+        name: '08',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             locale: 'aa-bb',
@@ -53,7 +84,7 @@ const fixtures: Fixture[] = [
         out: true,
     },
     {
-        name: '06',
+        name: '09',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             locale: 'aa-bb-cc',
@@ -61,7 +92,7 @@ const fixtures: Fixture[] = [
         out: false,
     },
     {
-        name: '07',
+        name: '10',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             translation: '[aa-bb] one',
@@ -69,7 +100,7 @@ const fixtures: Fixture[] = [
         out: true,
     },
     {
-        name: '08',
+        name: '11',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             translation: 'aa',
@@ -77,7 +108,7 @@ const fixtures: Fixture[] = [
         out: false,
     },
     {
-        name: '09',
+        name: '12',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             defaultMessage: 'one',
@@ -86,7 +117,7 @@ const fixtures: Fixture[] = [
         out: true,
     },
     {
-        name: '10',
+        name: '13',
         in: ['one', 'desc one', 'aa-bb', '[aa-bb] one'],
         match: {
             defaultMessage: 'two',

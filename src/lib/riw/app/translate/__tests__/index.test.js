@@ -33,6 +33,11 @@ const db: TranslationsDB = {
                 'en-up': 'B.2!',
             },
         },
+        'b.3!': {
+            '{"label":"b.3 desc"}': {
+                'en-up': 'B.3!',
+            },
+        },
     },
 };
 
@@ -103,6 +108,13 @@ const fixtures: Fixture[] = [
                         description: 'b.2 desc',
                         defaultMessage: 'b.2!',
                     },
+                    b3: {
+                        id: 'b.3',
+                        description: {
+                            label: 'b.3 desc',
+                        },
+                        defaultMessage: 'b.3!',
+                    },
                 });
             `,
             'bb.js': outdent`
@@ -158,6 +170,13 @@ const fixtures: Fixture[] = [
                         "id": "b.2",
                         "description": "b.2 desc",
                         "defaultMessage": "b.2!"
+                    },
+                    {
+                        "id": "b.3",
+                        "description": {
+                            "label": "b.3 desc"
+                        },
+                        "defaultMessage": "b.3!"
                     }
                 ]
             `,

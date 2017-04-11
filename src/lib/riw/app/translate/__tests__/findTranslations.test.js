@@ -101,7 +101,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '05 db has missing defined description: md misses',
+        name: '05 db has missing defined string description: md misses',
         db: {
             version: 1,
             data: {
@@ -130,7 +130,38 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '06 db has missing locale: md misses',
+        name: '06 db has missing defined object description: md misses',
+        db: {
+            version: 1,
+            data: {
+                'a': {
+                    '_': {
+                        'en-up': 'A',
+                    },
+                    'NOT': {
+                        'en-up': 'A NOT',
+                    },
+                },
+            },
+        },
+        armd: [
+            {
+                id: 'md1',
+                defaultMessage: 'a',
+                description: {
+                    blah: 'foo',
+                },
+                file: '/a.js',
+            },
+        ],
+        configOverride: {
+            defaultLocale: 'en-aa',
+            targetLocales: ['en-up'],
+        },
+    },
+
+    {
+        name: '07 db has missing locale: md misses',
         db: {
             version: 1,
             data: {
@@ -156,13 +187,19 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '07 simple match works',
+        name: '08 match works - string description',
         db: {
             version: 1,
             data: {
                 'a': {
+                    '_': {
+                        'en-up': 'NOT A',
+                    },
                     'a desc': {
                         'en-up': 'A',
+                    },
+                    'other desc': {
+                        'en-up': 'NOT A',
                     },
                 },
             },
@@ -182,13 +219,53 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '08 no description with default works',
+        name: '09 match works - object description',
+        db: {
+            version: 1,
+            data: {
+                'a': {
+                    '{"blah":"foo"}': {
+                        'en-up': 'A',
+                    },
+                    'blah': {
+                        'en-up': 'NOT A',
+                    },
+                    'foo': {
+                        'en-up': 'NOT A',
+                    },
+                },
+            },
+        },
+        armd: [
+            {
+                id: 'md1',
+                defaultMessage: 'a',
+                description: {
+                    blah: 'foo',
+                },
+                file: '/a.js',
+            },
+        ],
+        configOverride: {
+            defaultLocale: 'en-aa',
+            targetLocales: ['en-up'],
+        },
+    },
+
+    {
+        name: '10 match works - no description',
         db: {
             version: 1,
             data: {
                 'a': {
                     '_': {
                         'en-up': 'A',
+                    },
+                    'a desc': {
+                        'en-up': 'NOT A',
+                    },
+                    'other desc': {
+                        'en-up': 'NOT A',
                     },
                 },
             },
@@ -207,7 +284,39 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '09 simple multi',
+        name: '11 match works - undefined description',
+        db: {
+            version: 1,
+            data: {
+                'a': {
+                    '_': {
+                        'en-up': 'A',
+                    },
+                    'a desc': {
+                        'en-up': 'NOT A',
+                    },
+                    'other desc': {
+                        'en-up': 'NOT A',
+                    },
+                },
+            },
+        },
+        armd: [
+            {
+                id: 'md1',
+                defaultMessage: 'a',
+                description: undefined,
+                file: '/a.js',
+            },
+        ],
+        configOverride: {
+            defaultLocale: 'en-aa',
+            targetLocales: ['en-up'],
+        },
+    },
+
+    {
+        name: '12 simple multi',
         db: {
             version: 1,
             data: {

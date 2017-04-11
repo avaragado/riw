@@ -10,11 +10,12 @@ export type Path = AbsolutePath | RelativePath;
 
 export type MessageId = string;
 export type DefaultMessage = string;
-export type Description = string;
+export type Description = string | Object;
+export type SerialisedDescription = string;
 export type TranslatedMessage = string;
 
-export type DefaultPair = [DefaultMessage, Description];
-export type TranslationQuad = [DefaultMessage, Description, LocaleId, TranslatedMessage];
+export type DefaultPair = [DefaultMessage, SerialisedDescription];
+export type TranslationQuad = [DefaultMessage, SerialisedDescription, LocaleId, TranslatedMessage];
 
 // corresponds to react-intl's message descriptor, with mandatory defaultMessage
 // (supporting only string descriptions for now)

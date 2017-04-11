@@ -55,7 +55,7 @@ Object {
 }
 `;
 
-exports[`lib/riw/app/translate/findTranslations 05 db has missing defined description: md misses 1`] = `
+exports[`lib/riw/app/translate/findTranslations 05 db has missing defined string description: md misses 1`] = `
 Object {
   "locale": Object {
     "en-aa": Object {
@@ -74,7 +74,28 @@ Object {
 }
 `;
 
-exports[`lib/riw/app/translate/findTranslations 06 db has missing locale: md misses 1`] = `
+exports[`lib/riw/app/translate/findTranslations 06 db has missing defined object description: md misses 1`] = `
+Object {
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+  },
+  "todos": Array [
+    Object {
+      "defaultMessage": "a",
+      "description": Object {
+        "blah": "foo",
+      },
+      "file": "/a.js",
+      "id": "md1",
+      "locale": "en-up",
+    },
+  ],
+}
+`;
+
+exports[`lib/riw/app/translate/findTranslations 07 db has missing locale: md misses 1`] = `
 Object {
   "locale": Object {
     "en-aa": Object {
@@ -93,7 +114,7 @@ Object {
 }
 `;
 
-exports[`lib/riw/app/translate/findTranslations 07 simple match works 1`] = `
+exports[`lib/riw/app/translate/findTranslations 08 match works - string description 1`] = `
 Object {
   "locale": Object {
     "en-aa": Object {
@@ -107,7 +128,7 @@ Object {
 }
 `;
 
-exports[`lib/riw/app/translate/findTranslations 08 no description with default works 1`] = `
+exports[`lib/riw/app/translate/findTranslations 09 match works - object description 1`] = `
 Object {
   "locale": Object {
     "en-aa": Object {
@@ -121,7 +142,35 @@ Object {
 }
 `;
 
-exports[`lib/riw/app/translate/findTranslations 09 simple multi 1`] = `
+exports[`lib/riw/app/translate/findTranslations 10 match works - no description 1`] = `
+Object {
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+    "en-up": Object {
+      "md1": "A",
+    },
+  },
+  "todos": Array [],
+}
+`;
+
+exports[`lib/riw/app/translate/findTranslations 11 match works - undefined description 1`] = `
+Object {
+  "locale": Object {
+    "en-aa": Object {
+      "md1": "a",
+    },
+    "en-up": Object {
+      "md1": "A",
+    },
+  },
+  "todos": Array [],
+}
+`;
+
+exports[`lib/riw/app/translate/findTranslations 12 simple multi 1`] = `
 Object {
   "locale": Object {
     "en-aa": Object {

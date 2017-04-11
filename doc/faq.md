@@ -14,7 +14,7 @@ To fix:
 
 ## I've made the tiniest change to a default message or a description and the translation is lost!
 
-It's not lost: it's still in the translations database. But `riw app translate` looks in that database for identical string matches only. riw must work this way as the tiniest change to a default message or a description likely invalidates the translation of that message. It's better for an app to fall back to the message in the default locale than to show a translation that might be out of date in a potentially confusing or dangerous way.
+It's not lost: it's still in the translations database. But `riw app translate` looks in that database for identical matches only. riw must work this way as the tiniest change to a default message or a description likely invalidates the translation of that message. It's better for an app to fall back to the message in the default locale than to show a translation that might be out of date in a potentially confusing or dangerous way.
 
 If you know the default message or description has changed in a way that doesn't affect the translation – for example, if you've changed the name of an argument in braces, or just fixed a typo in a description – then you can edit the database manually (it's just a JSON file). Be sure to rename any changed argument for all locales.
 
@@ -40,9 +40,22 @@ If you ask a translator to translate the string "Email", which sense do you mean
 If there is any chance of ambiguity, add a description.
 
 
-## Can I use objects as descriptions, as `react-intl` allows this?
+## Can I use objects as descriptions in message descriptors, as `react-intl` allows this?
 
-Not yet. At the moment, only string descriptions work.
+Yes. You can use either strings or arbitrary objects as the value of the optional `description` property in your message descriptors.
+
+Description objects are included unchanged in the TODO file riw generates for messages requiring translation. `riw db import` accepts description objects in the input files.
+
+As with description strings, if a description object in your code changes in any way – a new, removed or changed property – then `riw app translate` might not find a translation in the riw translations database. See "I've made the tiniest change..." above.
+
+In the riw translations database description objects are serialised to JSON strings, as they're used as keys in this data structure. The JSON serialisation should be stable across platforms: there's no unnecessary spacing and keys are ordered alphabetically. If you edit the JSON file manually, be sure to preserve these features.
+
+All `riw db` commands work with description objects: to specify an object on the command line, encode it as valid JSON and add the prefix "JSON:" (with the colon). You don't need to match the database representation character for character: it's automatically normalised. For example, here are two equivalent ways to list all messages where the description is an object with the two specified properties exactly (partial matches are not supported):
+
+```bash
+$ riw db list --description 'JSON:{"my_prop": "foo", "another_prop": 123}'
+$ riw db list --description 'JSON:{"another_prop":123,"my_prop":"foo"}' # same as above
+```
 
 
 ## How do I ensure message descriptor ids are unique?
@@ -86,7 +99,7 @@ Only a native speaker of the language – who should be someone other than the t
 
 In contrast, careful developers can perform sanity checks of translations even if they don't understand the language. Here's a rough checklist:
 
-- Check for "translations" that are just the default message copied and pasted. This might indicate the translator couldn't understand the default message. Query these with the translation service (in particular, you may have paid for this non-translation).
+- Check for "translations" that are just the default message copied and pasted. This might indicate the translator couldn't understand the default message – or it might be the appropriate translation for that locale. Consider querying these with the translation service (in particular, you may have paid for this non-translation).
 - Check for broken HTML entities. For example, you might see `& mdash;` or `&mdash` instead of `&mdash;`. You can fix these with care.
 - Check for broken HTML tags. For example, you might see `<ahref="...">`. You can fix these safely, but make sure you only change content inside the tags: between the `<` and the next `>`.
 - Check for unexpected newlines. For example, you might see a CR or LF in a translation where the default message had no such character. The presence of these might not matter – it depends on the usage – but it might indicate the translator struggled with the translation. Consider removing these rogue characters or replacing with spaces.

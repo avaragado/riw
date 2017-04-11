@@ -20,7 +20,20 @@ Object {
 }
 `;
 
-exports[`lib/riw/db/update 03 updating message, same locale 1`] = `
+exports[`lib/riw/db/update 03 adding new message with object description 1`] = `
+Object {
+  "data": Object {
+    "hello": Object {
+      "{\\"foo\\":123,\\"label\\":\\"desc1\\"}": Object {
+        "en-re": "olleh",
+      },
+    },
+  },
+  "version": 1,
+}
+`;
+
+exports[`lib/riw/db/update 04 updating message, same locale 1`] = `
 Object {
   "data": Object {
     "hello": Object {
@@ -33,7 +46,7 @@ Object {
 }
 `;
 
-exports[`lib/riw/db/update 04 updating message, new locale 1`] = `
+exports[`lib/riw/db/update 05 updating message, new locale 1`] = `
 Object {
   "data": Object {
     "hello": Object {
@@ -47,14 +60,14 @@ Object {
 }
 `;
 
-exports[`lib/riw/db/update 05 several messages at once 1`] = `
+exports[`lib/riw/db/update 06 several messages at once 1`] = `
 Object {
   "data": Object {
     "foo": Object {
       "desc1": Object {
         "en-re": "oof",
       },
-      "desc2": Object {
+      "{\\"a\\":2,\\"ddd\\":\\"desc2\\",\\"z\\":1}": Object {
         "en-UPPER": "FOO",
       },
     },

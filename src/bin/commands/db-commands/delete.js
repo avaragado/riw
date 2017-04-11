@@ -43,10 +43,10 @@ export const builder = (yyargs: yargs.Argv) => yyargs
     .example(
         outdent`
             $0 ${here}
-                --locale fr-fr
+                --locale fr-FR
 
         `,
-        'Deletes all database entries for translations into fr-fr',
+        'Deletes all database entries for translations into fr-FR',
     )
     .options({
         'defaultMessage': {
@@ -66,7 +66,9 @@ export const builder = (yyargs: yargs.Argv) => yyargs
             desc: outdent`
                 Delete entries with this description.
                 Omit to match any description.
+                Prefix with "JSON": to parse remainder as JSON.
             `,
+            coerce: (arg: string) => (arg.startsWith('JSON:') ? JSON.parse(arg.slice(5)) : arg),
         },
 
         'locale': {

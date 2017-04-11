@@ -28,6 +28,15 @@ Array [
     "id": "b.2",
   },
   Object {
+    "defaultMessage": "b.3!",
+    "description": Object {
+      "abc": "def",
+      "foo": "bar",
+    },
+    "file": "/fixtures/dir/b.json",
+    "id": "b.3",
+  },
+  Object {
     "defaultMessage": "b.2 again!",
     "description": "b.2 again desc",
     "file": "/fixtures/dir/bb.json",

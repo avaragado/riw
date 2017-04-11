@@ -1,5 +1,7 @@
 // @flow
 
+import stringify from 'json-stable-stringify';
+
 import type { TranslationQuad } from '../../../../../types';
 import type { DBUpdateSpec } from '../../update';
 import arquadUpdateFromQuadAr from '../arquadUpdateFromQuadAr';
@@ -9,6 +11,22 @@ type Fixture = {
     before: TranslationQuad[],
     opt: DBUpdateSpec,
     after: TranslationQuad[],
+};
+
+const descObj = {
+    one: {
+        z: 123,
+        a: 'abc',
+        nested: {
+            a: 1,
+            c: 2,
+            b: 3,
+        },
+    },
+    two: {
+        text: 'desc2',
+        random: 123,
+    },
 };
 
 const fixtures: Fixture[] = [
@@ -22,7 +40,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '02 adding new message',
+        name: '02 adding new message with string description',
         before: [],
         opt: {
             translations: [
@@ -40,7 +58,25 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '03 adding message without description',
+        name: '02 adding new message with object description',
+        before: [],
+        opt: {
+            translations: [
+                {
+                    defaultMessage: 'hello',
+                    description: descObj.one,
+                    locale: 'en-re',
+                    translation: 'olleh',
+                },
+            ],
+        },
+        after: [
+            ['hello', stringify(descObj.one), 'en-re', 'olleh'],
+        ],
+    },
+
+    {
+        name: '04 adding message without description',
         before: [],
         opt: {
             translations: [
@@ -57,7 +93,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '04 updating message, same locale',
+        name: '05 updating message, same locale',
         before: [
             ['hello', 'desc1', 'en-re', 'OLD olleh'],
         ],
@@ -78,7 +114,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '05 updating message without description, same locale',
+        name: '06 updating message without description, same locale',
         before: [
             ['hello', '_', 'en-re', 'OLD olleh'],
         ],
@@ -98,7 +134,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '06 updating message, new locale',
+        name: '07 updating message, new locale',
         before: [
             ['hello', 'desc1', 'en-re', 'olleh'],
         ],
@@ -119,7 +155,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '07 updating message without description, new locale',
+        name: '08 updating message without description, new locale',
         before: [
             ['hello', '_', 'en-re', 'olleh'],
         ],
@@ -139,7 +175,7 @@ const fixtures: Fixture[] = [
     },
 
     {
-        name: '08 several messages at once',
+        name: '09 several messages at once',
         before: [
             ['hello', 'desc1', 'en-re', 'olleh'],
         ],
@@ -164,7 +200,7 @@ const fixtures: Fixture[] = [
                 },
                 {
                     defaultMessage: 'foo',
-                    description: 'desc2',
+                    description: descObj.two,
                     locale: 'en-UPPER',
                     translation: 'FOO',
                 },
@@ -175,7 +211,7 @@ const fixtures: Fixture[] = [
             ['hello', 'desc1', 'en-UPPER', 'HELLO'],
             ['goodbye', '_', 'en-re', 'eybdoog'],
             ['foo', 'desc1', 'en-re', 'oof'],
-            ['foo', 'desc2', 'en-UPPER', 'FOO'],
+            ['foo', stringify(descObj.two), 'en-UPPER', 'FOO'],
         ],
     },
 ];

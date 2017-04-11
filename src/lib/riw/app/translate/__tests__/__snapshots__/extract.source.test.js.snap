@@ -24,6 +24,15 @@ Array [
     "file": "/fixtures/03/b.js",
     "id": "b.2",
   },
+  Object {
+    "defaultMessage": "b.3!",
+    "description": Object {
+      "abc": "def",
+      "foo": "bar",
+    },
+    "file": "/fixtures/03/b.js",
+    "id": "b.3",
+  },
 ]
 `;
 
