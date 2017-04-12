@@ -1,7 +1,7 @@
 {
   "name": "riw",
   "version": "0.6.0",
-  "description": "react-intl workflow helper and translations database",
+  "description": "A console app and library to help you localise React apps in conjunction with react-intl",
   "keywords": [
     "react-intl",
     "i18n",
