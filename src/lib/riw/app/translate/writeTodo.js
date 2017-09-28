@@ -16,9 +16,15 @@ const stringify = obj => JSON.stringify(obj, null, 4);
 export default (config: Config, notify: string => string => string) =>
     (translation: TranslationLookupResult) => {
         const { todoFile: pathOut, rootDir } = config;
+        const { todos } = translation;
 
         const fabsOut = path.resolve(rootDir, pathOut);
         const dabsOut = path.dirname(fabsOut);
+
+        const todosRelative = todos.map(todo => ({
+            ...todo,
+            file: path.relative(rootDir, todo.file),
+        }));
 
         try {
             mkdirp.sync(dabsOut);
@@ -29,7 +35,7 @@ export default (config: Config, notify: string => string => string) =>
         }
 
         if (config.outputMode !== 'no-file') {
-            fs.writeFileSync(fabsOut, stringify(translation.todos));
+            fs.writeFileSync(fabsOut, stringify(todosRelative));
             notify('fileSaved')(fabsOut);
         }
 

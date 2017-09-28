@@ -13,12 +13,14 @@ Object {
       Object {
         "defaultMessage": "aa",
         "description": "aa desc",
+        "file": "/foo/bar.js",
         "id": "md1",
         "locale": "xx-xx",
       },
       Object {
         "defaultMessage": "bb",
         "description": "bb desc",
+        "file": "/foo/bar.js",
         "id": "md2",
         "locale": "xx-xx",
       },
@@ -27,6 +29,7 @@ Object {
       Object {
         "defaultMessage": "aa",
         "description": "aa desc",
+        "file": "/foo/bar.js",
         "id": "md1",
         "locale": "yy-yy",
       },
@@ -35,17 +38,20 @@ Object {
       Object {
         "defaultMessage": "aa",
         "description": "aa desc",
+        "file": "/foo/bar.js",
         "id": "md1",
         "locale": "zz-zz",
       },
       Object {
         "defaultMessage": "cc",
         "description": "cc desc",
+        "file": "/foo/bar.js",
         "id": "md3",
         "locale": "zz-zz",
       },
       Object {
         "defaultMessage": "dd",
+        "file": "/foo/bar.js",
         "id": "md4",
         "locale": "zz-zz",
       },
