@@ -28,12 +28,12 @@ const fixtures: Fixture[] = [
     {
         name: '02',
         in: [
-            { id: 'md1', defaultMessage: 'aa', description: 'aa desc', locale: 'xx-xx' },
-            { id: 'md1', defaultMessage: 'aa', description: 'aa desc', locale: 'yy-yy' },
-            { id: 'md1', defaultMessage: 'aa', description: 'aa desc', locale: 'zz-zz' },
-            { id: 'md2', defaultMessage: 'bb', description: 'bb desc', locale: 'xx-xx' },
-            { id: 'md3', defaultMessage: 'cc', description: 'cc desc', locale: 'zz-zz' },
-            { id: 'md4', defaultMessage: 'dd', locale: 'zz-zz' },
+            { id: 'md1', defaultMessage: 'aa', description: 'aa desc', locale: 'xx-xx', file: '/foo/bar.js' },
+            { id: 'md1', defaultMessage: 'aa', description: 'aa desc', locale: 'yy-yy', file: '/foo/bar.js' },
+            { id: 'md1', defaultMessage: 'aa', description: 'aa desc', locale: 'zz-zz', file: '/foo/bar.js' },
+            { id: 'md2', defaultMessage: 'bb', description: 'bb desc', locale: 'xx-xx', file: '/foo/bar.js' },
+            { id: 'md3', defaultMessage: 'cc', description: 'cc desc', locale: 'zz-zz', file: '/foo/bar.js' },
+            { id: 'md4', defaultMessage: 'dd', locale: 'zz-zz', file: '/foo/bar.js' },
         ],
     },
 ];

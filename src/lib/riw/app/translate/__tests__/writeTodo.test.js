@@ -45,9 +45,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
             ],
         };
 
@@ -77,9 +77,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
             ],
         };
 
@@ -148,9 +148,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
             ],
         };
 
@@ -182,9 +182,9 @@ describe('lib/riw/app/translate/writeTodo', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
             ],
         };
 

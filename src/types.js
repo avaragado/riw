@@ -30,6 +30,7 @@ export type MessageDescriptorWithFile = MessageDescriptor & {
 };
 
 export type UntranslatedMessageDescriptor = MessageDescriptor & {
+    file: AbsolutePath,
     locale: LocaleId,
 };
 
