@@ -12,7 +12,7 @@ module.exports = {
             js: 'eslint src',
         },
         test: {
-            default: 'LOGLEVEL=silent jest',
+            default: 'LOGLEVEL=silent jest --no-watchman',
             watch: 'LOGLEVEL=silent jest --watch',
             coverageReport: 'LOGLEVEL=silent jest --coverage',
         },
