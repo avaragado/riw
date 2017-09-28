@@ -183,14 +183,14 @@ With a newly initialised database (which is empty), running `riw app translate` 
 
 However, the file for your default locale is complete: it contains mappings from `react-intl` id to strings for all the default messages currently defined in your code.
 
-All the missing translations are in the TODO file, by default `src/locale/TODO-untranslated.json`, as an array of objects. Each object includes the `react-intl` id, default message and description (if defined), plus the file the message came from and the locale it needs to be translated into. Here's an example:
+All the missing translations are in the TODO file, by default `src/locale/TODO-untranslated.json`, as an array of objects. Each object includes the `react-intl` id, default message and description (if defined), plus the file the message came from (relative to the configuration's `rootDir`, which is almost certainly your package root) and the locale it needs to be translated into. Here's an example:
 
 ```json
 {
     "id": "app.greeting",
     "defaultMessage": "Welcome to my wonderful app",
     "description": "Main body heading after user logs in",
-    "file": "/Users/avaragado/my-react-app/src/components/Welcome.js",
+    "file": "src/components/Welcome.js",
     "locale": "fr-FR"
 },
 ```
@@ -247,7 +247,7 @@ The ideal format: a JSON file with an array of objects, where each object has _a
         "id": "app.greeting",
         "defaultMessage": "Welcome to my wonderful app",
         "description": "Main body heading after user logs in",
-        "file": "/Users/avaragado/my-react-app/src/components/Welcome.js",
+        "file": "src/components/Welcome.js",
         "locale": "fr-FR",
         "translation": "Bienvenue dans ma merveilleuse application",
     }
