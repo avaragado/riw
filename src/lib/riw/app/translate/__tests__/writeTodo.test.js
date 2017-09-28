@@ -45,20 +45,30 @@ describe('lib/riw/app/translate/writeTodo', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/some/root/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
             ],
         };
 
+        // files become relative to rootDir on write
+        const todosWritten = [
+            { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: 'foo/bar.js' },
+            { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: 'foo/bar.js' },
+            { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: 'foo/bar.js' },
+        ];
+
         const cfg = configResolve({
+            rootDir: '/some/root',
             outputMode: 'file-per-locale',
             todoFile: 'fixtures/dir/md-todo.json',
         });
 
         mock({
-            fixtures: {
-                'dir': {}, // empty dir
+            '/some/root': {
+                'fixtures': {
+                    'dir': {}, // empty dir
+                },
             },
         });
 
@@ -66,31 +76,41 @@ describe('lib/riw/app/translate/writeTodo', () => {
             writeTodo(cfg, notify)(translation);
         }).not.toThrow();
 
-        const arfrel = fs.readdirSync('fixtures/dir');
+        const arfrel = fs.readdirSync('/some/root/fixtures/dir');
 
         expect(arfrel).toEqual(['md-todo.json']);
 
-        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.todos);
+        expect(parse('/some/root/fixtures/dir/md-todo.json')).toEqual(todosWritten);
     });
 
     it('03 writes a file, if configured as single-file', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/some/root/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
             ],
         };
 
+        // files become relative to rootDir on write
+        const todosWritten = [
+            { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: 'foo/bar.js' },
+            { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: 'foo/bar.js' },
+            { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: 'foo/bar.js' },
+        ];
+
         const cfg = configResolve({
+            rootDir: '/some/root',
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
         });
 
         mock({
-            fixtures: {
-                'dir': {}, // empty dir
+            '/some/root': {
+                'fixtures': {
+                    'dir': {}, // empty dir
+                },
             },
         });
 
@@ -98,11 +118,11 @@ describe('lib/riw/app/translate/writeTodo', () => {
             writeTodo(cfg, notify)(translation);
         }).not.toThrow();
 
-        const arfrel = fs.readdirSync('fixtures/dir');
+        const arfrel = fs.readdirSync('/some/root/fixtures/dir');
 
         expect(arfrel).toEqual(['md-todo.json']);
 
-        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.todos);
+        expect(parse('/some/root/fixtures/dir/md-todo.json')).toEqual(todosWritten);
     });
 
     it('04 writes no file if configured as no-file', () => {
@@ -148,21 +168,31 @@ describe('lib/riw/app/translate/writeTodo', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/some/root/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
             ],
         };
 
+        // files become relative to rootDir on write
+        const todosWritten = [
+            { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: 'foo/bar.js' },
+            { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: 'foo/bar.js' },
+            { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: 'foo/bar.js' },
+        ];
+
         const cfg = configResolve({
+            rootDir: '/some/root',
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
         });
 
         mock({
-            fixtures: {
-                'dir': {
-                    'md-todo.json': 'OLD',
+            '/some/root': {
+                'fixtures': {
+                    'dir': {
+                        'md-todo.json': 'OLD',
+                    },
                 },
             },
         });
@@ -171,31 +201,34 @@ describe('lib/riw/app/translate/writeTodo', () => {
             writeTodo(cfg, notify)(translation);
         }).not.toThrow();
 
-        const arfrel = fs.readdirSync('fixtures/dir');
+        const arfrel = fs.readdirSync('/some/root/fixtures/dir');
 
         expect(arfrel).toEqual(['md-todo.json']);
 
-        expect(parse('fixtures/dir/md-todo.json')).toEqual(translation.todos);
+        expect(parse('/some/root/fixtures/dir/md-todo.json')).toEqual(todosWritten);
     });
 
     it('06 returns its input', () => {
         const translation: TranslationLookupResult = {
             locale: {},
             todos: [
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/foo/bar.js' },
-                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/foo/bar.js' },
-                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'bb-bb', file: '/some/root/foo/bar.js' },
+                { id: 's.1', defaultMessage: 'aa-aa s.1', description: 's.1 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
+                { id: 's.2', defaultMessage: 'aa-aa s.2', description: 's.2 desc', locale: 'cc-cc', file: '/some/root/foo/bar.js' },
             ],
         };
 
         const cfg = configResolve({
+            rootDir: '/some/root',
             outputMode: 'single-file',
             todoFile: 'fixtures/dir/md-todo.json',
         });
 
         mock({
-            fixtures: {
-                'dir': {}, // empty dir
+            '/some/root': {
+                'fixtures': {
+                    'dir': {}, // empty dir
+                },
             },
         });
 
