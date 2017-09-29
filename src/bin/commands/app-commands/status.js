@@ -45,8 +45,8 @@ const sFromLidAr = arlid => arlid.map(bold).join(', ');
 
 const absent = (ct: ?number) => (
     ct == null
-    ? ` ${sAbsent}`
-    : ''
+        ? ` ${sAbsent}`
+        : ''
 );
 
 const createPadder = (...ars: string[]) => {
@@ -134,7 +134,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     // can't use bardot's widthFill as we want bars with different numbers to line up.
     // $FlowFixMe flow moans at process.stdout.columns, no idea how to fix
     const ctCharBar = process.stdout.columns
-        - padder('').length  // space for locale
+        - padder('').length // space for locale
         - (ctMessageWant.toString().length * 2) // space for TOTAL numbers
         - 19; // space derived from remaining spaces and the "% complete" suffix
     const barTarget = bardot

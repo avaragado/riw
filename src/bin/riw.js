@@ -10,7 +10,12 @@ import { fabsConfigPackageForCWD } from '../lib/config';
 // if config not specified, need to see if we can find an enclosing package.
 const optsExtra = {};
 
-if (!yargs.argv.config) {
+// can't access yargs.argv here, as this (with yargs v9) breaks the yargs usage
+// that comes afterwards. using yargs.argv here then doing yargs.reset()
+// afterwards doesn't fix it. i tried the yargs check method, but that runs only
+// when yargs feels like it should, rather than in all circumstances, so we
+// can't use that to inspect arguments reliably either. back to basics...
+if (process.argv.indexOf('config') === -1 && process.argv.indexOf('c') === -1) {
     const fabsConfigPackage = fabsConfigPackageForCWD();
 
     if (fabsConfigPackage === null) {

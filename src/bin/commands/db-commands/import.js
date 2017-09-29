@@ -25,8 +25,8 @@ const here = `db ${cmd}`;
 
 const groupValidity = tr => (
     tr.defaultMessage && tr.locale && tr.translation
-    ? 'valid'
-    : 'invalid'
+        ? 'valid'
+        : 'invalid'
 );
 
 export const builder = (yyargs: yargs.Argv) => yyargs

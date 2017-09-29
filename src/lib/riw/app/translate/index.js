@@ -67,6 +67,5 @@ const process: Processor = (config, notify) => compose(
     notify('start'),
 )(config);
 
-export default (config: Config) =>
-    (opt: AppTranslateSpec): AppTranslateResult =>
+export default (config: Config) => (opt: AppTranslateSpec): AppTranslateResult =>
     process(config, makeNotifier(opt.on));

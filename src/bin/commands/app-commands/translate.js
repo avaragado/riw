@@ -38,8 +38,8 @@ const sfrelFromFabsFromConfig = (config: Config) => (fabs: AbsolutePath) =>
 
 const squashToLength = (ctCharMax: number) => (str: string) => (
     str.length > ctCharMax
-    ? `${str.slice(0, (ctCharMax / 2) - 3)}...${str.slice(-ctCharMax / 2)}`
-    : str
+        ? `${str.slice(0, (ctCharMax / 2) - 3)}...${str.slice(-ctCharMax / 2)}`
+        : str
 );
 
 export const handler = createHandlerWithRIW((riw: RIW) => {

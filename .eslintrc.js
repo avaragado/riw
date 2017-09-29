@@ -106,6 +106,15 @@ module.exports = {
         ],
 
         'generator-star-spacing': ['error', { 'before': true, 'after': true }],
+
+        // jsx-a11y has refactored href-no-hash to anchor-is-valid:
+        // waiting for eslint-config-airbnb to catch up (out-of-date at v15.1.0)
+        'jsx-a11y/href-no-hash': 'off',
+
+        'jsx-a11y/anchor-is-valid': ['error', {
+            'components': ['Link', 'LinkWeb', 'LinkDoc'],
+            'aspects': [ 'noHref', 'invalidHref', 'preferButton' ]
+        }],
     },
 
     // add as they're encountered

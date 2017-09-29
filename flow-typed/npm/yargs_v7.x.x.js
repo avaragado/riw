@@ -1,5 +1,5 @@
-// flow-typed signature: 0943db5acf0c3df2b93d37dc0f266cc6
-// flow-typed version: 0c50cd9c1a/yargs_v7.x.x/flow_>=v0.42.x
+// flow-typed signature: d3d9b9d85a677502e15fdd93ec166a6a
+// flow-typed version: b43dff3e0e/yargs_v7.x.x/flow_>=v0.40.x
 
 declare module 'yargs' {
   declare type Argv = {
