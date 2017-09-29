@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/avaragado/riw/compare/v0.6.0...v0.6.1) (2017-09-29)
+
+### Bug Fixes
+
+* use relative paths in TODO file to make it portable ([d6af653](https://github.com/avaragado/riw/commit/d6af653)), closes [#5](https://github.com/avaragado/riw/issues/5)
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/avaragado/riw/compare/v0.5.0...v0.6.0) (2017-04-11)
 
