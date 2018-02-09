@@ -6,6 +6,10 @@ Object {
   "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
+  "reactIntlAutoConfig": Object {
+    "filebase": false,
+    "removePrefix": "src/",
+  },
   "rootDir": ".",
   "sourceDirs": Array [
     "src/**/*.js",
@@ -24,6 +28,10 @@ Object {
   "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
+  "reactIntlAutoConfig": Object {
+    "filebase": false,
+    "removePrefix": "src/",
+  },
   "rootDir": "/foo/bar",
   "sourceDirs": Array [
     "src/**/*.js",
@@ -41,6 +49,10 @@ Object {
   "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
+  "reactIntlAutoConfig": Object {
+    "filebase": false,
+    "removePrefix": "src/",
+  },
   "rootDir": "/foo/bar",
   "sourceDirs": Array [
     "src/**/*.js",
@@ -59,6 +71,10 @@ Object {
   "defaultLocale": "en-US",
   "inputMode": "source",
   "outputMode": "file-per-locale",
+  "reactIntlAutoConfig": Object {
+    "filebase": false,
+    "removePrefix": "src/",
+  },
   "rootDir": "/foo/bar",
   "sourceDirs": Array [
     "src/**/*.js",

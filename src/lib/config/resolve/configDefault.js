@@ -10,6 +10,10 @@ export default ({
     sourceDirs: ['src/**/*.js'],
     collateDir: 'tmp/babel-plugin-react-intl',
     inputMode: 'source',
+    reactIntlAutoConfig: {
+        removePrefix: 'src/',
+        filebase: false,
+    },
     translationsOutputFile: 'src/locale/[locale].json',
     outputMode: 'file-per-locale',
     todoFile: 'src/locale/TODO-untranslated.json',
