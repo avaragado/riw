@@ -53,9 +53,8 @@ export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
         return;
     }
 
-    const arlid = Object.keys(status.locale).sort(
-        (lid1, lid2) => status.locale[lid2].has.length - status.locale[lid1].has.length,
-    );
+    const arlid = Object.keys(status.locale)
+        .sort((lid1, lid2) => status.locale[lid2].has.length - status.locale[lid1].has.length);
     const ctCharMax = Math.max.apply(null, arlid.map(lid => lid.length));
     const bar = bardot
         .widthFill(ctCharMax + 4) // leave room for '- ', padded locale, '  '

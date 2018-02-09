@@ -95,7 +95,7 @@ const fixtures: Fixture[] = [
 describe('lib/riw/db/transform/arquadDeleteFromQuadAr', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const opt = fixture.opt;
+            const { opt } = fixture;
 
             const received = arquadDeleteFromQuadAr(opt)(fixture.before);
 

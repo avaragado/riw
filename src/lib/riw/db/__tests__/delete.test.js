@@ -100,9 +100,7 @@ describe('lib/riw/db/delete', () => {
 
             del(cfg)(fixture.opt);
 
-            const dbOut: TranslationsDB = JSON.parse(
-                fs.readFileSync(frelDB).toString(),
-            );
+            const dbOut: TranslationsDB = JSON.parse(fs.readFileSync(frelDB).toString());
 
             mock.restore();
 

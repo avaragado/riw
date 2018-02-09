@@ -79,15 +79,13 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
                 spinner.render();
             },
             endExtract: (armd: MessageDescriptorWithFile[]) => {
-                spinner.succeed(
-                    `Found ${chalk.bold(
-                        armd.length.toString(),
-                        'message descriptors',
-                    )} from ${chalk.bold(
-                        numFile.toString(),
-                        'files',
-                    )}`,
-                );
+                spinner.succeed(`Found ${chalk.bold(
+                    armd.length.toString(),
+                    'message descriptors',
+                )} from ${chalk.bold(
+                    numFile.toString(),
+                    'files',
+                )}`);
             },
             startDupCheck: () => {
                 spinner.text = 'Checking for duplicate message descriptor ids...';
@@ -96,13 +94,11 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
             endDupCheck: (dups: DuplicateIdData[]) => {
                 if (dups.length) {
                     spinner.fail(`Duplicate message descriptor ids (${dups.length}):`);
-                    log(dups.map(
-                        dup => outdent`
-                            ${outdent}
-                              - ${chalk.red.bold(dup.id)} used in:
-                                ${dup.files.map(sfrelFromFabs).join('\n    ')}
-                        `,
-                    ).join('\n'));
+                    log(dups.map(dup => outdent`
+                        ${outdent}
+                            - ${chalk.red.bold(dup.id)} used in:
+                            ${dup.files.map(sfrelFromFabs).join('\n    ')}
+                    `).join('\n'));
 
                 } else {
                     spinner.succeed('No duplicate message descriptor ids');

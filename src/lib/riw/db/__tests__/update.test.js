@@ -178,9 +178,7 @@ describe('lib/riw/db/update', () => {
 
             update(configResolve(cfg))(fixture.opt);
 
-            const dbOut: TranslationsDB = JSON.parse(
-                fs.readFileSync(frelDB).toString(),
-            );
+            const dbOut: TranslationsDB = JSON.parse(fs.readFileSync(frelDB).toString());
 
             mock.restore();
 

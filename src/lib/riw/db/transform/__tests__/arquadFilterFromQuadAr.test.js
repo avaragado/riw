@@ -129,7 +129,7 @@ const fixtures: Fixture[] = [
 describe('lib/riw/db/transform/arquadFilterFromQuadAr', () => {
     fixtures.forEach((fixture) => {
         it(fixture.name, () => {
-            const opt = fixture.opt;
+            const { opt } = fixture;
 
             const received = arquadFilterFromQuadAr(opt)(fixture.before);
 

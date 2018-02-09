@@ -13,7 +13,7 @@ describe('lib/notify/makeNotifier', () => {
         const received = notify('bb')(123);
 
         expect(received).toBe(123);
-        expect(handler.mock.calls.length).toBe(0);
+        expect(handler.mock.calls).toHaveLength(0);
     });
 
     it('returns input, and calls function if defined', () => {
