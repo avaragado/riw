@@ -14,12 +14,15 @@ import { arfabsInputJSON, arfabsInputSource } from '../../../config-helper';
 import armdFromJSONFabs from './armdFromJSONFabs';
 import armdfromSourceFabs from './armdFromSourceFabs';
 
-export type MessageDescriptorsFromFile = (fabs: AbsolutePath) => MessageDescriptor[];
+export type MessageDescriptorsFromFile = (
+    fabs: AbsolutePath,
+    config: Config,
+) => MessageDescriptor[];
 
 type MDExtractor = (arfabsFromConfig: FilesFromConfig, armdFromFabs: MessageDescriptorsFromFile) =>
     (notify: Notifier) => (config: Config) => MessageDescriptorWithFile[];
 
-const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => compose(
+const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => config => compose(
     notify('endExtract'),
     chain(prop('armd')),
     map(compose(
@@ -28,14 +31,14 @@ const armdExtract: MDExtractor = (arfabsFromConfig, armdFromFabs) => notify => c
             fabs,
             armd: map(
                 md => ({ ...md, file: fabs }: MessageDescriptorWithFile),
-                armdFromFabs(fabs),
+                armdFromFabs(fabs, config),
             ),
         }),
         notify('startExtractFile'),
     )),
     notify('startExtract'),
     arfabsFromConfig,
-);
+)(config);
 
 export const armdExtractSource = armdExtract(arfabsInputSource, armdfromSourceFabs);
 export const armdExtractJSON = armdExtract(arfabsInputJSON, armdFromJSONFabs);
