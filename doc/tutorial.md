@@ -4,6 +4,8 @@
 
 A React app usually consists of a large number of components. Each component may display messages to the user. When we internationalise a component with `react-intl` we typically remove these strings from the innards of a render method and define them separately – but nearby – as `react-intl` message descriptors: objects with a unique id, a default message (the string), and an optional description (important context for translators).
 
+(If you use a plugin like `babel-plugin-react-intl-auto`, some of the bureaucracy of message descriptors is taken care of automatically. With this plugin, in your source code you define simple objects mapping from keys to strings, and the plugin transforms these internally to full `react-intl` message descriptors. It's important to understand that the message descriptors haven't gone away: they're just hidden from those developing the components. They're still visible for those worrying about internationalisation as a whole.)
+
 Default message strings within message descriptors typically have three purposes:
 
 - As **fallbacks**, for use if `react-intl` can't find a string with the correct message descriptor id from the currently defined id/string mappings plugged into `IntlProvider`.
@@ -27,7 +29,7 @@ Importantly, riw fits into your current development process and does not constra
 
 - **App**: The software being translated. Usually equivalent to an npm module with a `package.json` file. Each app has its own riw configuration settings, and several apps may share a translations database.
 
-- **Translations database**: The JSON file containing the master list of default messages and any associated descriptions, plus the available translations of those messages into one or more locales. riw reads and writes to this database. One database may be used by one or more app.
+- **Translations database**: The JSON file containing the master list of default messages and any associated descriptions, plus the available translations of those messages into one or more locales. riw reads and writes to this database. One database may be used by more than one app.
 
 - **Default locale**: The locale of your app's `react-intl` default messages (the `defaultMessage` strings of message descriptors). This is usually but not necessarily a user-selectable locale for your app.
 
@@ -37,7 +39,7 @@ Importantly, riw fits into your current development process and does not constra
 
 ## Using riw
 
-If you enjoy scrolling through diffs, the [riw-example](https://github.com/avaragado/riw-example) repostory shows how to take a simple React app with hardcoded strings, internationalise it with `react-intl`, and then use it with riw.
+If you enjoy scrolling through diffs, the [riw-example](https://github.com/avaragado/riw-example) repository shows how to take a simple React app with hardcoded strings, internationalise it with `react-intl`, and then use it with riw.
 
 Meanwhile, here's the view from 10,000 feet:
 
@@ -73,7 +75,7 @@ Installing riw gives you a script for use from the command line, and a [library 
 When installed as a package dependency, users of `yarn` can run the script easily:
 
 ```bash
-$ yarn run riw help
+$ yarn riw help
 ```
 
 When installed globally, you can run `riw` directly:
@@ -108,13 +110,20 @@ $ riw print-config
 {
     "rootDir": "/Users/avaragado/my-react-app",
     "defaultLocale": "en-US",
-    "targetLocales": [],
+    "targetLocales": [
+        "fr-FR",
+        "pt-BR",
+    ],
     "translationsDatabaseFile": "src/locale/riw-db.json",
     "sourceDirs": [
         "src/**/*.js"
     ],
     "collateDir": "tmp/babel-plugin-react-intl",
     "inputMode": "source",
+    "reactIntlAutoConfig": {
+        "removePrefix": "src",
+        "filebase": true
+    },
     "translationsOutputFile": "src/locale/[locale].json",
     "outputMode": "file-per-locale",
     "todoFile": "src/locale/TODO-untranslated.json",
@@ -155,8 +164,8 @@ $ riw app translate
 
 Depending on the size of your app, this might take some time to complete. This command:
 
-1. Finds all `react-intl` message descriptors in your app. (By default, it uses the `react-intl` babel plugin to extract them from your code. If you have a build system that already does this, perhaps using webpack, you can instead configure riw to pick up the JSON files this plugin outputs.)
-1. Reports any duplicate message descriptor ids it finds. (`react-intl` leaves ids up to you, and it's easy to accidentally duplicate them, leading to confusing messages in your app.)
+1. Finds all `react-intl` message descriptors in your app. (By default, it uses `babel-plugin-react-intl-auto` and `babel-plugin-react-intl` to identify and extract them from your code. If you have a build system that already does this, perhaps using webpack, you can instead configure riw to pick up the JSON files `babel-plugin-react-intl` outputs.)
+1. Reports any duplicate message descriptor ids it finds. (`react-intl` leaves ids up to you, and it's easy to accidentally duplicate them, leading to confusing messages in your app. `babel-plugin-react-intl-auto` generates ids for message descriptors automatically, but it's possible to configure this plugin so they're not guaranteed to be unique, so this step is still vital.)
 1. Looks up every message descriptor's `defaultMessage` and `description` (if present) in the riw translations database, for each of your app's target locales.
    - If a match is found, it's output in the appropriate locale file.
    - If no match is found, it's added to the TODO file.
@@ -203,7 +212,7 @@ Check all these files into your source control system.
 
 How you do this depends on your app.
 
-- You might load the strings for each locale **dynamically** using `require.ensure` or another mechanism. This is most appropriate for web apps, to reduce startup payload.
+- You might load the strings for each locale **dynamically** using `require.ensure` or `import` promises or another mechanism. This is most appropriate for web apps, to reduce startup payload.
 - You might load all strings **statically**. This is most appropriate for Electron-based apps, where startup payload isn't as much of an issue. In this case, you might want to configure riw with `outputMode` set to `single-file`: in this mode, riw puts all strings for all locales in a single JSON file.
 
 If your app uses `redux` to manage state, we recommend you store all (currently loaded) strings in state, indexed by locale, together with a record of the current locale. Use the `connect` function from `react-redux` with suitable state selectors to supply `IntlProvider` with the strings for the current locale.
