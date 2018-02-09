@@ -10,6 +10,9 @@ import configResolve from './resolve';
 export type InputMode = 'source' | 'json';
 export type OutputMode = 'single-file' | 'file-per-locale' | 'no-file';
 
+// babel-plugin-react-intl-auto configuration object, or false to disable
+type ReactIntlAutoConfig = false | Object;
+
 export type ConfigSparse = {
     defaultLocale?: LocaleId,
     targetLocales?: LocaleId[],
@@ -17,6 +20,7 @@ export type ConfigSparse = {
     sourceDirs?: Glob[],
     collateDir?: Path,
     inputMode?: InputMode,
+    reactIntlAutoConfig?: ReactIntlAutoConfig,
     translationsOutputFile?: Path,
     outputMode?: OutputMode,
     todoFile?: Path,
@@ -38,6 +42,7 @@ export type Config = {
     sourceDirs: Glob[],
     collateDir: Path,
     inputMode: InputMode,
+    reactIntlAutoConfig: ReactIntlAutoConfig,
     translationsOutputFile: Path,
     outputMode: OutputMode,
     todoFile: Path,

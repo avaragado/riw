@@ -42,7 +42,9 @@ If there is any chance of ambiguity, add a description.
 
 ## Can I use objects as descriptions in message descriptors, as `react-intl` allows this?
 
-Yes. You can use either strings or arbitrary objects as the value of the optional `description` property in your message descriptors.
+Yes, if you disable `babel-plugin-react-intl-auto` (set `reactIntlAutoConfig: false` in your configuration). When this plugin is enabled (the default setting) then a message descriptor's description is set to any comment that immediately precedes the string definition. See https://github.com/akameco/babel-plugin-react-intl-auto for more information.
+
+With `babel-plugin-react-intl-auto` disabled, you can use either strings or arbitrary objects as the value of the optional `description` property in your message descriptors.
 
 Description objects are included unchanged in the TODO file riw generates for messages requiring translation. `riw db import` accepts description objects in the input files.
 
@@ -59,6 +61,10 @@ $ riw db list --description 'JSON:{"another_prop":123,"my_prop":"foo"}' # same a
 
 
 ## How do I ensure message descriptor ids are unique?
+
+You don't need to worry about this unless you disable `babel-plugin-react-intl-auto`. With the default configuration, this plugin generates unique message descriptor ids automatically.
+
+Read on if you disable the plugin...
 
 Each `react-intl` message descriptor must include an id that uniquely identifies the message within your app. It uses this id to identify which string to display. However, `react-intl` does not impose or recommend any naming scheme for ids. riw helps by pointing out, as part of the output of `riw app translate`, if you've used the same id more than once.
 

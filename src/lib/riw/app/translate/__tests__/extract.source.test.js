@@ -67,6 +67,9 @@ const fixtures: Fixture[] = [
                 });
             `,
         },
+        configOverride: {
+            reactIntlAutoConfig: false,
+        },
     },
 
     {
@@ -126,6 +129,74 @@ const fixtures: Fixture[] = [
                         id: 'c.1',
                         defaultMessage: 'c.1!',
                     },
+                });
+            `,
+        },
+        configOverride: {
+            reactIntlAutoConfig: false,
+        },
+    },
+    {
+        name: '05',
+        in: {
+            'a.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    a1: 'a.1!',
+                });
+            `,
+            'b.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    b1: 'b.1!',
+                    // b.2 desc
+                    b2: 'b.2!',
+                });
+            `,
+        },
+    },
+
+    {
+        name: '06',
+        in: {
+            'a.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    a1: 'a.1!',
+                });
+            `,
+            'aa.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    a1again: 'a.1 again!',
+                });
+            `,
+            'b.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    b1: 'b.1!',
+                    // b.2 desc
+                    b2: 'b.2!',
+                });
+            `,
+            'bb.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    // b.2 again desc
+                    b2again: 'b.2 again!',
+                });
+            `,
+            'c.js': outdent`
+                import { defineMessages } from 'react-intl';
+
+                const msg = defineMessages({
+                    c1: 'c.1!',
                 });
             `,
         },
