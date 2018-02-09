@@ -76,3 +76,67 @@ Array [
   },
 ]
 `;
+
+exports[`lib/riw/app/translate/extract.source 05 1`] = `
+Array [
+  Object {
+    "defaultMessage": "a.1!",
+    "description": undefined,
+    "file": "/fixtures/05/a.js",
+    "id": "a1",
+  },
+  Object {
+    "defaultMessage": "b.1!",
+    "description": undefined,
+    "file": "/fixtures/05/b.js",
+    "id": "b1",
+  },
+  Object {
+    "defaultMessage": "b.2!",
+    "description": "b.2 desc",
+    "file": "/fixtures/05/b.js",
+    "id": "b2",
+  },
+]
+`;
+
+exports[`lib/riw/app/translate/extract.source 06 1`] = `
+Array [
+  Object {
+    "defaultMessage": "a.1!",
+    "description": undefined,
+    "file": "/fixtures/06/a.js",
+    "id": "a1",
+  },
+  Object {
+    "defaultMessage": "a.1 again!",
+    "description": undefined,
+    "file": "/fixtures/06/aa.js",
+    "id": "a1again",
+  },
+  Object {
+    "defaultMessage": "b.1!",
+    "description": undefined,
+    "file": "/fixtures/06/b.js",
+    "id": "b1",
+  },
+  Object {
+    "defaultMessage": "b.2!",
+    "description": "b.2 desc",
+    "file": "/fixtures/06/b.js",
+    "id": "b2",
+  },
+  Object {
+    "defaultMessage": "b.2 again!",
+    "description": "b.2 again desc",
+    "file": "/fixtures/06/bb.js",
+    "id": "b2again",
+  },
+  Object {
+    "defaultMessage": "c.1!",
+    "description": undefined,
+    "file": "/fixtures/06/c.js",
+    "id": "c1",
+  },
+]
+`;
