@@ -74,8 +74,22 @@ When `inputMode` is `json`, riw collates these JSON files for translation and do
 
 How riw should locate the `react-intl` message descriptors to translate.
 
-- Use `source` and set `sourceDirs` if you want riw to extract message descriptors from your source files using `babel-plugin-react-intl`.
+- Use `source` and set `sourceDirs` if you want riw to extract message descriptors from your source files using `babel-plugin-react-intl` and `babel-plugin-react-intl-auto`.
 - Use `json` and set `collateDir` if you want riw to use message descriptors already extracted from your source files by another process, for example webpack.
+
+
+### `reactIntlAutoConfig`
+
+- Type: `false` | `Object`
+- Default value: `{ removePrefix: 'src', filebase: true }`
+
+The configuration object for the `babel-plugin-react-intl-auto` plugin, if you want to use it.
+
+- Use `false` to disable this plugin. With this setting, your message descriptors must be full `react-intl` descriptors with `id`, `defaultMessage` and optional `description` properties.
+- Use an object to define the configuration for `babel-plugin-react-intl-auto`. See https://github.com/akameco/babel-plugin-react-intl-auto. With this plugin enabled, you don't need to worry about generating message descriptor ids yourself.
+
+When `inputMode` is `json`, this setting is ignored.
+
 
 ### `translationsOutputFile`
 

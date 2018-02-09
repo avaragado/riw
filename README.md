@@ -6,7 +6,7 @@ Use riw to:
 
 - Define target locales for your app: the locales into which you translate the app.
 - Extract `react-intl` message descriptors from your React components, directly or indirectly.
-- Check for duplicates in your `react-intl` message descriptor ids.
+- Check for duplicates in your `react-intl` message descriptor ids if you need to.
 - Manage translations for each target locale, storing them in a simple translations database.
 - Generate JSON files for your translations, to include in your app.
 
@@ -32,7 +32,7 @@ riw assumes you're familiar with `react-intl`, and that your app already uses a 
 
 - riw doesn't perform any automated text translation or interface with any translators or translation services. It tells you which messages need translating, lets you update its translations database with the translations once you have them, and produces shippable, `react-intl`-compatible JSON files for each locale you want to support.
 
-- riw doesn't provide a mechanism for generating unique `react-intl` message descriptor ids. How you define these depends on your app's requirements. However, it does let you identify any duplicate ids. ([See the FAQ](doc/faq.md) for a possible naming scheme to help avoid duplicates.)
+- riw doesn't provide its own mechanism for generating unique `react-intl` message descriptor ids. However, by default riw uses `babel-plugin-react-intl-auto` to autogenerate ids. ([See the FAQ](doc/faq.md) and https://github.com/akameco/babel-plugin-react-intl-auto for more.)
 
 - riw doesn't import the generated JSON locale files into your app or plug them into `react-intl`'s `IntlProvider`. You implement this behaviour yourself.
 
