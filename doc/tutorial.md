@@ -39,7 +39,7 @@ Importantly, riw fits into your current development process and does not constra
 
 ## Using riw
 
-If you enjoy scrolling through diffs, the [riw-example](https://github.com/avaragado/riw-example) repository shows how to take a simple React app with hardcoded strings, internationalise it with `react-intl`, and then use it with riw.
+The [riw-example](https://github.com/avaragado/riw-example) repository shows a simple React app, internationalised with `react-intl` and `babel-plugin-react-intl-auto`, set up for use with riw.
 
 Meanwhile, here's the view from 10,000 feet:
 

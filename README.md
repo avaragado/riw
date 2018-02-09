@@ -16,7 +16,7 @@ See [Introducing riw](https://medium.com/@avaragado/introducing-riw-854f9a2c9f52
 
 <img src="doc/assets/riw-app-status.png" width="600">
 
-There's an example repository, [`riw-example`](https://github.com/avaragado/riw-example), showing (in its commit history) how to migrate a simple React app with hard-coded strings to `react-intl`, and then how to use riw with it.
+There's an example repository, [`riw-example`](https://github.com/avaragado/riw-example), showing a simple internationalised React app set up for use with riw.
 
 The word "riw" seems to be Welsh for _slope_ or _hill_, and rhymes with the English word _drew_.
 
