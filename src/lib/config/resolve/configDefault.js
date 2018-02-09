@@ -12,7 +12,7 @@ export default ({
     inputMode: 'source',
     reactIntlAutoConfig: {
         removePrefix: 'src/',
-        filebase: false,
+        filebase: true,
     },
     translationsOutputFile: 'src/locale/[locale].json',
     outputMode: 'file-per-locale',
