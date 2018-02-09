@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/avaragado/riw/compare/v0.6.1...v0.7.0) (2018-02-09)
+
+
+### Features
+
+* use babel-plugin-react-intl-auto ([da266c0](https://github.com/avaragado/riw/commit/da266c0)), closes [#7](https://github.com/avaragado/riw/issues/7)
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/avaragado/riw/compare/v0.6.0...v0.6.1) (2017-09-29)
 
