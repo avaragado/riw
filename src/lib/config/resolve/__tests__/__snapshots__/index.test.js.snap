@@ -7,8 +7,8 @@ Object {
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "reactIntlAutoConfig": Object {
-    "filebase": false,
-    "removePrefix": "src/",
+    "filebase": true,
+    "removePrefix": "src",
   },
   "rootDir": ".",
   "sourceDirs": Array [
@@ -29,8 +29,8 @@ Object {
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "reactIntlAutoConfig": Object {
-    "filebase": false,
-    "removePrefix": "src/",
+    "filebase": true,
+    "removePrefix": "src",
   },
   "rootDir": "/foo/bar",
   "sourceDirs": Array [
@@ -50,8 +50,8 @@ Object {
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "reactIntlAutoConfig": Object {
-    "filebase": false,
-    "removePrefix": "src/",
+    "filebase": true,
+    "removePrefix": "src",
   },
   "rootDir": "/foo/bar",
   "sourceDirs": Array [
@@ -72,8 +72,8 @@ Object {
   "inputMode": "source",
   "outputMode": "file-per-locale",
   "reactIntlAutoConfig": Object {
-    "filebase": false,
-    "removePrefix": "src/",
+    "filebase": true,
+    "removePrefix": "src",
   },
   "rootDir": "/foo/bar",
   "sourceDirs": Array [

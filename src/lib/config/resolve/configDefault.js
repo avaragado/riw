@@ -11,7 +11,7 @@ export default ({
     collateDir: 'tmp/babel-plugin-react-intl',
     inputMode: 'source',
     reactIntlAutoConfig: {
-        removePrefix: 'src/',
+        removePrefix: 'src',
         filebase: true,
     },
     translationsOutputFile: 'src/locale/[locale].json',
