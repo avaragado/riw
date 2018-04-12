@@ -31,7 +31,17 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 
         Your riw configuration settings determine how riw looks for message descriptors,
         and where the final files are saved. See configuration documentation for details.
-    `);
+    `)
+    .options({
+        quiet: {
+            alias: 'q',
+            boolean: true,
+            group: 'Command options',
+            desc: outdent`
+                Output nothing
+            `,
+        },
+    });
 
 const sfrelFromFabsFromConfig = (config: Config) => (fabs: AbsolutePath) =>
     chalk.green(path.relative(config.rootDir, fabs));
@@ -42,7 +52,11 @@ const squashToLength = (ctCharMax: number) => (str: string) => (
         : str
 );
 
-export const handler = createHandlerWithRIW((riw: RIW) => {
+const makeAppTranslateSpec: (RIW, boolean) => AppTranslateSpec = (riw, quiet) => {
+    if (quiet) {
+        return {};
+    }
+
     // $FlowFixMe flow moans at process.stdout.columns, no idea how to fix
     const ctCharLine = process.stdout.columns;
     const sfrelFromFabs = sfrelFromFabsFromConfig(riw.config);
@@ -54,7 +68,7 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
     let ctMD = 0;
     let bar = bardot.widthBar((ctCharLine / 2) - 10); // leave room for ctMD
 
-    const opt: AppTranslateSpec = {
+    return {
         on: {
             start: () => {
                 spinner.text = {
@@ -129,6 +143,10 @@ export const handler = createHandlerWithRIW((riw: RIW) => {
             },
         },
     };
+};
+
+export const handler = createHandlerWithRIW((riw: RIW, argv: yargs.Argv) => {
+    const opt = makeAppTranslateSpec(riw, argv.quiet);
 
     try {
         riw.app.translate(opt);
