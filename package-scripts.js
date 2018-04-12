@@ -19,7 +19,7 @@ module.exports = {
         clean: 'rimraf dist coverage flow-coverage',
         flow: {
             default: 'flow --show-all-errors; test $? -eq 0 -o $? -eq 2',
-            typed: 'flow-typed update',
+            typed: 'flow-typed update --skip',
             coverageReport: 'flow-coverage-report -i \'src/**/*.js\' -t html -t text',
             copySource: 'flow-copy-source src dist',
         },
