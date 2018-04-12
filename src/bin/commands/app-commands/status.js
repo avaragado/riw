@@ -25,17 +25,7 @@ export const builder = (yyargs: yargs.Argv) => yyargs
 
         Shows information about the translations in your app.
         Indicates if you should run "riw app translate".
-    `)
-    .options({
-        missing: {
-            alias: 'm',
-            boolean: true,
-            group: 'Command options',
-            desc: outdent`
-                Show missing translations, grouped by locale
-            `,
-        },
-    });
+    `);
 
 const sAbsent = chalk.red('(absent)');
 const sTotal = 'TOTAL';
