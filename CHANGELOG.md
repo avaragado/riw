@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/avaragado/riw/compare/v0.7.0...v0.8.0) (2018-04-20)
+
+
+### Bug Fixes
+
+* **buld:** specify correct babel-env config, support node 8 ([2e87d62](https://github.com/avaragado/riw/commit/2e87d62))
+* remove nonexistent `--missing` option from riw app status usage ([a37a74b](https://github.com/avaragado/riw/commit/a37a74b))
+* remove redundant `riw version` since `riw --version` exists ([4f22d7a](https://github.com/avaragado/riw/commit/4f22d7a))
+
+
+### Features
+
+* add `--quiet` option to `riw app translate` ([e3754ae](https://github.com/avaragado/riw/commit/e3754ae))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/avaragado/riw/compare/v0.6.1...v0.7.0) (2018-02-09)
 
