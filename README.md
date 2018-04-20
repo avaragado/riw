@@ -23,9 +23,11 @@ The word "riw" seems to be Welsh for _slope_ or _hill_, and rhymes with the Engl
 This project is not associated with the `react-intl` project.
 
 
-### Assumptions
+### Assumptions and prerequisites
 
 riw assumes you're familiar with `react-intl`, and that your app already uses a build system of some kind (for example, webpack).
+
+riw requires node 8.x or later.
 
 
 ### Problems riw doesn't solve
